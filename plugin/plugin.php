@@ -1,4 +1,5 @@
 <?php
+namespace Korobochkin\Currency;
 /*
 Plugin Name: Currency
 Plugin URI: http://pokur.su/
@@ -21,3 +22,8 @@ License: GPLv2 or later
 require_once 'vendor/autoload.php';
 $GLOBALS['CurrencyPlugin'] = new Plugin( __FILE__ );
 $GLOBALS['CurrencyPlugin']->run();
+
+/**
+ * Activation process. Running only once.
+ */
+register_activation_hook( __FILE__, array( '\Korobochkin\Currency\Activation', 'run' ) );

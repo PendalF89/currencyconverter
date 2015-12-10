@@ -12,9 +12,18 @@ class Plugin {
 	}
 
 	public function run() {
-		register_activation_hook( $this->plugin_path, array( '\Korobochkin\Currency\Activation', 'run' ) );
-
 		add_action( 'plugins_loaded', array( 'Korobochkin\Currency\Translations', 'load_translations' ) );
+
+		/**
+		 * Update currency action.
+		 */
+		add_action(
+			\Korobochkin\Currency\Plugin::NAME . \Korobochkin\Currency\Cron\UpdateCurrency::$action_name,
+			array(
+				'\Korobochkin\Currency\Service\UpdateCurrency',
+				'update'
+			)
+		);
 
 		if ( is_admin() ) {
 
