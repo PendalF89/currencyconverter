@@ -1,5 +1,4 @@
 <?php
-namespace Korobochkin\Currency;
 /*
 Plugin Name: Currency
 Plugin URI: http://pokur.su/
