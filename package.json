@@ -1,0 +1,30 @@
+{
+  "name": "currency",
+  "version": "0.0.0",
+  "description": "Currency widgets for any needs.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/korobochkin/currency.git"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "currency",
+    "widgets",
+    "money"
+  ],
+  "author": "Kolya Korobochkin",
+  "license": "GPL-2.0+",
+  "bugs": {
+    "url": "https://github.com/korobochkin/currency/issues"
+  },
+  "homepage": "https://github.com/korobochkin/currency#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^0.8.0"
+  }
+}
