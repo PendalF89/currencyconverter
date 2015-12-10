@@ -10,9 +10,9 @@ class API {
 	public $parsedAnswer = null;
 
 	public function get_rates() {
-		self::get_rates_raw();
+		$this->get_remote();
 
-		$is_valid = self::validate_answer();
+		$is_valid = $this->validate_answer();
 
 		if( is_wp_error( $is_valid ) ) {
 			return $is_valid;
@@ -25,13 +25,25 @@ class API {
 			return $is_valid;
 		}
 		else {
-			return self::$parsedAnswer;
+			return $this->parsedAnswer;
 		}
 	}
 
 	public function get_rates_raw() {
-		self::$answerFromAPI = wp_remote_get(
-			self::get_api_url()
+		self::get_remote();
+
+		$is_valid = self::validate_answer();
+
+		if( is_wp_error( $is_valid ) ) {
+			return $is_valid;
+		}
+
+		return $this->answerFromAPI['body'];
+	}
+
+	public function get_remote() {
+		$this->answerFromAPI = wp_remote_get(
+			$this->get_api_url()
 		);
 	}
 
@@ -43,7 +55,7 @@ class API {
 		/**
 		 * Call get_* method first.
 		 */
-		if( !self::$answerFromAPI ) {
+		if( !$this->answerFromAPI ) {
 			return new \WP_Error(
 				'call_get_method_first',
 				__( 'It seems that you have not tried to get a response from remote server via get_* method first.', Plugin::NAME )
@@ -52,19 +64,19 @@ class API {
 		/**
 		 * If we have WP_Error obj during remote get request
 		 */
-		elseif( is_wp_error( self::$answerFromAPI ) ) {
-			return self::$answerFromAPI;
+		elseif( is_wp_error( $this->answerFromAPI ) ) {
+			return $this->answerFromAPI;
 		}
 
 		/**
 		 * Checkout object and response code.
 		 */
-		if( self::$answerFromAPI['response'] === 200 ) {
+		if( $this->answerFromAPI['response']['code'] === 200 ) {
 
 			/**
 			 * Checkout response body.
 			 */
-			if( !empty( self::$answerFromAPI['body'] ) ) {
+			if( !empty( $this->answerFromAPI['body'] ) ) {
 				return true;
 			}
 			else {
@@ -83,8 +95,8 @@ class API {
 	}
 
 	public function parse_answer() {
-		self::$parsedAnswer = json_decode( self::$answerFromAPI['body'], true );
-		if( is_null( self::$parsedAnswer ) ) {
+		$this->parsedAnswer = json_decode( $this->answerFromAPI['body'], true );
+		if( is_null( $this->parsedAnswer ) ) {
 			return new \WP_Error(
 				'invalid_json_inside_answer',
 				__( 'Remote server return invalid JSON object.', Plugin::NAME )
