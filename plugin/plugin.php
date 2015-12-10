@@ -27,3 +27,5 @@ $GLOBALS['CurrencyPlugin']->run();
  * Activation process. Running only once.
  */
 register_activation_hook( __FILE__, array( '\Korobochkin\Currency\Activation', 'run' ) );
+
+//\Korobochkin\Currency\Service\UpdateCurrency::update();
