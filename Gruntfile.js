@@ -10,6 +10,16 @@ module.exports = function(grunt) {
         expand: true,
         src: 'vendor/**',
         dest: 'plugin/'
+      },
+      libs: {
+        files: [
+          {
+            expand: true,
+            cwd: 'bower_components/flags/flags/',
+            src: '**',
+            dest: 'plugin/libs/flags/'
+          }
+        ]
       }
     }
   });
@@ -17,6 +27,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('default', [
-    'copy:composer'
+    'copy:composer',
+    'copy:libs'
   ]);
 };
