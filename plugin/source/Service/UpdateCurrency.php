@@ -12,6 +12,7 @@ class UpdateCurrency {
 				\Korobochkin\Currency\Plugin::NAME . '_rates',
 				self::$newRates
 			);
+			update_option( \Korobochkin\Currency\Plugin::NAME . '_rates_available', '1' );
 		}
 	}
 }
