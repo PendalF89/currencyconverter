@@ -13,42 +13,29 @@ class Rates {
 		return false;
 	}
 
-	public static function get_rate( $currency, $base = 'USD' ) {
+	public static function get_rate( $currency_ticker, $base_ticker = 'USD' ) {
 		if( self::is_available() ) {
 			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
 
-			if( !empty( $rates[0]['rates'][$currency] ) || $currency === 'USD' ) {
-				if( !empty( $rates[0]['rates'][$base] ) || $base === 'USD' ) {
-					$currency = $currency === 'USD' ? 1 : $rates[0]['rates'][$currency];
-					$base = $base === 'USD' ? 1 : $rates[0]['rates'][$base];
+			/**
+			 * Проверяем наличие базовой валюты (в которой будет указываться стоимость других)
+			 * и валюты, которую нужно рассчитать (курс для которой пишем).
+			 */
+			if( !empty( $rates[0]['rates'][$currency_ticker] ) || $currency_ticker === 'USD' ) {
+				if( !empty( $rates[0]['rates'][$base_ticker] ) || $base_ticker === 'USD' ) {
 
-					return $base / $currency;
+					/**
+					 * Применяем ставки
+					 */
+					$currency_rate = $currency_ticker === 'USD' ? 1 : $rates[0]['rates'][$currency_ticker];
+					$base_rate = $base_ticker === 'USD' ? 1 : $rates[0]['rates'][$base_ticker];
+
+					/**
+					 * Считаем всегда по одной формуле
+					 */
+					return $base_rate / $currency_rate;
 				}
 			}
-
-			/**
-			 * Валюта должна быть в списке
-			 */
-			/*if( !empty( $rates[0]['rates'][$currency] ) || $rates[0]['rates'][$currency] === 'USD' ) {
-				// Базовая валюта доллар
-				if( $base === 'USD' ) {
-					if( $rates[0]['rates'][$currency] === 'USD' ) {
-						return 1;
-					}
-					else {
-						return 1 / $rates[0]['rates'][$currency];
-					}
-				}
-				// Базовая валюта не доллар (должна быть в списке)
-				elseif( !empty( $rates[0]['rates'][$base] ) ) {
-					if( $rates[0]['rates'][$currency] === 'USD' ) {
-						return $rates[0]['rates'][$base];
-					}
-					else {
-						return $rates[0]['rates'][$base] / $rates[0]['rates'][$currency];
-					}
-				}
-			}*/
 		}
 		return false;
 	}
