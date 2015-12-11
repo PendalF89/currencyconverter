@@ -17,38 +17,38 @@ class Rates {
 		if( self::is_available() ) {
 			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
 
-			if( $base === 'USD' ) {
-				if( !empty( $rates[0]['rates'][$currency] ) ) {
-					return $rates[0]['rates'][$currency];
-				}
-				return false;
-			}
-			else {
-				if( !empty( $rates[0]['rates'][$currency] ) || $currency === 'USD' ) {
-					if( !empty( $rates[0]['rates'][$base] ) ) {
-						if( $currency === 'USD' ) {
-							/**
-							 * 1 USD -- 1.3700507322827999 AUD
-							 * x USD -- 1 AUD
-							 * x USD = (1 USD * 1 AUD) / 1.3700507322827999 AUD
-							 */
-							return 1 / $rates[0]['rates'][$base];
-						}
+			if( !empty( $rates[0]['rates'][$currency] ) || $currency === 'USD' ) {
+				if( !empty( $rates[0]['rates'][$base] ) || $base === 'USD' ) {
+					$currency = $currency === 'USD' ? 1 : $rates[0]['rates'][$currency];
+					$base = $base === 'USD' ? 1 : $rates[0]['rates'][$base];
 
-						/**
-						 * 1 USD -- 1.3700507322827999 AUD
-						 * 1 USD -- 1.0492000836752 AZN
-						 *
-						 * 1.3700507322827999 AUD -- 1.0492000836752 AZN
-						 * x AUD                  -- 1 AZN
-						 * x AUD = (1.3700507322827999 AUD * 1 AZN ) / 1.0492000836752 AZN
-						 *
-						 */
-						return $rates[0]['rates'][$currency] / $rates[0]['rates'][$base];
+					return $base / $currency;
+				}
+			}
+
+			/**
+			 * Валюта должна быть в списке
+			 */
+			/*if( !empty( $rates[0]['rates'][$currency] ) || $rates[0]['rates'][$currency] === 'USD' ) {
+				// Базовая валюта доллар
+				if( $base === 'USD' ) {
+					if( $rates[0]['rates'][$currency] === 'USD' ) {
+						return 1;
+					}
+					else {
+						return 1 / $rates[0]['rates'][$currency];
 					}
 				}
-				return false;
-			}
+				// Базовая валюта не доллар (должна быть в списке)
+				elseif( !empty( $rates[0]['rates'][$base] ) ) {
+					if( $rates[0]['rates'][$currency] === 'USD' ) {
+						return $rates[0]['rates'][$base];
+					}
+					else {
+						return $rates[0]['rates'][$base] / $rates[0]['rates'][$currency];
+					}
+				}
+			}*/
 		}
 		return false;
 	}
