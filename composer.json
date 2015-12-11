@@ -10,8 +10,10 @@
             "homepage": "http://korobochkin.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {},
+    "minimum-stability": "dev",
+    "require": {
+        "tburial/html-table-generator": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "Korobochkin\\Currency\\": "source/"
