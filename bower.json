@@ -1,0 +1,28 @@
+{
+  "name": "currency",
+  "description": "Currency widgets for any needs.",
+  "main": "Gruntfile.js",
+  "authors": [
+    "Kolya Korobochkin"
+  ],
+  "license": "GPL-2.0+",
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "currency",
+    "widgets",
+    "money"
+  ],
+  "homepage": "https://github.com/korobochkin/currency",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "flags": "gosquared/flags"
+  }
+}
