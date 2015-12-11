@@ -1,0 +1,63 @@
+# Copyright (C) 2015 Currency
+# This file is distributed under the same license as the Currency package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Currency 0.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/currency\n"
+"POT-Creation-Date: 2015-12-11 22:39:24+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: source/API/API.php:51
+msgid "http://api.exchangerate.guru/"
+msgstr ""
+
+#: source/API/API.php:61
+msgid ""
+"It seems that you have not tried to get a response from remote server via "
+"get_* method first."
+msgstr ""
+
+#: source/API/API.php:85
+msgid "Remote server return empty answer."
+msgstr ""
+
+#: source/API/API.php:92
+msgid "Remote server return not supported response code."
+msgstr ""
+
+#: source/API/API.php:102
+msgid "Remote server return invalid JSON object."
+msgstr ""
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:11
+msgid "Currency Table"
+msgstr ""
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:14
+msgid "A table with currency rates."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Currency"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://pokur.su/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Currency widgets for any needs."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Kolya Korobochkin"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://korobochkin.com/"
+msgstr ""

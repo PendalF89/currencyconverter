@@ -8,7 +8,7 @@ class Plugin {
 	public $plugin_path = NULL;
 
 	public function __construct( $run_from_file ) {
-		$this->plugin_path = dirname( plugin_basename( $run_from_file ) );
+		$this->plugin_path = $run_from_file;
 	}
 
 	public function run() {
