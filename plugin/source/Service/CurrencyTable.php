@@ -22,7 +22,7 @@ class CurrencyTable {
 			$this->table->set_heading(
 				array(
 					'Валюта',
-					'Курс',
+					'Курс в ' . $this->parameters['base_currency'],
 					'%'
 				)
 			);
