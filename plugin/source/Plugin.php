@@ -28,7 +28,7 @@ class Plugin {
 		add_action( 'widgets_init', array( '\Korobochkin\Currency\Widgets\RegisterWidgets', 'register' ) );
 
 		if ( is_admin() ) {
-
+			\Korobochkin\Currency\Admin\Admin::run();
 		}
 	}
 }
