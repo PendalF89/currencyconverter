@@ -25,6 +25,7 @@ class API {
 			return $is_valid;
 		}
 		else {
+			$this->add_usd_to_rates();
 			return $this->parsedAnswer;
 		}
 	}
@@ -102,5 +103,10 @@ class API {
 				__( 'Remote server return invalid JSON object.', Plugin::NAME )
 			);
 		}
+	}
+
+	public function add_usd_to_rates() {
+		$this->parsedAnswer[0]['rates']['USD'] = 1;
+		$this->parsedAnswer[1]['rates']['USD'] = 1;
 	}
 }
