@@ -33,7 +33,7 @@ class CurrencyTable {
 
 				if( $rate ) {
 					$this->table->add_row(
-						esc_html( $currency ),
+						esc_html( $currency ) . '<img src="' . \Korobochkin\Currency\Service\Rates::get_currency_flag( $currency ) . '">',
 						$rate,
 						0
 					);

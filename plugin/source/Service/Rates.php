@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\Currency\Service;
 
+use Korobochkin\Currency\Plugin;
+
 class Rates {
 
 	public static function is_available() {
@@ -38,5 +40,24 @@ class Rates {
 			}
 		}
 		return false;
+	}
+
+	public static function get_currency_flag( $currency, $size = 16, $format = 'iso', $style = 'flat' ) {
+		$url = plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path ) . 'libs/flags/';
+		// TODO: здесь неправильный адрес на флаг отдается
+		switch( $format ) {
+			case 'iso':
+			default:
+				$url .= 'flags-iso';
+				break;
+
+			case 'none':
+				$url .= 'flags';
+				break;
+		}
+
+		$url .= '/' . $style . '/' . $size . '/' . $currency . '.png';
+
+		return $url;
 	}
 }
