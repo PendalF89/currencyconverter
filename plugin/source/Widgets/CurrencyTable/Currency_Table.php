@@ -48,6 +48,8 @@ class Currency_Table extends \WP_Widget {
 	}
 
 	public function form( $instance ) {
+		static $first = true;
+
 		$title = sanitize_text_field( $instance['title'] );
 		$base_currency = sanitize_text_field( $instance['base_currency'] );
 		$currency_list = sanitize_text_field( $instance['currency_list'] );
@@ -63,6 +65,55 @@ class Currency_Table extends \WP_Widget {
 		<p><label for="<?php echo $this->get_field_id( 'currency_list' ); ?>"><?php _e( 'Currencies list:', Plugin::NAME ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'currency_list' ); ?>" name="<?php echo $this->get_field_name( 'currency_list' ); ?>" type="text" value="<?php echo esc_attr( $currency_list ); ?>"></p>
 		<p class="description"><?php _e( 'The currencies which will be displayed in table. Separate by commas.', Plugin::NAME ); ?></p>
+
+		<script type="text/javascript">
+			(function($){
+				// TODO: Надо разобраться с этим кодом
+				var availableTags = [
+					'USD',
+					'EUR',
+					'RUB'
+				];
+				function split( val ) {
+					return val.split( /,\s*/ );
+				}
+				function extractLast( term ) {
+					return split( term ).pop();
+				}
+				$(document).ready(function() {
+					$( "#<?php echo $this->get_field_id( 'currency_list' ); ?>" )
+						.bind( "keydown", function( event ) {
+							if ( event.keyCode === $.ui.keyCode.TAB &&
+								$( this ).autocomplete( "instance" ).menu.active ) {
+								event.preventDefault();
+							}
+						})
+						.autocomplete({
+							minLength: 0,
+							source: function( request, response ) {
+								// delegate back to autocomplete, but extract the last term
+								response( $.ui.autocomplete.filter(
+									availableTags, extractLast( request.term ) ) );
+							},
+							focus: function() {
+								// prevent value inserted on focus
+								return false;
+							},
+							select: function( event, ui ) {
+								var terms = split( this.value );
+								// remove the current input
+								terms.pop();
+								// add the selected item
+								terms.push( ui.item.value );
+								// add placeholder to get the comma-and-space at the end
+								terms.push( "" );
+								this.value = terms.join( ", " );
+								return false;
+							}
+						});
+				});
+			})(jQuery);
+		</script>
 		<?php
 	}
 }
