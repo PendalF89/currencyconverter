@@ -56,7 +56,7 @@ class Rates {
 				break;
 		}
 
-		$url .= '/' . $style . '/' . $size . '/' . $currency . '.png';
+		$url .= '/' . $style . '/' . $size . '/' . substr( $currency, 0, 2 ) . '.png';
 
 		return $url;
 	}
