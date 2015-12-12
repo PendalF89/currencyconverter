@@ -2,6 +2,7 @@
 namespace Korobochkin\Currency\Service;
 
 use HtmlTableGenerator\Table;
+use Korobochkin\Currency\Plugin;
 
 class CurrencyTable {
 
@@ -22,8 +23,8 @@ class CurrencyTable {
 			$this->table = new Table();
 			$this->table->set_heading(
 				array(
-					'Валюта',
-					'Курс в ' . $this->parameters['base_currency'],
+					__( 'Currency', Plugin::NAME ),
+					__( 'Rate', Plugin::NAME ) . ' ' . $this->parameters['base_currency'],
 					'%'
 				)
 			);
@@ -31,12 +32,13 @@ class CurrencyTable {
 
 			foreach( $this->parameters['currency_list'] as $currency ) {
 				$rate = \Korobochkin\Currency\Service\Rates::get_rate( $currency, $this->parameters['base_currency'] );
+				$percentage = \Korobochkin\Currency\Service\Rates::get_change_rate_percentage( $currency );
 
 				if( $rate ) {
 					$this->table->add_row(
 						esc_html( $currency ) . '<img src="' . \Korobochkin\Currency\Service\Rates::get_currency_flag( $currency ) . '">',
 						$rate,
-						0
+						$percentage
 					);
 				}
 			}
