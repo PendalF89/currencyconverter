@@ -42,6 +42,36 @@ class Rates {
 		return false;
 	}
 
+	public static function get_change_rate_percentage( $currency ) {
+		if( self::is_available() ) {
+			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+
+			if( !empty( $rates[0]['rates'][$currency] ) && !empty( $rates[1]['rates'][$currency] ) ) {
+				return ( 100 * $rates[1]['rates'][$currency] ) / $rates[0]['rates'][$currency];
+			}
+		}
+		return false;
+	}
+
+	public static function get_trend( $currency ) {
+		if( self::is_available() ) {
+			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+
+			if( !empty( $rates[0]['rates'][$currency] ) && !empty( $rates[1]['rates'][$currency] ) ) {
+				if( $rates[0]['rates'][$currency] > $rates[1]['rates'][$currency] ) {
+					return 'up';
+				}
+				elseif( $rates[0]['rates'][$currency] == $rates[1]['rates'][$currency] ) {
+					return 'flat';
+				}
+				else {
+					return 'down';
+				}
+			}
+		}
+		return false;
+	}
+
 	public static function get_currency_flag( $currency, $size = 16, $format = 'iso', $style = 'flat' ) {
 		$url = plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path ) . 'libs/flags/';
 		// TODO: здесь неправильный адрес на флаг отдается
