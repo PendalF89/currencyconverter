@@ -57,6 +57,7 @@ class Currency_Table extends \WP_Widget {
 		$title = sanitize_text_field( $instance['title'] );
 		$base_currency = sanitize_text_field( $instance['base_currency'] );
 		$currency_list = sanitize_text_field( $instance['currency_list'] );
+		$current_size = sanitize_text_field( $instance['current_size'] );
 		?>
 
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', Plugin::NAME ); ?></label>
@@ -122,6 +123,23 @@ class Currency_Table extends \WP_Widget {
 				});
 			})(jQuery);
 		</script>
+
+		<p><label for="<?php echo $this->get_field_id( 'flag_icons' ); ?>"><?php _e( 'Flag icons:', Plugin::NAME ); ?></label>
+		<select class="widefat" id="<?php echo $this->get_field_id( 'flag_icons' ); ?>" name="<?php echo $this->get_field_name( 'flag_icons' ); ?>">
+			<option value="0"><?php _e( 'No flag icon', Plugin::NAME ); ?></option>
+			<?php
+			$flags_sized = new \Korobochkin\Currency\Models\Flags();
+			foreach( $flags_sized->sizes as $size ) {
+				printf(
+					'<option value="%s"%s>%s</option>',
+					esc_attr( $size ),
+					selected( $size, $current_size, false ),
+					esc_html( $size . ' px' )
+				);
+			}
+			?>
+		</select>
+		</p>
 		<?php
 		$first = false;
 	}
