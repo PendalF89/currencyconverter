@@ -71,16 +71,17 @@ class Currency_Table extends \WP_Widget {
 		<p class="description"><?php _e( 'The currencies which will be displayed in table. Separate by commas.', Plugin::NAME ); ?></p>
 
 		<script type="text/javascript">
+			<?php
+			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+			$tickers = array();
+			foreach( $rates[0]['rates'] as $key => $value ) {
+				$tickers[] = $key;
+			}
+			if( !$first ) {
+				echo 'var currenciesTickersList =' . wp_json_encode( $tickers ) . ';';
+			}
+			?>
 			(function($){
-				// TODO: Надо разобраться с этим кодом
-				<?php
-					$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
-					$tickers = array();
-					foreach( $rates[0]['rates'] as $key => $value ) {
-						$tickers[] = $key;
-					}
-                ?>
-				var availableTags = <?php echo wp_json_encode( $tickers ); ?>;
 				function split( val ) {
 					return val.split( /,\s*/ );
 				}
@@ -100,7 +101,7 @@ class Currency_Table extends \WP_Widget {
 							source: function( request, response ) {
 								// delegate back to autocomplete, but extract the last term
 								response( $.ui.autocomplete.filter(
-									availableTags, extractLast( request.term ) ) );
+									currenciesTickersList, extractLast( request.term ) ) );
 							},
 							focus: function() {
 								// prevent value inserted on focus
@@ -122,5 +123,6 @@ class Currency_Table extends \WP_Widget {
 			})(jQuery);
 		</script>
 		<?php
+		$first = false;
 	}
 }
