@@ -43,7 +43,8 @@ class Currency_Table extends \WP_Widget {
 					'USD',
 					'EUR',
 					'RUB',
-				)
+				),
+				'flag_size' => !empty( $instance['flag_size'] ) && $instance['flag_size'] > 0 ? $instance['flag_size'] : 0
 			);
 			echo $table->get_table();
 		}

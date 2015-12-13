@@ -35,8 +35,13 @@ class CurrencyTable {
 				$percentage = \Korobochkin\Currency\Service\Rates::get_change_rate_percentage( $currency );
 
 				if( $rate ) {
+					$flag = '';
+					if( $this->parameters['flag_size'] > 0 ) {
+						$flag = '<img src="' . \Korobochkin\Currency\Service\Rates::get_currency_flag( $currency, $this->parameters['flag_size'] ) . '">';
+					}
+
 					$this->table->add_row(
-						esc_html( $currency ) . '<img src="' . \Korobochkin\Currency\Service\Rates::get_currency_flag( $currency ) . '">',
+						esc_html( $currency ) . $flag,
 						$rate,
 						$percentage
 					);
