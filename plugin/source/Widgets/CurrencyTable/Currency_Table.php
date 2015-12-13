@@ -34,15 +34,19 @@ class Currency_Table extends \WP_Widget {
 		 * Table
 		 */
 		$table = new \Korobochkin\Currency\Service\CurrencyTable();
-		$table->parameters = array(
-			'base_currency' => 'RUB',
-			'currency_list' => array(
-				'USD',
-				'EUR',
-				'RUB',
-			)
-		);
-		echo $table->get_table();
+		$currency_list = explode( ', ', $instance['currency_list'] );
+
+		if( !empty( $currency_list ) ) {
+			$table->parameters = array(
+				'base_currency' => empty( $instance['base_currency'] ) ? 'USD' : $instance['base_currency'],
+				'currency_list' => array(
+					'USD',
+					'EUR',
+					'RUB',
+				)
+			);
+			echo $table->get_table();
+		}
 
 		echo $args['after_widget'];
 	}
