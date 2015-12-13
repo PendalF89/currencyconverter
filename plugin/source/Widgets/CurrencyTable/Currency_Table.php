@@ -50,6 +50,10 @@ class Currency_Table extends \WP_Widget {
 	public function form( $instance ) {
 		static $first = true;
 
+		if( !\Korobochkin\Currency\Service\Rates::is_available() ) {
+			return;
+		}
+
 		$title = sanitize_text_field( $instance['title'] );
 		$base_currency = sanitize_text_field( $instance['base_currency'] );
 		$currency_list = sanitize_text_field( $instance['currency_list'] );
@@ -69,10 +73,16 @@ class Currency_Table extends \WP_Widget {
 		<script type="text/javascript">
 			(function($){
 				// TODO: Надо разобраться с этим кодом
+				<?php
+					$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+					$tickers = array();
+					foreach( $rates[0]['rates'] as $key => $value ) {
+						$tickers[] = $key;
+					}
+					//echo wp_json_encode($tickers);
+                ?>
 				var availableTags = [
-					'USD',
-					'EUR',
-					'RUB'
+					<?php echo '\'' . implode( '\',\'', $tickers ) . '\''; ?>
 				];
 				function split( val ) {
 					return val.split( /,\s*/ );
