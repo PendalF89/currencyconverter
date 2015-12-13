@@ -79,11 +79,8 @@ class Currency_Table extends \WP_Widget {
 					foreach( $rates[0]['rates'] as $key => $value ) {
 						$tickers[] = $key;
 					}
-					//echo wp_json_encode($tickers);
                 ?>
-				var availableTags = [
-					<?php echo '\'' . implode( '\',\'', $tickers ) . '\''; ?>
-				];
+				var availableTags = <?php echo wp_json_encode( $tickers ); ?>;
 				function split( val ) {
 					return val.split( /,\s*/ );
 				}
