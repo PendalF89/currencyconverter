@@ -7,13 +7,13 @@ class Provider {
 
 	public static function register() {
 		add_settings_field(
-			'provider_name',
+			'data_provider_name',
 			__( 'Provider', Plugin::NAME ),
 			array( __CLASS__, 'render' ),
 			Plugin::NAME . 'general',
 			'data_provider',
 			array(
-				'label_for' => Plugin::NAME . '__[provider_name]'
+				'label_for' => Plugin::NAME . '__[data_provider_name]'
 			)
 		);
 	}
@@ -21,7 +21,7 @@ class Provider {
 	public static function render() {
 		$options = get_option( Plugin::NAME );
 		?>
-		<input id="<?php echo Plugin::NAME; ?>__[provider_name]" name="<?php echo Plugin::NAME; ?>[provider_name]" value="<?php echo esc_attr( $options['provider_name'] ); ?>" type="text" class="regular-text" autocomplete="off">
+		<input id="<?php echo Plugin::NAME; ?>__[data_provider_name]" name="<?php echo Plugin::NAME; ?>[data_provider_name]" value="<?php echo esc_attr( $options['data_provider_name'] ); ?>" type="text" class="regular-text" autocomplete="off">
 		<?php
 	}
 }

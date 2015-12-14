@@ -35,6 +35,10 @@ class DataProvider {
 	public static function sanitize( $values ) {
 		$filtered_values = array();
 
+		if( isset( $values['data_provider_name'] ) ) {
+			$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
+		}
+
 		return $filtered_values;
 	}
 
