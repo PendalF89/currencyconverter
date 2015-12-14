@@ -16,7 +16,7 @@ class Pages {
 			__( 'Currency', Plugin::NAME ),
 			'manage_options',
 			Plugin::NAME . '-general',
-			array( '\Korobochkin\Currency\Admin\Settings\General\Pages\General', 'render' )
+			array( '\Korobochkin\Currency\Admin\Settings\General\Pages\General\Page', 'render' )
 		);
 	}
 }

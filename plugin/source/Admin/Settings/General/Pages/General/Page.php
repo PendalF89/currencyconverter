@@ -1,9 +1,9 @@
 <?php
-namespace Korobochkin\Currency\Admin\Settings\General\Pages;
+namespace Korobochkin\Currency\Admin\Settings\General\Pages\General;
 
 use Korobochkin\Currency\Plugin;
 
-class General {
+class Page {
 
 	public static function render() {
 		?><div class="wrap">
