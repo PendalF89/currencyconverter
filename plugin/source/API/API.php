@@ -4,10 +4,20 @@ namespace Korobochkin\Currency\API;
 use Korobochkin\Currency\Plugin;
 
 class API {
+	/**
+	 * TODO: Нужно реализовать нормальную работу плагина, если почему-то от API пришел кривой ответ или
+	 * сохраненная версия провайдера данных недоступна и т. п.
+	 */
+
+	/**
+	 * TODO: Нужно переписать так, чтобы можно было работать с разными провайдерами
+	 */
 
 	public $answerFromAPI = null;
 
 	public $parsedAnswer = null;
+
+	private $APIUrl;
 
 	public function get_rates() {
 		$this->get_remote();
@@ -49,10 +59,28 @@ class API {
 	}
 
 	public function get_api_url() {
-		return __( 'http://api.exchangerate.guru/', Plugin::NAME );
+
+		$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
+		$provider = get_option( Plugin::NAME );
+
+		if( empty($provider['data_provider_name'] ) ) {
+			return \WP_Error('no_data_provider', __( 'Select data provider in admin settings.', Plugin::NAME ));
+		}
+
+		if( !array_key_exists( $provider, $providers ) || $providers[$provider]['active'] != true ) {
+			return \WP_Error( 'data_provider_missed', __( 'Selected data provider disabled or no exists.', Plugin::NAME ) );
+		}
+
+		$url = add_query_arg(
+			array(
+				'source' => $providers[$provider]['abbreviated_name']
+			)
+		);
+
+		return $this->APIUrl;
 	}
 
-	public function validate_answer() {
+	private function validate_answer() {
 		/**
 		 * Call get_* method first.
 		 */
@@ -95,7 +123,7 @@ class API {
 		}
 	}
 
-	public function parse_answer() {
+	private function parse_answer() {
 		$this->parsedAnswer = json_decode( $this->answerFromAPI['body'], true );
 		if( is_null( $this->parsedAnswer ) ) {
 			return new \WP_Error(
