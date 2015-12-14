@@ -20,8 +20,22 @@ class Provider {
 
 	public static function render() {
 		$options = get_option( Plugin::NAME );
+		$providersObj = \Korobochkin\Currency\Models\DataProviders::getInstance();
+		$providers = $providersObj->get_providers();
 		?>
-		<input id="<?php echo Plugin::NAME; ?>__[data_provider_name]" name="<?php echo Plugin::NAME; ?>[data_provider_name]" value="<?php echo esc_attr( $options['data_provider_name'] ); ?>" type="text" class="regular-text" autocomplete="off">
+		<select id="<?php echo Plugin::NAME; ?>__[data_provider_name]" name="<?php echo Plugin::NAME; ?>[data_provider_name]">
+			<?php
+			foreach( $providers as $provider ) {
+				printf(
+					'<option value="%1$s" %2$s %3$s>%4$s</option>',
+					esc_attr( $provider['abbreviated_name'] ),
+					selected( $provider['abbreviated_name'], $options['data_provider_name'], false ),
+					disabled( $provider['active'], false, false ),
+					esc_html( $provider['name'] )
+				);
+			}
+			?>
+		</select>
 		<?php
 	}
 }
