@@ -24,13 +24,13 @@ class DataProviders {
 
 	public function prepare_providers() {
 		$this->providers = array(
-			array(
+			'oxr' => array(
 				'abbreviated_name' => 'oxr',
 				'name' => __( 'Open Exchange Rates', Plugin::NAME  ),
 				'homepage' => 'https://openexchangerates.org/',
 				'active' => true
 			),
-			array(
+			'cbr' => array(
 				'abbreviated_name' => 'cbr',
 				'name' => __( 'Central Bank of Russia', Plugin::NAME ),
 				'homepage' => 'http://www.cbr.ru/',
