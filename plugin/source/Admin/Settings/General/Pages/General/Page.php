@@ -5,6 +5,10 @@ use Korobochkin\Currency\Plugin;
 
 class Page {
 
+	public static function init() {
+		Sections\DataProvider::init();
+	}
+
 	public static function render() {
 		?><div class="wrap">
 		<h2><?php _e( 'Currency', Plugin::NAME ) ?></h2>
