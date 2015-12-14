@@ -36,7 +36,12 @@ class DataProvider {
 		$filtered_values = array();
 
 		if( isset( $values['data_provider_name'] ) ) {
-			$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
+			$providersObj = \Korobochkin\Currency\Models\DataProviders::getInstance();
+			$providers = $providersObj->get_providers();
+
+			if( array_key_exists( $values['data_provider_name'], $providers ) ) {
+				$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
+			}
 		}
 
 		return $filtered_values;
