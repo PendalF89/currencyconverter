@@ -47,7 +47,7 @@ class Rates {
 			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
 
 			if( !empty( $rates[0]['rates'][$currency] ) && !empty( $rates[1]['rates'][$currency] ) ) {
-				return ( 100 * $rates[1]['rates'][$currency] ) / $rates[0]['rates'][$currency];
+				return 100 - (( 100 * $rates[1]['rates'][$currency] ) / $rates[0]['rates'][$currency]);
 			}
 		}
 		return false;
