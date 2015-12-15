@@ -84,7 +84,7 @@ class Currency {
 				return 0;
 			}
 			else {
-				return $this->get_previous_rate() - $this->get_rate();
+				return $this->get_rate() - $this->get_previous_rate();
 			}
 		}
 	}
