@@ -39,11 +39,7 @@ class Currency_Table extends \WP_Widget {
 		if( !empty( $currency_list ) ) {
 			$table->parameters = array(
 				'base_currency' => empty( $instance['base_currency'] ) ? 'USD' : $instance['base_currency'],
-				'currency_list' => array(
-					'USD',
-					'EUR',
-					'RUB',
-				),
+				'currency_list' => $currency_list,
 				'flag_size' => !empty( $instance['flag_size'] ) && $instance['flag_size'] > 0 ? $instance['flag_size'] : 0
 			);
 			echo $table->get_table();
