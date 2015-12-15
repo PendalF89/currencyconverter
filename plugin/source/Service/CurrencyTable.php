@@ -32,7 +32,9 @@ class CurrencyTable {
 
 			foreach( $this->parameters['currency_list'] as $currency ) {
 				$rate = \Korobochkin\Currency\Service\Rates::get_rate( $currency, $this->parameters['base_currency'] );
+				$rate = number_format_i18n($rate, 2);
 				$percentage = \Korobochkin\Currency\Service\Rates::get_change_rate_percentage( $currency );
+				$percentage = number_format_i18n($percentage, 2);
 
 				if( $rate ) {
 					$flag = '';
