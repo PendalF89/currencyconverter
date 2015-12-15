@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\Currency\Models;
 
+use Korobochkin\Currency\Models\Currencies\Currencies;
+
 class Country {
 
 	private $flagObj;
@@ -9,11 +11,14 @@ class Country {
 
 	}
 
-	public function setFlagObj($flag) {
-		$this->flagObj = $flag;
+	public function set_country_by_currency( $currency ) {
+		$currency = Currencies::get_currency($currency);
+		if( $currency ) {
+			$this->currency = $currency;
+		}
 	}
 
-	public function getFlagObj($flag) {
+	public function get_flag($flag) {
 		return $this->flagObj;
 	}
 }
