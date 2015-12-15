@@ -13,11 +13,15 @@ class API {
 	 * TODO: Нужно переписать так, чтобы можно было работать с разными провайдерами
 	 */
 
+	private $provider;
+
+	public function __construct( $provider ) {
+		$this->provider = $provider;
+	}
+
 	public $answerFromAPI = null;
 
 	public $parsedAnswer = null;
-
-	private $APIUrl;
 
 	public function get_rates() {
 		$this->get_remote();
@@ -53,34 +57,7 @@ class API {
 	}
 
 	public function get_remote() {
-		$this->answerFromAPI = wp_remote_get(
-			$this->get_api_url()
-		);
-	}
-
-	public function get_api_url() {
-
-		$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
-		$settings = get_option( Plugin::NAME );
-
-		if( empty($settings['data_provider_name'] ) ) {
-			return \WP_Error('no_data_provider', __( 'Select data provider in admin settings.', Plugin::NAME ));
-		}
-
-		if( !array_key_exists( $settings['data_provider_name'], $providers ) || $providers[$settings['data_provider_name']]['active'] != true ) {
-			return \WP_Error( 'data_provider_missed', __( 'Selected data provider disabled or no exists.', Plugin::NAME ) );
-		}
-
-		$url = add_query_arg(
-			array(
-				'source' => $providers[$settings['data_provider_name']]['abbreviated_name'],
-			),
-			'http://api.exchangerate.guru/'
-		);
-
-		$this->APIUrl = $url;
-
-		return $this->APIUrl;
+		$this->answerFromAPI = wp_remote_get( $this->provider['api_url'] );
 	}
 
 	private function validate_answer() {

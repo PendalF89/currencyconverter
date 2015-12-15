@@ -28,13 +28,15 @@ class DataProviders {
 				'abbreviated_name' => 'oxr',
 				'name' => __( 'Open Exchange Rates', Plugin::NAME  ),
 				'homepage' => 'https://openexchangerates.org/',
-				'active' => true
+				'active' => true,
+				'api_url' => 'http://api.exchangerate.guru/?source=oxr'
 			),
 			'cbr' => array(
 				'abbreviated_name' => 'cbr',
 				'name' => __( 'Central Bank of Russia', Plugin::NAME ),
 				'homepage' => 'http://www.cbr.ru/',
-				'active' => true
+				'active' => true,
+				'api_url' => 'http://api.exchangerate.guru/?source=cbr'
 			)
 		);
 	}
