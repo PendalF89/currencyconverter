@@ -2,6 +2,7 @@
 namespace Korobochkin\Currency\Models\Currencies;
 
 class Currencies {
+
 	public static function get_currency( $currency ) {
 		$currencies = array(
 			'AED' =>
