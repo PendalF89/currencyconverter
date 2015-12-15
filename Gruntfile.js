@@ -15,9 +15,9 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: 'bower_components/flags/flags/',
+            cwd: 'bower_components/flags/flags/flags-iso/',
             src: '**',
-            dest: 'plugin/libs/flags/'
+            dest: 'plugin/libs/flags/flags-iso/'
           }
         ]
       }
