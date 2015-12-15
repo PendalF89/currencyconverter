@@ -29,12 +29,20 @@ class DataProvidersPreview {
 	}
 
 	public static function render( $info ) {
+		$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
+		if( !empty( $providers[$info['id']]['homepage'] ) ) {
+			printf(
+				'<p><a href="%1$s">%2$s</a></p>',
+				esc_url( $providers[$info['id']]['homepage'] ),
+				__( 'The official site of the provider', Plugin::NAME )
+			);
+		}
+
 		// TODO: Тупейший механизм внутри. Надо переписать.
 
-		$provider_currencies = get_transient( Plugin::NAME . '_' . $info['id'] );
+		$provider_currencies = get_transient( Plugin::NAME . '_provider_rates_' . $info['id'] );
 
 		if( !$provider_currencies ) {
-			$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
 
 			$api = new API($providers[$info['id']]);
 			$rates = $api->get_rates();
@@ -57,13 +65,13 @@ class DataProvidersPreview {
 					$prepare_transient[] = $rate_ticker;
 				}
 				$provider_currencies = $prepare_transient;
-				set_transient( Plugin::NAME . '_' . $info['id'], $prepare_transient, 24 * HOUR_IN_SECONDS );
+				set_transient( Plugin::NAME . '_provider_rates_' . $info['id'], $prepare_transient, 24 * HOUR_IN_SECONDS );
 			}
 		}
 
 		if( $provider_currencies ) {
 			?><p><?php _e( 'Status: ok. Available currencies:', Plugin::NAME ); ?></p><?php
-			echo '<p><code>' . implode( '</code>, <code>', $provider_currencies ) . '</code></p>';
+			echo '<p><code>' . implode( '</code>, <code>', $provider_currencies ) . '</code>.</p>';
 		}
 	}
 }
