@@ -67,7 +67,7 @@ class CurrencyTable {
 					$trend = $currency_obj->get_trend();
 					if( $trend ) {
 						$trend = sprintf(
-							'<span class="currency-trand currency-trand-%1$s"></span>',
+							'<span class="currency-trend currency-trend-%1$s"></span>',
 							$trend
 						);
 					}
