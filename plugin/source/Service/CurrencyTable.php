@@ -31,7 +31,7 @@ class CurrencyTable {
 				|| !empty( $this->parameters['table_headers']['price'] )
 				|| !empty( $this->parameters['table_headers']['change'] )
 			) {
-				$this->table->set_heading( $this->parameters['table_headers'] );
+				$this->table->set_heading( array_values( $this->parameters['table_headers'] ) );
 				$have_data = true;
 			}
 
