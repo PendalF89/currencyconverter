@@ -59,9 +59,22 @@ class CurrencyTable {
 					else {
 						$flag = '';
 					}
-					$output_data[] = $flag . ' ' . $currency;
-					$output_data[] = $currency_obj->get_rate();
-					$output_data[] = $currency_obj->get_change_percentage();
+					$output_data[0] = $flag . ' ' . $currency;
+					$output_data[1] = $currency_obj->get_rate();
+					$output_data[2] = $currency_obj->get_change_percentage();
+
+					// Стрелочка
+					$trend = $currency_obj->get_trend();
+					if( $trend ) {
+						$trend = sprintf(
+							'<span class="currency-trand currency-trand-%1$s"></span>',
+							$trend
+						);
+					}
+					else {
+						$trend = '';
+					}
+
 
 					foreach( $output_data as $key => $output_data_single ) {
 						if( !$output_data_single ) {
@@ -74,7 +87,9 @@ class CurrencyTable {
 							}
 						}
 					}
-					// Надо
+					$output_data[2] .= $trend;
+
+					// Добавляем ряд (строчку) в таблицу
 					$this->table->add_row( $output_data );
 				}
 			}
