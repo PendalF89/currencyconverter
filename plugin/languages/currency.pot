@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Currency 0.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/currency\n"
-"POT-Creation-Date: 2015-12-16 18:31:38+00:00\n"
+"POT-Creation-Date: 2015-12-16 18:41:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,12 +95,12 @@ msgctxt ""
 msgid "<a href=\"%1$s\">Exchange rate</a> on %2$s"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:73
+#: source/Widgets/CurrencyTable/Currency_Table.php:70
 msgctxt "Homepage URL of data provider."
 msgid "http://exchangerate.guru/"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:77
+#: source/Widgets/CurrencyTable/Currency_Table.php:74
 msgctxt ""
 "Local date/month/year date format. Available variables - http://php.net/"
 "manual/en/function.date.php. Note that the name of the month may be "
@@ -110,76 +110,76 @@ msgctxt ""
 msgid "F j, Y"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:118
+#: source/Widgets/CurrencyTable/Currency_Table.php:115
 msgid "Select data provider in plugin settings."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:125
+#: source/Widgets/CurrencyTable/Currency_Table.php:122
 msgid "Title:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:128
+#: source/Widgets/CurrencyTable/Currency_Table.php:125
 msgid "Base currency:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:130
+#: source/Widgets/CurrencyTable/Currency_Table.php:127
 msgid "The currency in which will be settled other currencies."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:132
+#: source/Widgets/CurrencyTable/Currency_Table.php:129
 msgid "Currencies list:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:134
+#: source/Widgets/CurrencyTable/Currency_Table.php:131
 msgid "The currencies which will be displayed in table. Separate by commas."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:149
+#: source/Widgets/CurrencyTable/Currency_Table.php:146
 msgid "Flag icons:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:151
+#: source/Widgets/CurrencyTable/Currency_Table.php:148
 msgid "No flag icon"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:166
+#: source/Widgets/CurrencyTable/Currency_Table.php:163
 msgid "Table headers"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:169
+#: source/Widgets/CurrencyTable/Currency_Table.php:166
 msgid "Currencies names col:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:174
+#: source/Widgets/CurrencyTable/Currency_Table.php:171
 msgid "Price col:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:179
+#: source/Widgets/CurrencyTable/Currency_Table.php:176
 msgid "Change col:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:188
+#: source/Widgets/CurrencyTable/Currency_Table.php:185
 msgid "Exchange table"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:189
+#: source/Widgets/CurrencyTable/Currency_Table.php:186
 msgid "USD"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:190
+#: source/Widgets/CurrencyTable/Currency_Table.php:187
 msgctxt "WARNING: always use commas as separator"
 msgid "CAD, AUD, GBP"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:193
+#: source/Widgets/CurrencyTable/Currency_Table.php:190
 msgid "Currencies"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:194
+#: source/Widgets/CurrencyTable/Currency_Table.php:191
 msgid "Rate"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:195
+#: source/Widgets/CurrencyTable/Currency_Table.php:192
 msgid "Change %"
 msgstr ""
 
