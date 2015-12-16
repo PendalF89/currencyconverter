@@ -47,6 +47,7 @@ class CurrencyTable {
 					$country_obj->set_country_by_currency( $currency );
 
 					// Получаем флаг, цену и изменение. Форматируем числа.
+					$output_data = array();
 					$flag = $country_obj->get_flag_url();
 					$output_data[] = $currency . ($flag ? $flag : '');
 					$output_data[] = $currency_obj->get_rate();
