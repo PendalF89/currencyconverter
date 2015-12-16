@@ -253,8 +253,8 @@ class Currencies {
 				),
 		);
 
-		if (!empty( $currencies['$currency'] )) {
-			return $currencies['$currency'];
+		if ( !empty( $currencies[$currency] ) ) {
+			return $currencies[$currency];
 		}
 		else {
 			return false;
