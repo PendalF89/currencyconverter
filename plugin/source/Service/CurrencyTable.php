@@ -52,8 +52,8 @@ class CurrencyTable {
 					if( $flag ) {
 						$flag = sprintf(
 							'<img src="%1$s" class="currency-flag-icon currency-flag-icon-%2$s">',
-							$flag,
-							$this->parameters['flag_size']
+							esc_url( $flag ),
+							esc_attr( $this->parameters['flag_size'] )
 						);
 					}
 					else {
@@ -68,7 +68,7 @@ class CurrencyTable {
 					if( $trend ) {
 						$trend = sprintf(
 							'<span class="currency-trend currency-trend-%1$s"></span>',
-							$trend
+							esc_attr( $trend )
 						);
 					}
 					else {
