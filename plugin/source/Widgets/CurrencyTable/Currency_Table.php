@@ -59,7 +59,9 @@ class Currency_Table extends \WP_Widget {
 				}
 			}
 		}
-
+		echo '<p>';
+		_e( 'Rates', Plugin::NAME );
+		echo '</p>';
 		echo $args['after_widget'];
 	}
 
