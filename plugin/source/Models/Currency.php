@@ -98,7 +98,7 @@ class Currency {
 				return 0;
 			}
 			else {
-				return 100 - (( 100 * $this->rates[1]['rates'][$this->currency] ) / $this->rates[0]['rates'][$this->currency]);
+				return 100 - (( 100 * $this->get_previous_rate() ) / $this->get_rate());
 			}
 		}
 		return false;
@@ -106,10 +106,10 @@ class Currency {
 
 	public function get_trend() {
 		if( $this->is_available() ) {
-			if( $this->rates[0]['rates'][$this->currency] > $this->rates[1]['rates'][$this->currency] ) {
+			if( $this->get_rate() > $this->get_previous_rate() ) {
 				return 'up';
 			}
-			elseif( $this->rates[0]['rates'][$this->currency] == $this->rates[1]['rates'][$this->currency] ) {
+			elseif( $this->get_rate() == $this->get_previous_rate() ) {
 				return 'flat';
 			}
 			else {
