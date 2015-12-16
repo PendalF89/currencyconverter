@@ -97,6 +97,16 @@ class CurrencyTable {
 									}
 
 								}
+
+								// Цветастые обертки
+								if( $key === 1 || $key === 2 ) {
+									if( $output_data_single > 0 ) {
+										$output_data[$key] = '<span class="currency-color-up">' . $output_data[$key] . '</span>';
+									}
+									elseif( $output_data_single < 0 ) {
+										$output_data[$key] = '<span class="currency-color-down">' . $output_data[$key] . '</span>';
+									}
+								}
 							}
 						}
 					}
