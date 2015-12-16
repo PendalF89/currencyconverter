@@ -23,6 +23,7 @@
     "tests"
   ],
   "devDependencies": {
-    "flags": "gosquared/flags"
+    "flags": "gosquared/flags",
+    "bootstrap": "~3.3.6"
   }
 }

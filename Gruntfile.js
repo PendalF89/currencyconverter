@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: 'styles/',
+            cwd: 'out/styles/',
             src: '**',
             dest: 'plugin/styles/'
           }
@@ -64,12 +64,12 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-copy');
+  //grunt.loadNpmTasks('grunt-contrib-copy');
+  require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
-  grunt.registerTask('default', [
-    'copy:composer',
-    'copy:libs',
-    'styles'
+  grunt.registerTask('stylesFrontendWidgets', [
+    'less:frontendWidgets',
+    'autoprefixer:frontendWidgets'
   ]);
 
   grunt.registerTask('styles', [
@@ -77,8 +77,9 @@ module.exports = function(grunt) {
     'copy:styles'
   ]);
 
-  grunt.registerTask('stylesFrontendWidgets', [
-    'less:frontendWidgets',
-    'autoprefixer:frontendWidgets'
+  grunt.registerTask('default', [
+    'copy:composer',
+    'copy:libs',
+    'styles'
   ]);
 };
