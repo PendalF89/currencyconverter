@@ -24,6 +24,9 @@ class Country {
 			$url = plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path );
 			$url .= 'libs/flags/flags-iso/flat/';
 			switch( $size ) {
+				case 0:
+					return '';
+					break;
 				case 16:
 				case 24:
 				case 32:

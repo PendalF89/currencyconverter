@@ -45,7 +45,7 @@ class Currency_Table extends \WP_Widget {
 					$table->parameters = array(
 						'base_currency' => $instance['base_currency'],
 						'currency_list' => $instance['currency_list'],
-						'flag_size' => !empty( $instance['flag_size'] ) ? $instance['flag_size'] : 0,
+						'flag_size' => (int)$instance['flag_size'],
 						'table_headers' => $instance['table_headers']
 					);
 					echo $table->get_table();
