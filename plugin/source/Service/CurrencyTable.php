@@ -84,6 +84,19 @@ class CurrencyTable {
 						else {
 							if( is_numeric( $output_data_single ) ) {
 								$output_data[$key] = number_format_i18n( $output_data[$key], 2 );
+								if( $key === 2 ) {
+									/**
+									 * В ячейке с процентом ставим плюс, если число положительное.
+									 * Заменяем минус на &ndash;, если число отрицательное.
+									 */
+									if( $output_data_single > 0 ) {
+										$output_data[$key] = '+' . $output_data[$key];
+									}
+									elseif( $output_data_single < 0 ) {
+										$output_data[$key] = str_replace('-', '&ndash;', $output_data[$key] );
+									}
+
+								}
 							}
 						}
 					}
