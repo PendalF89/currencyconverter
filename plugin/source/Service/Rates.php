@@ -5,6 +5,8 @@ use Korobochkin\Currency\Plugin;
 
 class Rates {
 
+	// TODO: Этот класс нужно частично выкинуть. Или вообще в модели запихнуть
+
 	public static function is_available() {
 		$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
 		if( $rates ) {
