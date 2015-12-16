@@ -40,6 +40,9 @@ class Currency {
 			$this->rates
 			&& isset( $this->rates[0]['rates'][$this->currency] )
 			&& isset( $this->rates[0]['rates'][$this->base_currency] )
+
+			&& !empty( $this->rates[0]['date'] )
+			&& !empty( $this->rates[1]['date'] )
 		) {
 			return true;
 		}
@@ -56,6 +59,7 @@ class Currency {
 
 				case 'previous':
 					$day_key = 1;
+					break;
 			}
 			/**
 			 * Применяем ставки
@@ -73,6 +77,29 @@ class Currency {
 
 	public function get_previous_rate() {
 		return $this->get_rate( 'previous' );
+	}
+
+	public function get_rate_datetime( $date = 'last' ) {
+		if( $this->is_available() ) {
+			switch( $date ) {
+				case 'last':
+				default:
+					$day_key = 0;
+					break;
+
+				case 'previous':
+					$day_key = 1;
+					break;
+			}
+
+			$datetime_obj = new \DateTime( $this->rates[$day_key]['date'], new \DateTimeZone('GMT') );
+			return $datetime_obj;
+		}
+		return false;
+	}
+
+	public function get_previous_rate_datetime() {
+		return $this->get_rate_datetime( 'previous' );
 	}
 
 	/**
