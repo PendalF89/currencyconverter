@@ -87,7 +87,7 @@ class CurrencyTable {
 							}
 						}
 					}
-					$output_data[2] .= $trend;
+					$output_data[2] = $trend . $output_data[2];
 
 					// Добавляем ряд (строчку) в таблицу
 					$this->table->add_row( $output_data );
