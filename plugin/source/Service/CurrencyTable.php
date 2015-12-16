@@ -48,8 +48,18 @@ class CurrencyTable {
 
 					// Получаем флаг, цену и изменение. Форматируем числа.
 					$output_data = array();
-					$flag = $country_obj->get_flag_url();
-					$output_data[] = $currency . ($flag ? $flag : '');
+					$flag = $country_obj->get_flag_url( $this->parameters['flag_size'] );
+					if( $flag ) {
+						$flag = sprintf(
+							'<img src="%1$s" class="currency-flag-icon currency-flag-icon-%2$s">',
+							$flag,
+							$this->parameters['flag_size']
+						);
+					}
+					else {
+						$flag = '';
+					}
+					$output_data[] = $flag . ' ' . $currency;
 					$output_data[] = $currency_obj->get_rate();
 					$output_data[] = $currency_obj->get_change_percentage();
 
