@@ -22,4 +22,8 @@ class Page {
 		</form>
 		</div><?php
 	}
+
+	public static function get_url() {
+		return admin_url( 'options-general.php?page=currency-general' );
+	}
 }
