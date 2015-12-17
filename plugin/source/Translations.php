@@ -6,7 +6,7 @@ class Translations {
 		load_plugin_textdomain(
 			Plugin::NAME,
 			false,
-			$GLOBALS['CurrencyPlugin']->plugin_path . '/languages'
+			basename(dirname($GLOBALS['CurrencyPlugin']->plugin_path)) . '/languages'
 		);
 	}
 }
