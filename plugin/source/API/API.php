@@ -40,6 +40,10 @@ class API {
 		}
 		else {
 			$this->add_usd_to_rates();
+
+			// Пробуем отсортировать массивы валют по алфавиту
+			$this->sort_rates_by_key();
+
 			return $this->parsedAnswer;
 		}
 	}
@@ -116,5 +120,17 @@ class API {
 	public function add_usd_to_rates() {
 		$this->parsedAnswer[0]['rates']['USD'] = 1;
 		$this->parsedAnswer[1]['rates']['USD'] = 1;
+	}
+
+	private function sort_rates_by_key() {
+		// Сортируем все валюты по алфавиту
+		$filtered_array = $this->parsedAnswer;
+		$filtered_array_valid[] = ksort( $filtered_array[0]['rates'] );
+		$filtered_array_valid[] = ksort( $filtered_array[1]['rates'] );
+
+		if( !in_array( false, $filtered_array_valid ) ) {
+			$this->parsedAnswer[0]['rates'] = $filtered_array[0]['rates'];
+			$this->parsedAnswer[1]['rates'] = $filtered_array[1]['rates'];
+		}
 	}
 }
