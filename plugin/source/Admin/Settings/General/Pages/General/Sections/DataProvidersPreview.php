@@ -50,7 +50,7 @@ class DataProvidersPreview {
 			if( is_wp_error( $rates ) ) {
 				$error_messages = $rates->get_error_messages();
 				?>
-				<p><?php _e( 'Status: failed. Error message:', Plugin::NAME ); ?></p>
+				<p><?php _e( 'Status: <code>failed</code>. Error message:', Plugin::NAME ); ?></p>
 				<ol>
 					<?php foreach( $error_messages as $error ) {
 						echo '<li>' . esc_html($error) . '</li>';
@@ -70,7 +70,7 @@ class DataProvidersPreview {
 		}
 
 		if( $provider_currencies ) {
-			?><p><?php _e( 'Status: ok. Available currencies:', Plugin::NAME ); ?></p><?php
+			?><p><?php _e( 'Status: <code>ok</code>. Available currencies:', Plugin::NAME ); ?></p><?php
 			echo '<p><code>' . implode( '</code>, <code>', $provider_currencies ) . '</code>.</p>';
 		}
 	}
