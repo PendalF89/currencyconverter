@@ -63,7 +63,6 @@ class Currency_Table extends \WP_Widget {
 
 		$currencies_obj = new Currency( $instance['base_currency'], $instance['base_currency'] );
 		if( $currencies_obj->is_available() ) {
-			//TODO: Что-то не переводится эта фраза
 			echo '<p>' .
 			sprintf(
 				_x( '<a href="%1$s">Exchange rate</a> on %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
@@ -78,9 +77,7 @@ class Currency_Table extends \WP_Widget {
 			)
 			     . '</p>';
 		}
-
-		//_e( 'Rates', Plugin::NAME );
-		//echo '</p>';
+		
 		echo $args['after_widget'];
 	}
 
