@@ -19,9 +19,16 @@ class DataProvidersPreview {
 			if( !$provider['active'] ) {
 				continue;
 			}
+			$provider_title_section = '';
+			if( !empty( $provider['homepage'] ) ) {
+				$provider_title_section = sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url($provider['homepage']), esc_html( $provider['name'] ) );
+			}
+			else {
+				$provider_title_section = esc_html( $provider['name'] );
+			}
 			add_settings_section(
 				$provider_name,
-				$provider['name'],
+				$provider_title_section,
 				array( __CLASS__, 'render' ),
 				Plugin::NAME . 'general'
 			);
@@ -30,13 +37,6 @@ class DataProvidersPreview {
 
 	public static function render( $info ) {
 		$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
-		if( !empty( $providers[$info['id']]['homepage'] ) ) {
-			printf(
-				'<p><a href="%1$s">%2$s</a></p>',
-				esc_url( $providers[$info['id']]['homepage'] ),
-				__( 'The official site of the provider', Plugin::NAME )
-			);
-		}
 
 		// TODO: Тупейший механизм внутри. Надо переписать.
 
