@@ -18,6 +18,7 @@ class Page {
 			settings_fields( Plugin::NAME . 'general' );
 			do_settings_sections( Plugin::NAME . 'general' );
 			submit_button();
+			self::thanks();
 			?>
 		</form>
 		</div><?php
@@ -25,5 +26,13 @@ class Page {
 
 	public static function get_url() {
 		return admin_url( 'options-general.php?page=currency-general' );
+	}
+
+	private static function thanks() {
+		?>
+		<hr>
+		<h2><?php _e( 'Thanks', Plugin::NAME ); ?></h2>
+		<p><?php _e( 'Этот плагин использует API и данные о валютах с сайта Open Exchange Rates. Спасибо его создателям.', Plugin::NAME ); ?></p>
+		<?php
 	}
 }
