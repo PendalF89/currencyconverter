@@ -4,17 +4,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Currency 0.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/currency\n"
-"POT-Creation-Date: 2015-12-16 21:57+0300\n"
-"PO-Revision-Date: 2015-12-16 21:57+0300\n"
+"POT-Creation-Date: 2015-12-17 19:32+0300\n"
+"PO-Revision-Date: 2015-12-17 19:33+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: ru\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: .\n"
 
 #: source/API/API.php:70
 msgid ""
@@ -43,11 +50,11 @@ msgstr "Настройки"
 #: source/Admin/Settings/General/Pages.php:15
 #: source/Admin/Settings/General/Pages.php:16
 msgid "Currency"
-msgstr "Валюты"
+msgstr "Валютыsssss"
 
 #: source/Admin/Settings/General/Pages/General/Sections/DataProvider.php:25
 msgid "Data provider"
-msgstr ""
+msgstr "Поставщик данных"
 
 #: source/Admin/Settings/General/Pages/General/Sections/DataProvider.php:51
 msgid ""
@@ -91,19 +98,19 @@ msgstr ""
 msgid "A table with currency rates."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:68
+#: source/Widgets/CurrencyTable/Currency_Table.php:69
 msgctxt ""
 "%1$s - url to data provider website. %2$s - date of update currency rate in "
 "regional format."
 msgid "<a href=\"%1$s\">Exchange rate</a> on %2$s"
 msgstr "<a href=\"%1$s\">По курсу</a> ЦБ РФ на %2$s"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:70
-msgctxt "Homepage URL of data provider."
+#: source/Widgets/CurrencyTable/Currency_Table.php:71
+msgctxt "Homepage URL of plugin developer."
 msgid "http://exchangerate.guru/"
-msgstr "http://pokur.su/"
+msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:74
+#: source/Widgets/CurrencyTable/Currency_Table.php:75
 msgctxt ""
 "Local date/month/year date format. Available variables - http://php.net/"
 "manual/en/function.date.php. Note that the name of the month may be "
@@ -113,76 +120,76 @@ msgctxt ""
 msgid "F j, Y"
 msgstr "j.n.Y"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:115
+#: source/Widgets/CurrencyTable/Currency_Table.php:116
 msgid "Select data provider in plugin settings."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:122
+#: source/Widgets/CurrencyTable/Currency_Table.php:123
 msgid "Title:"
-msgstr ""
+msgstr "Заголовок:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:125
+#: source/Widgets/CurrencyTable/Currency_Table.php:126
 msgid "Base currency:"
-msgstr ""
+msgstr "Основная валюта:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:127
+#: source/Widgets/CurrencyTable/Currency_Table.php:128
 msgid "The currency in which will be settled other currencies."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:129
+#: source/Widgets/CurrencyTable/Currency_Table.php:130
 msgid "Currencies list:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:131
+#: source/Widgets/CurrencyTable/Currency_Table.php:132
 msgid "The currencies which will be displayed in table. Separate by commas."
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:146
+#: source/Widgets/CurrencyTable/Currency_Table.php:147
 msgid "Flag icons:"
-msgstr ""
+msgstr "Иконки флагов:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:148
+#: source/Widgets/CurrencyTable/Currency_Table.php:149
 msgid "No flag icon"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:163
+#: source/Widgets/CurrencyTable/Currency_Table.php:164
 msgid "Table headers"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:166
+#: source/Widgets/CurrencyTable/Currency_Table.php:167
 msgid "Currencies names col:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:171
+#: source/Widgets/CurrencyTable/Currency_Table.php:172
 msgid "Price col:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:176
+#: source/Widgets/CurrencyTable/Currency_Table.php:177
 msgid "Change col:"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:185
+#: source/Widgets/CurrencyTable/Currency_Table.php:186
 msgid "Exchange table"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:186
+#: source/Widgets/CurrencyTable/Currency_Table.php:187
 msgid "USD"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:187
+#: source/Widgets/CurrencyTable/Currency_Table.php:188
 msgctxt "WARNING: always use commas as separator"
 msgid "CAD, AUD, GBP"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:190
+#: source/Widgets/CurrencyTable/Currency_Table.php:191
 msgid "Currencies"
 msgstr ""
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:191
-msgid "Rate"
-msgstr ""
-
 #: source/Widgets/CurrencyTable/Currency_Table.php:192
+msgid "Rate"
+msgstr "Ставка"
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:193
 msgid "Change %"
 msgstr ""
 
@@ -201,3 +208,25 @@ msgstr "Коля Коробочкин"
 #. Author URI of the plugin/theme
 msgid "http://korobochkin.com/"
 msgstr "http://korobochkin.com/"
+
+#~ msgid "Title"
+#~ msgstr "ЗАГОЛОВОК!"
+
+#~ msgid "Privet plugin"
+#~ msgstr "Привет Плагин"
+
+#~ msgid "Exchange rate on1111"
+#~ msgstr "Как сделать, чтобы перевелось, пожалуйста"
+
+#~ msgid "hello"
+#~ msgstr "привет"
+
+#~ msgctxt ""
+#~ "%1$s - url to data provider website. %2$s - date of update currency rate "
+#~ "in regional format."
+#~ msgid "Exchange rate on"
+#~ msgstr "Курс обмена"
+
+#~ msgctxt "Homepage URL of data provider."
+#~ msgid "http://exchangerate.guru/"
+#~ msgstr "http://pokur.su/"
