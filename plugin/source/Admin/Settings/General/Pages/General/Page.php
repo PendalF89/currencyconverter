@@ -32,7 +32,13 @@ class Page {
 		?>
 		<hr>
 		<h2><?php _e( 'Thanks', Plugin::NAME ); ?></h2>
-		<p><?php _e( 'Этот плагин использует API и данные о валютах с сайта Open Exchange Rates. Спасибо его создателям.', Plugin::NAME ); ?></p>
+		<?php
+		echo wpautop(
+		__(
+'Выражаем благодарность бесплатным поставщикам данных о валютах: сайту <a href="https://openexchangerates.org/" target="_blank">Open Exchange Rates</a>, <a href="http://www.cbr.ru/">Центральному Банку Российской Федерации</a>.
+
+Благодарим компанию GoSquared из Лондона за <a href="https://github.com/gosquared/flags">репозиторий с бесплатными иконками флагов государств мира</a>.', Plugin::NAME )
+		); ?>
 		<?php
 	}
 
