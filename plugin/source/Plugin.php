@@ -19,10 +19,7 @@ class Plugin {
 		 */
 		add_action(
 			\Korobochkin\Currency\Plugin::NAME . \Korobochkin\Currency\Cron\UpdateCurrency::$action_name,
-			array(
-				'\Korobochkin\Currency\Service\UpdateCurrency',
-				'update'
-			)
+			array( '\Korobochkin\Currency\Service\UpdateCurrency', 'update' )
 		);
 
 		add_action( 'widgets_init', array( '\Korobochkin\Currency\Widgets\RegisterWidgets', 'register' ) );
