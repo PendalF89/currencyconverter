@@ -35,4 +35,13 @@ class Page {
 		<p><?php _e( 'Этот плагин использует API и данные о валютах с сайта Open Exchange Rates. Спасибо его создателям.', Plugin::NAME ); ?></p>
 		<?php
 	}
+
+	public static function update_rates_on_load($some) {
+		// Настройки страницы обновляются
+		// Значит нужно попробоывать получить ответ от API
+		if( !empty( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) {
+			$is_new_name = get_option( Plugin::NAME );
+			\Korobochkin\Currency\Service\UpdateCurrency::update();
+		}
+	}
 }

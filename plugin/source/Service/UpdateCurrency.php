@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\Currency\Service;
 
+use \Korobochkin\Currency\Plugin;
+
 class UpdateCurrency {
 	static public $newRates = null;
 
@@ -26,6 +28,6 @@ class UpdateCurrency {
 	}
 
 	static function select_provider() {
-		
+
 	}
 }
