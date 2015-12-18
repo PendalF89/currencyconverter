@@ -63,9 +63,9 @@ class Currency_Table extends \WP_Widget {
 
 		$currencies_obj = new Currency( $instance['base_currency'], $instance['base_currency'] );
 		if( $currencies_obj->is_available() ) {
-			echo '<p>' .
+			echo '<p class="currency-converter-support-info-container">' .
 			sprintf(
-				_x( '<a href="%1$s">Exchange rate</a> on %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
+				_x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> on %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
 				esc_url(
 					_x( 'http://exchangerate.guru/', 'Homepage URL of plugin developer.', Plugin::NAME )
 				),
