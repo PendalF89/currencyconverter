@@ -40,6 +40,7 @@ class DataProvider {
 
 			if( array_key_exists( $values['data_provider_name'], $providers ) ) {
 				$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
+				// TODO: Надо как-то сразу же обновлять данные в БД для котировок
 			}
 		}
 
