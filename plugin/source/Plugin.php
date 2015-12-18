@@ -15,6 +15,11 @@ class Plugin {
 		add_action( 'plugins_loaded', array( 'Korobochkin\Currency\Translations', 'load_translations' ) );
 
 		/**
+		 * Register Script & Styles
+		 */
+		Service\ScriptStyles::register();
+
+		/**
 		 * Update currency action.
 		 */
 		add_action(

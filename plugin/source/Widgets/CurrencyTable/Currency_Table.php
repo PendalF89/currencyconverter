@@ -15,13 +15,11 @@ class Currency_Table extends \WP_Widget {
 				'description' => __( 'A table with currency rates.', Plugin::NAME )
 			)
 		);
-		// TODO: Подключить нормально CSS на основе get_theme_support
-		wp_enqueue_style(
-			'currency-widgets',
-			plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path ) . 'styles/widgets/main.css',
-			array(),
-			'0.0.0'
-		);
+
+		// Enqueue styles if theme don't support our plugin and widget is active.
+		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
+			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
+		}
 	}
 
 	public function widget( $args, $instance ) {
