@@ -64,17 +64,10 @@ class CurrencyTable {
 					$output_data[2] = $currency_obj->get_change_percentage();
 
 					// Стрелочка
-					$trend = $currency_obj->get_trend();
-					if( $trend ) {
-						$trend = sprintf(
-							'<span class="currency-trend currency-trend-%1$s"></span>',
-							esc_attr( $trend )
-						);
-					}
-					else {
-						$trend = '';
-					}
-
+					$trend = sprintf(
+						'<span class="currency-trend currency-trend-%1$s"></span>',
+						esc_attr( $currency_obj->get_trend() )
+					);
 
 					foreach( $output_data as $key => $output_data_single ) {
 						if( !$output_data_single ) {
@@ -100,12 +93,7 @@ class CurrencyTable {
 
 								// Цветастые обертки
 								if( $key === 1 || $key === 2 ) {
-									if( $output_data_single > 0 ) {
-										$output_data[$key] = '<span class="currency-color-up">' . $output_data[$key] . '</span>';
-									}
-									elseif( $output_data_single < 0 ) {
-										$output_data[$key] = '<span class="currency-color-down">' . $output_data[$key] . '</span>';
-									}
+									$output_data[$key] = '<span class="currency-color-' . esc_attr( $currency_obj->get_trend() ) . '">' . $output_data[$key] . '</span>';
 								}
 							}
 						}
