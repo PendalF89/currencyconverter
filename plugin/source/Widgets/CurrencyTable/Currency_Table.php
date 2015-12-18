@@ -54,7 +54,9 @@ class Currency_Table extends \WP_Widget {
 						'base_currency' => $instance['base_currency'],
 						'currency_list' => $instance['currency_list'],
 						'flag_size' => (int)$instance['flag_size'],
-						'table_headers' => $instance['table_headers']
+						'table_headers_currencies' => $instance['table_headers_currencies'],
+						'table_headers_price' => $instance['table_headers_price'],
+						'table_headers_change' => $instance['table_headers_price']
 					);
 					echo $table->get_table();
 				}
@@ -95,9 +97,9 @@ class Currency_Table extends \WP_Widget {
 		$instance_to_save['flag_size'] = (int)sanitize_text_field( $instance['flag_size'] );
 
 		// Table headers
-		$instance_to_save['table_headers']['currencies'] = sanitize_text_field( $instance['table_headers']['currencies'] );
-		$instance_to_save['table_headers']['price'] = sanitize_text_field( $instance['table_headers']['price'] );
-		$instance_to_save['table_headers']['change'] = sanitize_text_field( $instance['table_headers']['change'] );
+		$instance_to_save['table_headers_currencies'] = sanitize_text_field( $instance['table_headers_currencies'] );
+		$instance_to_save['table_headers_price'] = sanitize_text_field( $instance['table_headers_price'] );
+		$instance_to_save['table_headers_change'] = sanitize_text_field( $instance['table_headers_change'] );
 
 		/**
 		 * Сохраняя лишь нужные переменные,
@@ -130,13 +132,17 @@ class Currency_Table extends \WP_Widget {
 
 		<script type="text/javascript">
 			<?php
-			$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
-			$tickers = array();
-			foreach( $rates[0]['rates'] as $key => $value ) {
-				$tickers[] = $key;
-			}
 			if( !$first ) {
-				echo 'var currenciesTickersList =' . wp_json_encode( $tickers ) . ';';
+				$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+				$tickers = array();
+				foreach( $rates[0]['rates'] as $key => $value ) {
+					$tickers[] = $key;
+				}
+				/**
+				 * TODO: Использовать wp_json_encode(), если решим поддерживать совместимость с версии больше 4.1.0
+                 * Делать экранизацию не нужно, потому что см. https://codex.wordpress.org/Function_Reference/esc_js
+                 */
+				echo 'var currenciesTickersList =' . json_encode( $tickers ) . ';';
 			}
 			?>
 		</script>
@@ -161,18 +167,18 @@ class Currency_Table extends \WP_Widget {
 		<h3><?php _e( 'Table headers', Plugin::NAME ); ?></h3>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'table_headers[currencies]' ); ?>"><?php _e( 'Currencies names col:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers[currencies]' ); ?>" name="<?php echo $this->get_field_name( 'table_headers[currencies]' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers']['currencies'] ); ?>">
+			<label for="<?php echo $this->get_field_id( 'table_headers_currencies' ); ?>"><?php _e( 'Currencies names col:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_currencies' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_currencies' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_currencies'] ); ?>">
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'table_headers[price]' ); ?>"><?php _e( 'Price col:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers[price]' ); ?>" name="<?php echo $this->get_field_name( 'table_headers[price]' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers']['price'] ); ?>">
+			<label for="<?php echo $this->get_field_id( 'table_headers_price' ); ?>"><?php _e( 'Price col:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_price' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_price' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_price'] ); ?>">
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'table_headers[change]' ); ?>"><?php _e( 'Change col:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers[change]' ); ?>" name="<?php echo $this->get_field_name( 'table_headers[change]' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers']['change'] ); ?>">
+			<label for="<?php echo $this->get_field_id( 'table_headers_change' ); ?>"><?php _e( 'Change col:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_change' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_change' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_change'] ); ?>">
 		</p>
 		<?php
 		$first = false;
@@ -184,12 +190,9 @@ class Currency_Table extends \WP_Widget {
 			'base_currency' => __( 'USD', Plugin::NAME ),
 			'currency_list' => _x( 'CAD, AUD, GBP', 'WARNING: always use commas as separator', Plugin::NAME ),
 			'flag_size' => 16,
-			'table_headers' => array(
-				'currencies' => __( 'Currencies', Plugin::NAME ),
-				'price' => __( 'Rate', Plugin::NAME ),
-				'change' => __( 'Change %', Plugin::NAME ),
-				'someting' => 'default value here!'
-			)
+			'table_headers_currencies' => __( 'Currencies', Plugin::NAME ),
+			'table_headers_price' => __( 'Rate', Plugin::NAME ),
+			'table_headers_change' => __( 'Change %', Plugin::NAME ),
 		);
 		return wp_parse_args($instance, $def_settings);
 	}

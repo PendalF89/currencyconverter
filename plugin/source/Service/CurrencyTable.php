@@ -143,9 +143,9 @@ class CurrencyTable {
 		}
 
 		if(
-			!isset( $this->parameters['table_headers']['currencies'] )
-			|| !isset( $this->parameters['table_headers']['price'] )
-			|| !isset( $this->parameters['table_headers']['change'] )
+			!isset( $this->parameters['table_headers_currencies'] )
+			|| !isset( $this->parameters['table_headers_price'] )
+			|| !isset( $this->parameters['table_headers_change'] )
 		) {
 			return false;
 		}
