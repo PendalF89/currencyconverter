@@ -40,7 +40,6 @@ class Page {
 		// Настройки страницы обновляются
 		// Значит нужно попробоывать получить ответ от API
 		if( !empty( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) {
-			$is_new_name = get_option( Plugin::NAME );
 			\Korobochkin\Currency\Service\UpdateCurrency::update();
 		}
 	}
