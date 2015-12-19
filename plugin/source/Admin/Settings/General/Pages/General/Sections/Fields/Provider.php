@@ -19,7 +19,9 @@ class Provider {
 	}
 
 	public static function render() {
-		$options = get_option( Plugin::NAME );
+		$options = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, array() );
+		$options = wp_parse_args( $options, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+
 		$providersObj = \Korobochkin\Currency\Models\DataProviders::getInstance();
 		$providers = $providersObj->get_providers();
 		?>
