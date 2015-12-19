@@ -9,7 +9,8 @@ class Activation {
 		Cron\UpdateCurrency::register_task();
 
 		/**
-		 *
+		 * Надо сразу попытаться загрузить цены для дефолтного поставщика данных.
 		 */
+		Service\UpdateCurrency::update();
 	}
 }

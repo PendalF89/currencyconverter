@@ -8,26 +8,31 @@ class UpdateCurrency {
 
 	static function update( $show_warning_in_admin = false ) {
 
-		$provider = get_option( Plugin::NAME );
+		// Получаем полностью все настройки + дефолтные на 100%
+		$settings = get_option(
+			\Korobochkin\Currency\Models\Settings\General::$option_name,
+			\Korobochkin\Currency\Models\Settings\General::get_defaults()
+		);
+		$settings = wp_parse_args( $settings, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+
 		$providers_obj = \Korobochkin\Currency\Models\DataProviders::getInstance();
 		$providers = $providers_obj->get_providers();
 
-		if( !empty( $provider['data_provider_name'] ) && array_key_exists( $provider['data_provider_name'], $providers ) ) {
+		if( array_key_exists( $settings['data_provider_name'], $providers ) ) {
 
-			// TODO: Похоже здесь проблемы и мы не передаем название провайдера
-			$api = new \Korobochkin\Currency\API\API( $providers[$provider['data_provider_name']] );
+			$api = new \Korobochkin\Currency\API\API( $providers[$settings['data_provider_name']] );
 			self::$newRates = $api->get_rates();
+
 			if( !is_wp_error( self::$newRates ) ) {
 				update_option(
 					\Korobochkin\Currency\Plugin::NAME . '_rates',
 					self::$newRates
 				);
-				update_option( \Korobochkin\Currency\Plugin::NAME . '_rates_available', '1' );
+				$settings['rates_available'] = true;
+				return update_option( \Korobochkin\Currency\Models\Settings\General::$option_name, $settings );
 			}
 		}
-	}
 
-	static function select_provider() {
-
+		return false;
 	}
 }

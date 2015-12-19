@@ -14,7 +14,7 @@ class DataProvider {
 	public static function register_settings() {
 		register_setting(
 			Plugin::NAME . 'general',
-			Plugin::NAME,
+			\Korobochkin\Currency\Models\Settings\General::$option_name,
 			array( __CLASS__, 'sanitize' )
 		);
 	}
@@ -35,6 +35,7 @@ class DataProvider {
 	public static function sanitize( $values ) {
 		$filtered_values = array();
 
+		// TODO: Получается мы можем запихнуть настройку в БД но в ней будут не все необходимые дефолтные данные
 		if( isset( $values['data_provider_name'] ) ) {
 			$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
 
@@ -43,6 +44,24 @@ class DataProvider {
 				// TODO: Надо как-то сразу же обновлять данные в БД для котировок
 			}
 		}
+
+		// А если мы накладываем дефолтные настройки, то все равно некоторые значения могут «затереться»
+
+		/**
+		 * Идея фикс.
+		 * 1) Получаем опции из БД (какие есть).
+		 * 2) Мерджим их с дефолтными (тем самым дополняя к бдшным те, что появились в новой версии плагина и т п).
+		 * 3) Мерджим отфильтрованные опции с теми, что получили в пункте 2).
+		 *
+		 * Проблема: если мы не выполняем сохранение настроек, то при обновлении структуры опций есть шанс опять иметь в БД не все дефолтные настройки.
+		 */
+
+		// Получаем настройки из бд и добавляем к ним дефолтные
+		$current_options = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+		$current_options = wp_parse_args( $current_options, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+
+		// Соединяем дефолотные (и предыдущие) с теми, что были введены сейчас
+		$filtered_values = wp_parse_args( $filtered_values, $current_options );
 
 		return $filtered_values;
 	}
