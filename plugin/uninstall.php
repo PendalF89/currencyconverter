@@ -4,7 +4,6 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit();
 }
 
-// TODO: Написать деинсталятор
 delete_option( \Korobochkin\Currency\Models\Settings\General::$option_name );
 delete_option( 'currency_rates' );
 
