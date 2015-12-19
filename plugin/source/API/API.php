@@ -24,40 +24,55 @@ class API {
 	public $parsedAnswer = null;
 
 	public function get_rates() {
-		$this->get_remote();
-
-		$is_valid = $this->validate_answer();
-
-		if( is_wp_error( $is_valid ) ) {
-			return $is_valid;
+		$valid = $this->prepare_rates();
+		if( is_wp_error( $valid ) ) {
+			return $valid;
 		}
+		return $this->parsedAnswer;
+	}
 
-		$is_valid = null;
-		$is_valid = self::parse_answer();
-
-		if( is_wp_error( $is_valid ) ) {
-			return $is_valid;
+	public function get_currencies_list () {
+		$valid = $this->prepare_rates();
+		if( is_wp_error( $valid ) ) {
+			return $valid;
 		}
-		else {
-			$this->add_usd_to_rates();
-
-			// Пробуем отсортировать массивы валют по алфавиту
-			$this->sort_rates_by_key();
-
-			return $this->parsedAnswer;
+		$currencies = array();
+		foreach( $this->parsedAnswer[0]['rates'] as $currency_key => $currency_rate ) {
+			$currencies[] = $currency_key;
 		}
 	}
 
-	public function get_rates_raw() {
-		self::get_remote();
+	private function prepare_rates() {
 
-		$is_valid = self::validate_answer();
+		// Если у нас уже есть ответ, нет смысла делать что-то снова
+		if( !$this->parsedAnswer ) {
 
-		if( is_wp_error( $is_valid ) ) {
-			return $is_valid;
+			// Получаем ответ от удаленного сервера
+			$this->get_remote();
+			// Проверяем его валидность
+			$is_valid = $this->validate_answer();
+
+			// Ничего не делаем, если ошибка
+			if( is_wp_error( $is_valid ) ) {
+				return $is_valid;
+			}
+
+			// Превращаем ответ сервера в нужный формат
+			$is_valid = null;
+			$is_valid = self::parse_answer();
+
+			// Распарсили?
+			if( is_wp_error( $is_valid ) ) {
+				return $is_valid;
+			}
+
+			$this->add_usd_to_rates();
+			// Пробуем отсортировать массивы валют по алфавиту
+			$this->sort_rates_by_key();
+			return true;
 		}
 
-		return $this->answerFromAPI['body'];
+		return true;
 	}
 
 	public function get_remote() {
@@ -84,7 +99,7 @@ class API {
 		/**
 		 * Checkout object and response code.
 		 */
-		if( $this->answerFromAPI['response']['code'] === 200 ) {
+		if( !empty($this->answerFromAPI['response']['code']) && $this->answerFromAPI['response']['code'] === 200 ) {
 
 			/**
 			 * Checkout response body.
@@ -117,7 +132,7 @@ class API {
 		}
 	}
 
-	public function add_usd_to_rates() {
+	private function add_usd_to_rates() {
 		$this->parsedAnswer[0]['rates']['USD'] = 1;
 		$this->parsedAnswer[1]['rates']['USD'] = 1;
 	}
