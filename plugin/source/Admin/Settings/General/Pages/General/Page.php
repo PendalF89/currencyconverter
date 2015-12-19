@@ -37,7 +37,7 @@ class Page {
 		__(
 'Выражаем благодарность бесплатным поставщикам данных о валютах: сайту <a href="https://openexchangerates.org/" target="_blank">Open Exchange Rates</a>, <a href="http://www.cbr.ru/">Центральному Банку Российской Федерации</a>.
 
-Благодарим компанию GoSquared из Лондона за <a href="https://github.com/gosquared/flags">репозиторий с бесплатными иконками флагов государств мира</a>.', Plugin::NAME )
+Благодарим компанию GoSquared из Лондона за <a href="https://github.com/gosquared/flags">репозиторий с иконками флагов государств мира</a>.', Plugin::NAME )
 		); ?>
 		<?php
 	}
