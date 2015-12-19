@@ -109,11 +109,12 @@ class Currency_Table extends \WP_Widget {
 	public function form( $instance ) {
 		static $first = true;
 
-		// TODO: Неклевая проверка
-		if( !\Korobochkin\Currency\Service\Rates::is_available() ) {
-			?><p><?php _e( 'Select data provider in plugin settings.', Plugin::NAME ); ?></p><?php
+		$currency = new Currency('USD', 'USD');
+		if( !$currency->is_available() ) {
+			?><p><?php printf( __( 'Select data provider in <a href="%1$s">plugin settings</a>.', Plugin::NAME ), esc_url( \Korobochkin\Currency\Admin\Settings\General\Pages\General\Page::get_url() ) ); ?></p><?php
 			return;
 		}
+		unset( $currency );
 
 		$instance = $this->_merge_instance_with_default_instance($instance);
 		?>
