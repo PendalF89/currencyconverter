@@ -10,7 +10,7 @@ class DataProvidersPreview {
 
 	private static $providers_list = null;
 
-	public static function get_providers_data() {
+	public static function get_providers_preview() {
 
 		// Запрашиваем кеш
 		self::$providers_data = get_transient( Plugin::NAME . '_providers' );
