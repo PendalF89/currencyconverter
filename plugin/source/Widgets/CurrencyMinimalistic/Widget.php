@@ -3,6 +3,7 @@ namespace Korobochkin\Currency\Widgets\CurrencyMinimalistic;
 
 use Korobochkin\Currency\Models\Currency;
 use Korobochkin\Currency\Plugin;
+use Korobochkin\Currency\Service\Text;
 
 class Widget extends \WP_Widget {
 
@@ -38,37 +39,42 @@ class Widget extends \WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
+		if(
+			!empty( $instance['currency_list'] )
+			&&
+			!empty( $instance['base_currency'] )
+		) {
+			$instance['currency_list'] = str_replace( ' ', '', $instance['currency_list'] );
+			$instance['currency_list'] = explode( ',', $instance['currency_list'] );
+
+			if( !empty( $instance['currency_list'] ) ) {
+				echo '<div class="currency-converter_minimalistic-container">';
+				foreach( $instance['currency_list'] as $currency_ticker ) {
+					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
+					if( $currency_obj->is_available() ) {
+						?>
+						<div class="currency-converter_minimalistic-single-currency">
+							<div class="currency-converter_minimalistic-row">
+								<span class="currency-converter_minimalistic-currency-price"><?php echo number_format_i18n( $currency_obj->get_rate(), 2); ?></span>
+							</div>
+							<div class="currency-converter_minimalistic-row">
+								<span class="currency-converter_minimalistic-inline-list">
+									<span class="currency-converter_minimalistic-inline-list-item">
+										<?php echo $currency_ticker; ?>
+									</span><span class="currency-converter_minimalistic-inline-list-item">
+										<?php echo Text::format_plus_minus_signs( number_format_i18n( $currency_obj->get_change_percentage(), 2) ); ?>
+									</span>
+								</span>
+							</div>
+						</div>
+						<?php
+					}
+				}
+				echo '</div>';
+			}
+		}
+
 		?>
-		<div class="currency-converter_minimalistic-container">
-			<div class="currency-converter_minimalistic-single-currency">
-				<div class="currency-converter_minimalistic-row">
-					<span class="currency-converter_minimalistic-currency-price">70,22</span>
-				</div>
-				<div class="currency-converter_minimalistic-row">
-					<span class="currency-converter_minimalistic-inline-list">
-						<span class="currency-converter_minimalistic-inline-list-item">
-							USD
-						</span><span class="currency-converter_minimalistic-inline-list-item">
-							+1,47%
-						</span>
-					</span>
-				</div>
-			</div>
-			<div class="currency-converter_minimalistic-single-currency">
-				<div class="currency-converter_minimalistic-row">
-					<span class="currency-converter_minimalistic-currency-price">70,22</span>
-				</div>
-				<div class="currency-converter_minimalistic-row">
-					<span class="currency-converter_minimalistic-inline-list">
-						<span class="currency-converter_minimalistic-inline-list-item">
-							USD
-						</span><span class="currency-converter_minimalistic-inline-list-item">
-							+1,47%
-						</span>
-					</span>
-				</div>
-			</div>
-		</div>
 		<style type="text/css">
 			#<?php echo $args['widget_id']; ?> .currency-converter_minimalistic-container {
 				border: 0;
