@@ -18,6 +18,17 @@ module.exports = function(grunt) {
         },
         src: 'styles/widgets/main.less',
         dest: 'out/styles/widgets/main.css'
+      },
+      backendWidgets: {
+        options: {
+          strictMath: true,
+          sourceMap: true,
+          outputSourceFiles: true,
+          sourceMapURL: 'widgets.css.map',
+          sourceMapFilename: 'out/styles/widgets-backend/widgets.css.map'
+        },
+        src: 'styles/widgets-backend/main.less',
+        dest: 'out/styles/widgets-backend/main.css'
       }
     },
 
@@ -31,6 +42,12 @@ module.exports = function(grunt) {
           map: true
         },
         src: 'out/styles/widgets/main.css'
+      },
+      backendWidgets: {
+        options: {
+          map: true
+        },
+        src: 'out/styles/widgets-backend/main.css'
       }
     },
 
@@ -72,8 +89,14 @@ module.exports = function(grunt) {
     'autoprefixer:frontendWidgets'
   ]);
 
+  grunt.registerTask('stylesBackendWidgets', [
+     'less:backendWidgets',
+      'autoprefixer:backendWidgets'
+  ]);
+
   grunt.registerTask('styles', [
     'stylesFrontendWidgets',
+    'stylesBackendWidgets',
     'copy:styles'
   ]);
 

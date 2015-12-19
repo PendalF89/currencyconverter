@@ -9,13 +9,7 @@ class Widgets {
 		if( 'widgets.php' != $hook ) {
 			return;
 		}
-		wp_enqueue_script( 'jquery-ui-autocomplete' );
-		wp_enqueue_script(
-			'plugin__currency__currency-table__admin',
-			plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path ) . 'source/Widgets/CurrencyTable/admin-page-autocomplete.js',
-			array( 'jquery' ),
-			'0.0.0',
-			true
-		);
+		wp_enqueue_script( 'plugin-' . Plugin::NAME . '-widgets-currency-table-admin' );
+		wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets-settings' );
 	}
 }

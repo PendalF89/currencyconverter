@@ -4,6 +4,9 @@ namespace Korobochkin\Currency\Admin;
 class Admin {
 
 	public static function run() {
+		// Register all scripts & styles
+		Service\ScriptStyles::register();
+
 		/**
 		 * Scripts for /wp-admin/widgets.php page
 		 */
