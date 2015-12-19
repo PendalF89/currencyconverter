@@ -109,6 +109,7 @@ class Currency_Table extends \WP_Widget {
 	public function form( $instance ) {
 		static $first = true;
 
+		// TODO: Неклевая проверка
 		if( !\Korobochkin\Currency\Service\Rates::is_available() ) {
 			?><p><?php _e( 'Select data provider in plugin settings.', Plugin::NAME ); ?></p><?php
 			return;
