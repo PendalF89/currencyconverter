@@ -9,10 +9,7 @@ class UpdateCurrency {
 	static function update( $show_warning_in_admin = false ) {
 
 		// Получаем полностью все настройки + дефолтные на 100%
-		$settings = get_option(
-			\Korobochkin\Currency\Models\Settings\General::$option_name,
-			\Korobochkin\Currency\Models\Settings\General::get_defaults()
-		);
+		$settings = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, array() );
 		$settings = wp_parse_args( $settings, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
 
 		$providers_obj = \Korobochkin\Currency\Models\DataProviders::getInstance();
