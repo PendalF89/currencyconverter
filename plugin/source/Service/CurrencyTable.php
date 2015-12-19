@@ -111,15 +111,6 @@ class CurrencyTable {
 		return '';
 	}
 
-	public function merge_defaults() {
-		// TODO: Переписать
-		$this->parameters['currency_list'] = array();
-		if( empty( $this->parameters['base_currency'] ) ) {
-			$this->parameters['base_currency'] = 'USD';
-		}
-
-	}
-
 	public function is_valid() {
 		if( empty( $this->parameters['currency_list'] ) || !is_array( $this->parameters['currency_list'] ) ) {
 			return false;
