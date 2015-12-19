@@ -40,6 +40,7 @@ class API {
 		foreach( $this->parsedAnswer[0]['rates'] as $currency_key => $currency_rate ) {
 			$currencies[] = $currency_key;
 		}
+		return $currencies;
 	}
 
 	private function prepare_rates() {
