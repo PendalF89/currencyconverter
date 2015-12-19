@@ -69,12 +69,13 @@ class Widget extends \WP_Widget {
 			</div>
 		</div>
 		<style type="text/css">
-			#currency_minimalistic-2 .currency-converter_minimalistic-container {
+			#<?php echo $args['widget_id']; ?> .currency-converter_minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -webkit-gradient(linear, left top, left bottom, from(<?php echo $instance['bg_color_1']; ?>), to(<?php echo $instance['bg_color_2']; ?>));
 				background-image: linear-gradient(to bottom, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+				color: <?php echo $instance['color']; ?>
 			}
 		</style>
 		<?php
@@ -95,6 +96,7 @@ class Widget extends \WP_Widget {
 
 		$instance_to_save['bg_color_1'] = sanitize_text_field( $instance['bg_color_1'] );
 		$instance_to_save['bg_color_2'] = sanitize_text_field( $instance['bg_color_2'] );
+		$instance_to_save['color'] = sanitize_text_field( $instance['color'] );
 
 		/**
 		 * Сохраняя лишь нужные переменные,
@@ -199,6 +201,21 @@ class Widget extends \WP_Widget {
 				// TODO: Добавить динамическое изменение ширины для Iris
 			});
 		</script>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'color' ); ?>"><?php _e( 'Font color:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>" type="text" value="<?php echo esc_attr( $instance['color'] ); ?>" size="6">
+		</p>
+		<script>
+			jQuery(document).ready(function($){
+				$('#<?php echo $this->get_field_id( 'color' ); ?>').iris({
+					width: 300,
+					border: true,
+					hide: false
+				});
+				// TODO: Добавить динамическое изменение ширины для Iris
+			});
+		</script>
 		<?php
 		$first = false;
 	}
@@ -210,7 +227,8 @@ class Widget extends \WP_Widget {
 			'currency_list' => _x( 'CAD, AUD, GBP', 'WARNING: always use commas as separator', Plugin::NAME ),
 			'bg_color_scheme' => '',
 			'bg_color_1' => 'ffa200',
-			'bg_color_2' => 'ff5a00'
+			'bg_color_2' => 'ff5a00',
+			'color' => 'ffffff'
 		);
 		return wp_parse_args($instance, $def_settings);
 	}
