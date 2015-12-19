@@ -36,42 +36,26 @@ class DataProvidersPreview {
 	}
 
 	public static function render( $info ) {
-		$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
+		$providers_previews = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers_preview();
 
-		// TODO: Тупейший механизм внутри. Надо переписать.
-
-		$provider_currencies = get_transient( Plugin::NAME . '_provider_rates_' . $info['id'] );
-
-		if( !$provider_currencies ) {
-
-			$api = new API($providers[$info['id']]);
-			$rates = $api->get_rates();
-
-			if( is_wp_error( $rates ) ) {
-				$error_messages = $rates->get_error_messages();
-				?>
-				<p><?php _e( 'Status: <code>failed</code>. Error message:', Plugin::NAME ); ?></p>
-				<ol>
-					<?php foreach( $error_messages as $error ) {
-						echo '<li>' . esc_html($error) . '</li>';
-					} ?>
-				</ol>
-				<?php
-				return;
-			}
-			else {
-				$prepare_transient = array();
-				foreach( $rates[0]['rates'] as $rate_ticker => $rate_value ) {
-					$prepare_transient[] = $rate_ticker;
-				}
-				$provider_currencies = $prepare_transient;
-				set_transient( Plugin::NAME . '_provider_rates_' . $info['id'], $prepare_transient, 24 * HOUR_IN_SECONDS );
-			}
+		if( $providers_previews[$info['id']]['status'] === 'ok' ) {
+			//$status_title = _x( 'ok', 'Data provider status code.', Plugin::NAME );
+			?><p><?php
+			_ex( 'Status: <code>OK</code>. Available currencies:', 'Description of the data provider with status code OK that means that provider are available and ready to use.', Plugin::NAME );
+			?></p>
+			<p><?php echo '<p><code>' . implode( '</code>, <code>', $providers_previews[$info['id']]['currencies'] ) . '</code>.</p>';  ?></p>
+			<?php
 		}
-
-		if( $provider_currencies ) {
-			?><p><?php _e( 'Status: <code>ok</code>. Available currencies:', Plugin::NAME ); ?></p><?php
-			echo '<p><code>' . implode( '</code>, <code>', $provider_currencies ) . '</code>.</p>';
+		else {
+			?><p><?php
+			_ex( 'Status: <code>FAILED</code>. Error message(s):', 'Description of the data provider with status code FAILED that means that provider are not available and something happens when WordPress tried to fetch currency rates from this provider.', Plugin::NAME );
+			?></p>
+			<ol>
+				<?php foreach( $providers_previews[$info['id']]['errors'] as $error ) {
+					echo '<li>' . esc_html( $error ) . '</li>';
+				} ?>
+			</ol>
+			<?php
 		}
 	}
 }
