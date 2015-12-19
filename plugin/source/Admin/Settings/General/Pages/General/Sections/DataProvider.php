@@ -35,13 +35,11 @@ class DataProvider {
 	public static function sanitize( $values ) {
 		$filtered_values = array();
 
-		// TODO: Получается мы можем запихнуть настройку в БД но в ней будут не все необходимые дефолтные данные
 		if( isset( $values['data_provider_name'] ) ) {
 			$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
 
 			if( array_key_exists( $values['data_provider_name'], $providers ) ) {
 				$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
-				// TODO: Надо как-то сразу же обновлять данные в БД для котировок
 			}
 		}
 
@@ -57,7 +55,7 @@ class DataProvider {
 		 */
 
 		// Получаем настройки из бд и добавляем к ним дефолтные
-		$current_options = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+		$current_options = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, array() );
 		$current_options = wp_parse_args( $current_options, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
 
 		// Соединяем дефолотные (и предыдущие) с теми, что были введены сейчас
