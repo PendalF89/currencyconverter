@@ -19,7 +19,67 @@ class Widget extends \WP_Widget {
 		// Enqueue styles if theme don't support our plugin and widget is active.
 		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
 			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
+			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-fonts' );
 		}
+	}
+
+	public function widget( $args, $instance ) {
+		echo $args['before_widget'];
+
+		/**
+		 * Title
+		 */
+		$title = apply_filters(
+			'widget_title',
+			empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base
+		);
+		if( $title ) {
+			echo $args['before_title'] . $title . $args['after_title'];
+		}
+
+		?>
+		<div class="currency-converter_minimalistic-container">
+			<div class="currency-converter_minimalistic-single-currency">
+				<div class="currency-converter_minimalistic-row">
+					<span class="currency-converter_minimalistic-currency-price">70,22</span>
+				</div>
+				<div class="currency-converter_minimalistic-row">
+					<span class="currency-converter_minimalistic-inline-list">
+						<span class="currency-converter_minimalistic-inline-list-item">
+							USD
+						</span><span class="currency-converter_minimalistic-inline-list-item">
+							+1,47%
+						</span>
+					</span>
+				</div>
+			</div>
+			<div class="currency-converter_minimalistic-single-currency">
+				<div class="currency-converter_minimalistic-row">
+					<span class="currency-converter_minimalistic-currency-price">70,22</span>
+				</div>
+				<div class="currency-converter_minimalistic-row">
+					<span class="currency-converter_minimalistic-inline-list">
+						<span class="currency-converter_minimalistic-inline-list-item">
+							USD
+						</span><span class="currency-converter_minimalistic-inline-list-item">
+							+1,47%
+						</span>
+					</span>
+				</div>
+			</div>
+		</div>
+		<style type="text/css">
+			#currency_minimalistic-2 .currency-converter_minimalistic-container {
+				border: 0;
+				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+				background-image: -webkit-gradient(linear, left top, left bottom, from(<?php echo $instance['bg_color_1']; ?>), to(<?php echo $instance['bg_color_2']; ?>));
+				background-image: linear-gradient(to bottom, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+			}
+		</style>
+		<?php
+
+		echo $args['after_widget'];
 	}
 
 	public function update( $new_instance, $old_instance ) {
@@ -32,6 +92,9 @@ class Widget extends \WP_Widget {
 
 		// Вероятно, это надо сохранять в виде массива
 		$instance_to_save['currency_list'] = strtoupper( sanitize_text_field( $instance['currency_list'] ) );
+
+		$instance_to_save['bg_color_1'] = sanitize_text_field( $instance['bg_color_1'] );
+		$instance_to_save['bg_color_2'] = sanitize_text_field( $instance['bg_color_2'] );
 
 		/**
 		 * Сохраняя лишь нужные переменные,
@@ -95,7 +158,7 @@ class Widget extends \WP_Widget {
 
 		<h3><?php _e( 'Background color', Plugin::NAME ); ?></h3>
 
-		<p>Predefined color schemes:</p>
+		<p><?php _e( 'Predefined color schemes:', Plugin::NAME ); ?></p>
 
 		<ul class="currency-widget-settings-palettes">
 			<li class="color-grid color-grid-gradient">
@@ -108,19 +171,34 @@ class Widget extends \WP_Widget {
 		</ul>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'table_headers_currencies' ); ?>"><?php _e( 'Currencies names col:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_currencies' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_currencies' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_currencies'] ); ?>">
+			<label for="<?php echo $this->get_field_id( 'bg_color_1' ); ?>"><?php _e( 'First background color:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_1' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_1' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_1'] ); ?>" size="6">
 		</p>
+		<script>
+			jQuery(document).ready(function($){
+				$('#<?php echo $this->get_field_id( 'bg_color_1' ); ?>').iris({
+					width: 300,
+					border: true,
+					hide: false
+				});
+				// TODO: Добавить динамическое изменение ширины для Iris
+			});
+		</script>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'table_headers_price' ); ?>"><?php _e( 'Price col:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_price' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_price' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_price'] ); ?>">
+			<label for="<?php echo $this->get_field_id( 'bg_color_2' ); ?>"><?php _e( 'Second background color:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_2' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_2' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_2'] ); ?>" size="6">
 		</p>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'table_headers_change' ); ?>"><?php _e( 'Change col:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_change' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_change' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_change'] ); ?>">
-		</p>
+		<script>
+			jQuery(document).ready(function($){
+				$('#<?php echo $this->get_field_id( 'bg_color_2' ); ?>').iris({
+					width: 300,
+					border: true,
+					hide: false
+				});
+				// TODO: Добавить динамическое изменение ширины для Iris
+			});
+		</script>
 		<?php
 		$first = false;
 	}
