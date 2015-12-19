@@ -263,10 +263,10 @@ class Widget extends \WP_Widget {
 			'base_currency' => __( 'USD', Plugin::NAME ),
 			'currency_list' => _x( 'CAD, AUD, GBP', 'WARNING: always use commas as separator', Plugin::NAME ),
 			'bg_color_scheme' => '',
-			'bg_color_1' => 'ffa200',
-			'bg_color_2' => 'ff5a00',
-			'color' => 'ffffff',
-			'separator_color' => 'ffffff',
+			'bg_color_1' => '#ffa200',
+			'bg_color_2' => '#ff5a00',
+			'color' => '#ffffff',
+			'separator_color' => '#ffffff',
 			'separator_opacity' => 30
 		);
 		return wp_parse_args($instance, $def_settings);
