@@ -179,15 +179,17 @@ class Widget extends \WP_Widget {
 
 		<p><?php _e( 'Predefined color schemes:', Plugin::NAME ); ?></p>
 
-		<ul class="currency-widget-settings-palettes">
-			<li class="color-grid color-grid-gradient">
-				Abc
-			</li><li class="color-grid color-grid-gradient">
-				Abc
-			</li><li class="color-grid color-grid-gradient">
-				Abc
-			</li>
-		</ul>
+		<?php
+			$default_presets = Defaults::get_default_color_schemes();
+			echo '<ul class="currency-converter-minimalistic-widget-settings-palettes">';
+			foreach( $default_presets as $default_key => $default_preset ) {
+				$default_key = 'currency-conveter-minimalistic-widget-settings-color-grid-gradient-' . $default_key;
+				?><li id="<?php echo esc_html($default_key);?>" class="color-grid color-grid-gradient">Abc</li><?php
+				$default_key = '#' . $default_key;
+				$this->_print_gradiented_styles($default_key, $default_preset);
+			}
+			echo '</ul>';
+		?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'bg_color_1' ); ?>"><?php _e( 'First background color:', Plugin::NAME ); ?></label>
@@ -270,5 +272,26 @@ class Widget extends \WP_Widget {
 			'separator_opacity' => 30
 		);
 		return wp_parse_args($instance, $def_settings);
+	}
+
+	private function _print_gradiented_styles( $selector, $instance ) {
+		$selector = esc_html( $selector );
+		foreach( $instance as $key => $value ) {
+			$instance[$key] = esc_html( $value );
+		}
+		?><style type="text/css">
+			<?php echo $selector; ?> {
+				border: 0;
+				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+				background-image: -webkit-gradient(linear, left top, left bottom, from(<?php echo $instance['bg_color_1']; ?>), to(<?php echo $instance['bg_color_2']; ?>));
+				background-image: linear-gradient(to bottom, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
+				color: <?php echo $instance['color']; ?>;
+			}
+
+			<?php echo $selector; ?> {
+				border-top-color: rgba(<?php echo \Korobochkin\Currency\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
+			}
+		</style><?php
 	}
 }
