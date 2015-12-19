@@ -24,6 +24,7 @@ class Widget extends \WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
+		$instance = $this->_merge_instance_with_default_instance($instance);
 		echo $args['before_widget'];
 
 		/**
@@ -75,7 +76,11 @@ class Widget extends \WP_Widget {
 				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -webkit-gradient(linear, left top, left bottom, from(<?php echo $instance['bg_color_1']; ?>), to(<?php echo $instance['bg_color_2']; ?>));
 				background-image: linear-gradient(to bottom, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
-				color: <?php echo $instance['color']; ?>
+				color: <?php echo $instance['color']; ?>;
+			}
+
+			#<?php echo $args['widget_id']; ?> .currency-converter_minimalistic-single-currency {
+				border-top-color: rgba(<?php echo \Korobochkin\Currency\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style>
 		<?php
@@ -97,6 +102,12 @@ class Widget extends \WP_Widget {
 		$instance_to_save['bg_color_1'] = sanitize_text_field( $instance['bg_color_1'] );
 		$instance_to_save['bg_color_2'] = sanitize_text_field( $instance['bg_color_2'] );
 		$instance_to_save['color'] = sanitize_text_field( $instance['color'] );
+		$instance_to_save['separator_color'] = sanitize_text_field( $instance['separator_color'] );
+
+		$instance['separator_opacity'] = (int)sanitize_text_field( $instance['separator_opacity'] );
+		if( $instance['separator_opacity'] > 0 && $instance['separator_opacity'] <= 100 ) {
+			$instance_to_save['separator_opacity'] = sanitize_text_field( $instance['separator_opacity'] );
+		}
 
 		/**
 		 * Сохраняя лишь нужные переменные,
@@ -216,6 +227,26 @@ class Widget extends \WP_Widget {
 				// TODO: Добавить динамическое изменение ширины для Iris
 			});
 		</script>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'separator_color' ); ?>"><?php _e( 'Separator line color:', Plugin::NAME ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'separator_color' ); ?>" name="<?php echo $this->get_field_name( 'separator_color' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_color'] ); ?>" size="6">
+		</p>
+		<script>
+			jQuery(document).ready(function($){
+				$('#<?php echo $this->get_field_id( 'separator_color' ); ?>').iris({
+					width: 300,
+					border: true,
+					hide: false
+				});
+				// TODO: Добавить динамическое изменение ширины для Iris
+			});
+		</script>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'separator_opacity' ); ?>"><?php _e( 'Separator line opacity:', Plugin::NAME ); ?></label>
+			<input class="" id="<?php echo $this->get_field_id( 'separator_opacity' ); ?>" name="<?php echo $this->get_field_name( 'separator_opacity' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_opacity'] ); ?>" size="6">&nbsp;%
+		</p>
 		<?php
 		$first = false;
 	}
@@ -228,7 +259,9 @@ class Widget extends \WP_Widget {
 			'bg_color_scheme' => '',
 			'bg_color_1' => 'ffa200',
 			'bg_color_2' => 'ff5a00',
-			'color' => 'ffffff'
+			'color' => 'ffffff',
+			'separator_color' => 'ffffff',
+			'separator_opacity' => 30
 		);
 		return wp_parse_args($instance, $def_settings);
 	}
