@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\Currency\Widgets\CurrencyMinimalistic;
 
+use Korobochkin\Currency\Models\Currency;
 use Korobochkin\Currency\Plugin;
 
 class Widget extends \WP_Widget {
@@ -94,6 +95,18 @@ class Widget extends \WP_Widget {
 
 		<h3><?php _e( 'Background color', Plugin::NAME ); ?></h3>
 
+		<p>Predefined color schemes:</p>
+
+		<ul class="currency-widget-settings-palettes">
+			<li class="color-grid color-grid-gradient">
+				Abc
+			</li><li class="color-grid color-grid-gradient">
+				Abc
+			</li><li class="color-grid color-grid-gradient">
+				Abc
+			</li>
+		</ul>
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'table_headers_currencies' ); ?>"><?php _e( 'Currencies names col:', Plugin::NAME ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_currencies' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_currencies' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_currencies'] ); ?>">
@@ -117,7 +130,7 @@ class Widget extends \WP_Widget {
 			'title' => __( 'Currency exchange rate', Plugin::NAME ),
 			'base_currency' => __( 'USD', Plugin::NAME ),
 			'currency_list' => _x( 'CAD, AUD, GBP', 'WARNING: always use commas as separator', Plugin::NAME ),
-			'bg_colorscheme' => '',
+			'bg_color_scheme' => '',
 			'bg_color_1' => 'ffa200',
 			'bg_color_2' => 'ff5a00'
 		);
