@@ -308,6 +308,7 @@ class Widget extends \WP_Widget {
 	}
 
 	private function _generate_switch_color_scheme_scripts( $default_key ) {
+		// TODO: По клику на цветовые схемы в кастомайзере не обновляется страница, хотя все инпуты обновляются.
 		?>
 		<script type="text/javascript">
 			jQuery(document).ready(function($){
