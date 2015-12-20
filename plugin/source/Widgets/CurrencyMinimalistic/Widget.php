@@ -167,12 +167,14 @@ class Widget extends \WP_Widget {
 			echo '<ul class="currency-converter-minimalistic-widget-settings-palettes">';
 			foreach( $default_presets as $default_key => $default_preset ) {
 				$default_key = 'currency-conveter-minimalistic-widget-settings-color-grid-gradient-' . $default_key;
-				?><li id="<?php echo esc_html($default_key);?>" class="color-grid color-grid-gradient"><span class="currency-converter_minimalistic-container">Abc</span></li><?php
+				?><li id="<?php echo esc_attr($default_key);?>" class="color-grid color-grid-gradient"><span class="currency-converter_minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset); ?>>Abc</span></li><?php
 				$default_key = '#' . $default_key;
 				$this->_print_gradiented_styles($default_key, $default_preset);
+				$this->_generate_switch_color_scheme_scripts( $default_key );
 			}
 			echo '</ul>';
 		?>
+
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'bg_color_1' ); ?>"><?php _e( 'First background color:', Plugin::NAME ); ?></label>
@@ -276,5 +278,57 @@ class Widget extends \WP_Widget {
 				border-top-color: rgba(<?php echo \Korobochkin\Currency\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
+	}
+	private function _generate_html_attrs( $attributes, $prefix = 'data' ) {
+		$attributes_string = '';
+		if( is_array( $attributes )) {
+			foreach( $attributes as $key => $value ) {
+				$attributes_string .= $prefix .'-' . esc_attr( $key ) . '="' . esc_attr( $value ) . '" ';
+			}
+		}
+		return $attributes_string;
+	}
+
+	private function _generate_switch_color_scheme_scripts( $default_key ) {
+		?>
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+
+				jQuery('<?php echo esc_js($default_key); ?> .currency-converter_minimalistic-container').click(function(event){
+
+					if (typeof $(event.target).data('bg_color_1') !== 'undefined') {
+						$('#<?php echo esc_js( $this->get_field_id( 'bg_color_1' ) ); ?>')
+							.val( $(event.target).data('bg_color_1') )
+							.iris('color', $(event.target).data('bg_color_1'));
+					}
+
+					if (typeof $(event.target).data('bg_color_2') !== 'undefined') {
+						$('#<?php echo esc_js( $this->get_field_id( 'bg_color_2' ) ); ?>')
+							.val( $(event.target).data('bg_color_2') )
+							.iris('color', $(event.target).data('bg_color_2'));
+					}
+
+					if (typeof $(event.target).data('color') !== 'undefined') {
+						$('#<?php echo esc_js( $this->get_field_id( 'color' ) ); ?>')
+							.val( $(event.target).data('color') )
+							.iris('color', $(event.target).data('color'));
+					}
+
+					if (typeof $(event.target).data('separator_color') !== 'undefined') {
+						$('#<?php echo esc_js( $this->get_field_id( 'separator_color' ) ); ?>')
+							.val( $(event.target).data('separator_color') )
+							.iris('color', $(event.target).data('separator_color'));
+					}
+
+					if (typeof $(event.target).data('separator_opacity') !== 'undefined') {
+						$('#<?php echo esc_js( $this->get_field_id( 'separator_opacity' ) ); ?>')
+							.val( $(event.target).data('separator_opacity') );
+					}
+
+				});
+
+			}(jQuery));
+		</script>
+		<?php
 	}
 }
