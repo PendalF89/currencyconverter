@@ -73,24 +73,7 @@ class Widget extends \WP_Widget {
 				echo '</div>';
 			}
 		}
-
-		?>
-		<style type="text/css">
-			#<?php echo $args['widget_id']; ?> .currency-converter_minimalistic-container {
-				border: 0;
-				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
-				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
-				background-image: -webkit-gradient(linear, left top, left bottom, from(<?php echo $instance['bg_color_1']; ?>), to(<?php echo $instance['bg_color_2']; ?>));
-				background-image: linear-gradient(to bottom, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
-				color: <?php echo $instance['color']; ?>;
-			}
-
-			#<?php echo $args['widget_id']; ?> .currency-converter_minimalistic-single-currency {
-				border-top-color: rgba(<?php echo \Korobochkin\Currency\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
-			}
-		</style>
-		<?php
-
+		$this->_print_gradiented_styles( '#' . $args['widget_id'], $instance );
 		echo $args['after_widget'];
 	}
 
@@ -184,7 +167,7 @@ class Widget extends \WP_Widget {
 			echo '<ul class="currency-converter-minimalistic-widget-settings-palettes">';
 			foreach( $default_presets as $default_key => $default_preset ) {
 				$default_key = 'currency-conveter-minimalistic-widget-settings-color-grid-gradient-' . $default_key;
-				?><li id="<?php echo esc_html($default_key);?>" class="color-grid color-grid-gradient">Abc</li><?php
+				?><li id="<?php echo esc_html($default_key);?>" class="color-grid color-grid-gradient"><span class="currency-converter_minimalistic-container">Abc</span></li><?php
 				$default_key = '#' . $default_key;
 				$this->_print_gradiented_styles($default_key, $default_preset);
 			}
@@ -198,7 +181,7 @@ class Widget extends \WP_Widget {
 		<script>
 			jQuery(document).ready(function($){
 				$('#<?php echo $this->get_field_id( 'bg_color_1' ); ?>').iris({
-					width: 300,
+					width: 246,
 					border: true,
 					hide: false
 				});
@@ -213,7 +196,7 @@ class Widget extends \WP_Widget {
 		<script>
 			jQuery(document).ready(function($){
 				$('#<?php echo $this->get_field_id( 'bg_color_2' ); ?>').iris({
-					width: 300,
+					width: 246,
 					border: true,
 					hide: false
 				});
@@ -228,7 +211,7 @@ class Widget extends \WP_Widget {
 		<script>
 			jQuery(document).ready(function($){
 				$('#<?php echo $this->get_field_id( 'color' ); ?>').iris({
-					width: 300,
+					width: 246,
 					border: true,
 					hide: false
 				});
@@ -243,7 +226,7 @@ class Widget extends \WP_Widget {
 		<script>
 			jQuery(document).ready(function($){
 				$('#<?php echo $this->get_field_id( 'separator_color' ); ?>').iris({
-					width: 300,
+					width: 246,
 					border: true,
 					hide: false
 				});
@@ -280,7 +263,7 @@ class Widget extends \WP_Widget {
 			$instance[$key] = esc_html( $value );
 		}
 		?><style type="text/css">
-			<?php echo $selector; ?> {
+			<?php echo $selector; ?> .currency-converter_minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
@@ -289,7 +272,7 @@ class Widget extends \WP_Widget {
 				color: <?php echo $instance['color']; ?>;
 			}
 
-			<?php echo $selector; ?> {
+			<?php echo $selector; ?> .currency-converter_minimalistic-single-currency {
 				border-top-color: rgba(<?php echo \Korobochkin\Currency\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
