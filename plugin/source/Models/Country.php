@@ -26,6 +26,7 @@ class Country {
 	}
 
 	public function get_flag_url( $size = 16, $style = 'flat' ) {
+		//TODO: Причесать код в этих фукнциях
 		switch( $size ) {
 			case 0:
 				return '';
