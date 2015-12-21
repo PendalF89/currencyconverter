@@ -8,10 +8,10 @@ class Currency_Table extends \WP_Widget {
 
 	public function __construct() {
 		parent::__construct(
-			'currency_table',
-			__( 'Currency Table', Plugin::NAME ),
+			'currencyconverter_table',
+			__( 'Currency Converter. Table', Plugin::NAME ),
 			array(
-				'classname' => 'widget_currency_table',
+				'classname' => 'widget_currencyconverter_table',
 				'description' => __( 'A table with currency rates.', Plugin::NAME )
 			)
 		);
@@ -63,7 +63,7 @@ class Currency_Table extends \WP_Widget {
 
 		$currencies_obj = new Currency( $instance['base_currency'], $instance['base_currency'] );
 		if( $currencies_obj->is_available() ) {
-			echo '<p class="currency-converter-support-info-container">' .
+			echo '<p class="currency-converter_support-info-container">' .
 			sprintf(
 				_x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> on %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
 				esc_url(
