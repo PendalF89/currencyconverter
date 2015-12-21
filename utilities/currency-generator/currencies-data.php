@@ -1,5 +1,5 @@
 <?php
-array (
+return array (
   'AED' => 
   array (
     'flag_name' => 'AE',
@@ -246,4 +246,4 @@ array (
     'html_code' => '&#8363;',
     'currency_symbol' => '₫',
   ),
-)
+);

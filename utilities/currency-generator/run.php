@@ -21,7 +21,7 @@ foreach( $file['RECORDS'] as $currency ) {
 }
 $new_content = var_export($new_array, true);
 
-$new_content = '<?php' . PHP_EOL . $new_content . ';';
+$new_content = '<?php' . PHP_EOL . 'return ' . $new_content . ';';
 
 $output_file = fopen("currencies-data.php", "w") or die("Unable to open file!");
 fwrite($output_file, $new_content);
