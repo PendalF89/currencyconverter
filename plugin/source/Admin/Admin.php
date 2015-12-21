@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\CurrencyConverter\Admin;
 
+use Korobochkin\CurrencyConverter\Plugin;
+
 class Admin {
 
 	public static function run() {
@@ -12,7 +14,7 @@ class Admin {
 		 */
 		add_action( 'admin_enqueue_scripts', array( '\Korobochkin\CurrencyConverter\Admin\Pages\Widgets', 'admin_enqueue_scripts' ) );
 
-		add_action( 'load-settings_page_currency-general', array( '\Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Page', 'update_rates_on_load' ) );
+		add_action( 'load-settings_page_' . Plugin::NAME .'-general', array( '\Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Page', 'update_rates_on_load' ) );
 
 		Settings\Loader::init();
 
