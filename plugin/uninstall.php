@@ -8,3 +8,6 @@ delete_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_n
 delete_option( 'currency_rates' );
 
 delete_transient( \Korobochkin\CurrencyConverter\Plugin::NAME . '_providers' );
+
+//wp_unschedule_event();
+// TODO: Удалять крон
