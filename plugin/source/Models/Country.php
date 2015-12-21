@@ -8,11 +8,14 @@ class Country {
 
 	private $currency = null;
 
+	private $currency_iso_code = null;
+
 	public function __construct() {
 
 	}
 
 	public function set_country_by_currency( $currency ) {
+		$this->currency_iso_code = $currency;
 		$currency = Currencies::get_currency($currency);
 		if( $currency ) {
 			$this->currency = $currency;
@@ -41,6 +44,22 @@ class Country {
 			}
 			$url .= '/' . $this->currency['flag_name'] . '.png';
 			return $url;
+		}
+		return false;
+	}
+
+	public function is_flag_available() {
+		if($this->currency_iso_code) {
+			$country_iso_code = substr($this->currency_iso_code, 0, 2);
+			if($country_iso_code) {
+				$path = dirname($GLOBALS['CurrencyPlugin']->plugin_path);
+				$path .= '/libs/flags/flags-iso/flat/16/' . $country_iso_code . '.png';
+				$flag_available = file_exists( $path );
+
+				if($flag_available) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}
