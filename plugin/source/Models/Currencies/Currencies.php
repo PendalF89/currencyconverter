@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\Currency\Models\Currencies;
+namespace Korobochkin\CurrencyConverter\Models\Currencies;
 
 class Currencies {
 

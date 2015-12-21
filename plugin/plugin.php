@@ -1,13 +1,13 @@
 <?php
-namespace Korobochkin\Currency;
+namespace Korobochkin\CurrencyConverter;
 /*
-Plugin Name: Currency
+Plugin Name: CurrencyConverter
 Plugin URI: http://pokur.su/
 Description: Currency widgets for any needs.
 Author: Kolya Korobochkin
 Author URI: http://korobochkin.com/
 Version: 0.0.0
-Text Domain: currency
+Text Domain: currencyconverter
 Domain Path: /languages/
 Requires at least: 4.4.0
 Tested up to: 4.4.0
@@ -20,12 +20,12 @@ License: GPLv2 or later
  * @since 0.0.0
  */
 require_once 'vendor/autoload.php';
-$GLOBALS['CurrencyPlugin'] = new Plugin( __FILE__ );
-$GLOBALS['CurrencyPlugin']->run();
+$GLOBALS['CurrencyConverterPlugin'] = new Plugin( __FILE__ );
+$GLOBALS['CurrencyConverterPlugin']->run();
 
 /**
  * Activation process. Running only once.
  */
-register_activation_hook( __FILE__, array( '\Korobochkin\Currency\Activation', 'run' ) );
+register_activation_hook( __FILE__, array( '\Korobochkin\CurrencyConverter\Activation', 'run' ) );
 
 //\Korobochkin\Currency\Service\UpdateCurrency::update();

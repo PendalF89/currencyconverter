@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Admin\Settings\General;
+namespace Korobochkin\CurrencyConverter\Admin\Settings\General;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Pages {
 
@@ -16,7 +16,7 @@ class Pages {
 			__( 'Currency', Plugin::NAME ),
 			'manage_options',
 			Plugin::NAME . '-general',
-			array( '\Korobochkin\Currency\Admin\Settings\General\Pages\General\Page', 'render' )
+			array( '\Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Page', 'render' )
 		);
 	}
 }

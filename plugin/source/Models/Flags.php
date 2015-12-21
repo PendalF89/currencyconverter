@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\Currency\Models;
+namespace Korobochkin\CurrencyConverter\Models;
 
 class Flags {
 

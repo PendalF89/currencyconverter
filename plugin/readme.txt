@@ -1,4 +1,4 @@
-=== Currency Converter ===
+=== CurrencyConverter ===
 Contributors: korobochkin
 Tags: currencies, currency, widgets, usd, dollar
 Requires at least: 4.0.0
@@ -30,15 +30,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 = From your WordPress dashboard =
 
 1. Visit 'Plugins > Add New'
-2. Search for 'currency converter'
+2. Search for 'currencyconverter'
 3. Activate Currency Converter from your Plugins page.
 4. Add widgets on yourdomain.com/wp-admin/widgets.php page.
 
 = From WordPress.org =
 
-1. Download Currency Converter.
-2. Upload the 'currency-converter' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...).
-3. Activate Currency Converter from your Plugins page.
+1. Download CurrencyConverter.
+2. Upload the 'currencyconverter' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...).
+3. Activate CurrencyConverter from your Plugins page.
 4. Add widgets on yourdomain.com/wp-admin/widgets.php page.
 
 == Screenshots ==

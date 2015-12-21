@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Models;
+namespace Korobochkin\CurrencyConverter\Models;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Flag {
 
@@ -44,7 +44,7 @@ class Flag {
 		if( !$this->flag_name ) {
 			return new \WP_Error( 'empty_flag_name', __( 'Empty flag name', Plugin::NAME ) );
 		}
-		$url = plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path ) . 'libs/flags/flags-iso/';
+		$url = plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'libs/flags/flags-iso/';
 
 		switch( $size ) {
 			case 16:

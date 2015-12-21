@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\Currency\Service;
+namespace Korobochkin\CurrencyConverter\Service;
 
 class Colors {
 	public static function hex2rgb( $hex, $format = 'string' ) {

@@ -1,8 +1,8 @@
 <?php
-namespace Korobochkin\Currency\Models;
+namespace Korobochkin\CurrencyConverter\Models;
 
-use Korobochkin\Currency\Models\Currencies\Currencies;
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Models\Currencies\Currencies;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Country {
 
@@ -24,7 +24,7 @@ class Country {
 
 	public function get_flag_url( $size = 16, $style = 'flat' ) {
 		if( !empty( $this->currency['flag_name'] ) ) {
-			$url = plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path );
+			$url = plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path );
 			$url .= 'libs/flags/flags-iso/flat/';
 			switch( $size ) {
 				case 0:
@@ -52,7 +52,7 @@ class Country {
 		if($this->currency_iso_code) {
 			$country_iso_code = substr($this->currency_iso_code, 0, 2);
 			if($country_iso_code) {
-				$path = dirname($GLOBALS['CurrencyPlugin']->plugin_path);
+				$path = dirname($GLOBALS['CurrencyConverterPlugin']->plugin_path);
 				$path .= '/libs/flags/flags-iso/flat/16/' . $country_iso_code . '.png';
 				$flag_available = file_exists( $path );
 

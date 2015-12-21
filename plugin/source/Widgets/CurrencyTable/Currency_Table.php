@@ -1,8 +1,8 @@
 <?php
-namespace Korobochkin\Currency\Widgets\CurrencyTable;
+namespace Korobochkin\CurrencyConverter\Widgets\CurrencyTable;
 
-use Korobochkin\Currency\Models\Currency;
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Models\Currency;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Currency_Table extends \WP_Widget {
 
@@ -47,7 +47,7 @@ class Currency_Table extends \WP_Widget {
 
 				if( !empty( $instance['base_currency'] ) ) {
 
-					$table = new \Korobochkin\Currency\Service\CurrencyTable();
+					$table = new \Korobochkin\CurrencyConverter\Service\CurrencyTable();
 					$table->parameters = array(
 						'base_currency' => $instance['base_currency'],
 						'currency_list' => $instance['currency_list'],
@@ -111,13 +111,13 @@ class Currency_Table extends \WP_Widget {
 
 		$currency = new Currency('USD', 'USD');
 		if( !$currency->is_available() ) {
-			?><p><?php printf( __( 'Select data provider in <a href="%1$s">plugin settings</a>.', Plugin::NAME ), esc_url( \Korobochkin\Currency\Admin\Settings\General\Pages\General\Page::get_url() ) ); ?></p><?php
+			?><p><?php printf( __( 'Select data provider in <a href="%1$s">plugin settings</a>.', Plugin::NAME ), esc_url( \Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Page::get_url() ) ); ?></p><?php
 			return;
 		}
 		unset( $currency );
 
 		$instance = $this->_merge_instance_with_default_instance($instance);
-		$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+		$rates = get_option( \Korobochkin\CurrencyConverter\Plugin::NAME . '_rates' );
 		?>
 
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', Plugin::NAME ); ?></label>
@@ -163,7 +163,7 @@ class Currency_Table extends \WP_Widget {
 		<select class="widefat" id="<?php echo $this->get_field_id( 'flag_size' ); ?>" name="<?php echo $this->get_field_name( 'flag_size' ); ?>">
 			<option value="0"><?php _e( 'No flag icon', Plugin::NAME ); ?></option>
 			<?php
-			$flags_sizes = new \Korobochkin\Currency\Models\Flags();
+			$flags_sizes = new \Korobochkin\CurrencyConverter\Models\Flags();
 			foreach( $flags_sizes->sizes as $size ) {
 				printf(
 					'<option value="%s"%s>%s</option>',

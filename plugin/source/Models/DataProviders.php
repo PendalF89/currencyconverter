@@ -1,8 +1,8 @@
 <?php
-namespace Korobochkin\Currency\Models;
+namespace Korobochkin\CurrencyConverter\Models;
 
-use Korobochkin\Currency\API\API;
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\API\API;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class DataProviders {
 	private static $instance;

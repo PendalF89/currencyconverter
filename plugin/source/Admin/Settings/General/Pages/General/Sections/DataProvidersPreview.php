@@ -1,8 +1,8 @@
 <?php
-namespace Korobochkin\Currency\Admin\Settings\General\Pages\General\Sections;
+namespace Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Sections;
 
-use Korobochkin\Currency\API\API;
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\API\API;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class DataProvidersPreview {
 
@@ -13,7 +13,7 @@ class DataProvidersPreview {
 	}
 
 	public static function register_sections() {
-		$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
+		$providers = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_providers();
 
 		foreach( $providers as $provider_name => $provider ) {
 			if( !$provider['active'] ) {
@@ -36,7 +36,7 @@ class DataProvidersPreview {
 	}
 
 	public static function render( $info ) {
-		$providers_previews = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers_preview();
+		$providers_previews = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_providers_preview();
 
 		if( $providers_previews[$info['id']]['status'] === 'ok' ) {
 			//$status_title = _x( 'ok', 'Data provider status code.', Plugin::NAME );

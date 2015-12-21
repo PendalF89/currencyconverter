@@ -1,9 +1,9 @@
 <?php
-namespace Korobochkin\Currency;
+namespace Korobochkin\CurrencyConverter;
 
 class Plugin {
 
-	const NAME = 'currency';
+	const NAME = 'currencyconverter';
 
 	public $plugin_path = NULL;
 
@@ -12,7 +12,7 @@ class Plugin {
 	}
 
 	public function run() {
-		add_action( 'plugins_loaded', array( 'Korobochkin\Currency\Translations', 'load_translations' ) );
+		add_action( 'plugins_loaded', array( 'Korobochkin\CurrencyConverter\Translations', 'load_translations' ) );
 
 		/**
 		 * Register Script & Styles
@@ -23,14 +23,14 @@ class Plugin {
 		 * Update currency action.
 		 */
 		add_action(
-			\Korobochkin\Currency\Plugin::NAME . \Korobochkin\Currency\Cron\UpdateCurrency::$action_name,
-			array( '\Korobochkin\Currency\Service\UpdateCurrency', 'update' )
+			\Korobochkin\CurrencyConverter\Plugin::NAME . \Korobochkin\CurrencyConverter\Cron\UpdateCurrency::$action_name,
+			array( '\Korobochkin\CurrencyConverter\Service\UpdateCurrency', 'update' )
 		);
 
-		add_action( 'widgets_init', array( '\Korobochkin\Currency\Widgets\RegisterWidgets', 'register' ) );
+		add_action( 'widgets_init', array( '\Korobochkin\CurrencyConverter\Widgets\RegisterWidgets', 'register' ) );
 
 		if ( is_admin() ) {
-			\Korobochkin\Currency\Admin\Admin::run();
+			\Korobochkin\CurrencyConverter\Admin\Admin::run();
 		}
 	}
 }

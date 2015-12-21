@@ -5,6 +5,5 @@ Stable version on WordPress.org coming soon.
 ## Generate language files
 
 ```
-cd /srv/www/wordpress-develop/tools/i18n/
-php makepot.php wp-plugin /srv/www/wordpress-default/wp-content/plugins/currency/ /srv/www/wordpress-default/wp-content/plugins/currency/languages/currency.pot
+php /srv/www/wordpress-develop/tools/i18n/makepot.php wp-plugin /srv/www/wordpress-default/wp-content/plugins/currencyconverter/ /srv/www/wordpress-default/wp-content/plugins/currency/languages/currencyconverter.pot
 ```

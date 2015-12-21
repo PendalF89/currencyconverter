@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Admin\Settings\General\Pages\General\Sections\Fields;
+namespace Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Sections\Fields;
 
-use \Korobochkin\Currency\Plugin;
+use \Korobochkin\CurrencyConverter\Plugin;
 
 class Provider {
 
@@ -19,10 +19,10 @@ class Provider {
 	}
 
 	public static function render() {
-		$options = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, array() );
-		$options = wp_parse_args( $options, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+		$options = get_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name, array() );
+		$options = wp_parse_args( $options, \Korobochkin\CurrencyConverter\Models\Settings\General::get_defaults() );
 
-		$providersObj = \Korobochkin\Currency\Models\DataProviders::getInstance();
+		$providersObj = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance();
 		$providers = $providersObj->get_providers();
 		?>
 		<select id="<?php echo Plugin::NAME; ?>__[data_provider_name]" name="<?php echo Plugin::NAME; ?>[data_provider_name]">

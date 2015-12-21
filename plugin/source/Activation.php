@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\Currency;
+namespace Korobochkin\CurrencyConverter;
 
 class Activation {
 	function run() {

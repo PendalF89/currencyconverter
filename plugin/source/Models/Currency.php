@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Models;
+namespace Korobochkin\CurrencyConverter\Models;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Currency {
 

@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Admin\Settings\General\Pages\General\Sections;
+namespace Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Sections;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class DataProvider {
 
@@ -14,7 +14,7 @@ class DataProvider {
 	public static function register_settings() {
 		register_setting(
 			Plugin::NAME . 'general',
-			\Korobochkin\Currency\Models\Settings\General::$option_name,
+			\Korobochkin\CurrencyConverter\Models\Settings\General::$option_name,
 			array( __CLASS__, 'sanitize' )
 		);
 	}
@@ -36,7 +36,7 @@ class DataProvider {
 		$filtered_values = array();
 
 		if( isset( $values['data_provider_name'] ) ) {
-			$providers = \Korobochkin\Currency\Models\DataProviders::getInstance()->get_providers();
+			$providers = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_providers();
 
 			if( array_key_exists( $values['data_provider_name'], $providers ) ) {
 				$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
@@ -55,8 +55,8 @@ class DataProvider {
 		 */
 
 		// Получаем настройки из бд и добавляем к ним дефолтные
-		$current_options = get_option( \Korobochkin\Currency\Models\Settings\General::$option_name, array() );
-		$current_options = wp_parse_args( $current_options, \Korobochkin\Currency\Models\Settings\General::get_defaults() );
+		$current_options = get_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name, array() );
+		$current_options = wp_parse_args( $current_options, \Korobochkin\CurrencyConverter\Models\Settings\General::get_defaults() );
 
 		// Соединяем дефолотные (и предыдущие) с теми, что были введены сейчас
 		$filtered_values = wp_parse_args( $filtered_values, $current_options );

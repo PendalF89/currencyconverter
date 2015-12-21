@@ -1,14 +1,14 @@
 <?php
-namespace Korobochkin\Currency\Service;
+namespace Korobochkin\CurrencyConverter\Service;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class ScriptStyles {
 
 	public static function register() {
 		wp_register_style(
 			'plugin-' . Plugin::NAME . '-widgets',
-			plugin_dir_url( $GLOBALS['CurrencyPlugin']->plugin_path ) . 'styles/widgets/main.css',
+			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'styles/widgets/main.css',
 			array(),
 			'0.0.0'
 		);

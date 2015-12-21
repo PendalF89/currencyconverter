@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Korobochkin\\Currency\\": "source/"
+            "Korobochkin\\CurrencyConverter\\": "source/"
         }
     }
 }

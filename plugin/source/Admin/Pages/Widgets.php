@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Admin\Pages;
+namespace Korobochkin\CurrencyConverter\Admin\Pages;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Widgets {
 

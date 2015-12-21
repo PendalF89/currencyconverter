@@ -1,10 +1,10 @@
 <?php
-namespace Korobochkin\Currency\Service;
+namespace Korobochkin\CurrencyConverter\Service;
 
 use HtmlTableGenerator\Table;
-use Korobochkin\Currency\Models\Country;
-use Korobochkin\Currency\Models\Currency;
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Models\Country;
+use Korobochkin\CurrencyConverter\Models\Currency;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class CurrencyTable {
 

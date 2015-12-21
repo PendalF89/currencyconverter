@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\Currency\Service;
+namespace Korobochkin\CurrencyConverter\Service;
 
 class Text {
 

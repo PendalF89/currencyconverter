@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\Admin\Settings\General\Pages\General;
+namespace Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class Page {
 
@@ -25,7 +25,7 @@ class Page {
 	}
 
 	public static function get_url() {
-		return admin_url( 'options-general.php?page=currency-general' );
+		return admin_url( 'options-general.php?page='. Plugin::NAME . '-general' );
 	}
 
 	private static function thanks() {
@@ -48,7 +48,7 @@ class Page {
 		// Настройки страницы обновляются
 		// Значит нужно попробоывать получить ответ от API
 		if( !empty( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) {
-			\Korobochkin\Currency\Service\UpdateCurrency::update();
+			\Korobochkin\CurrencyConverter\Service\UpdateCurrency::update();
 		}
 	}
 }

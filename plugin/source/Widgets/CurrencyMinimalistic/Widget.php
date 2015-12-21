@@ -1,9 +1,9 @@
 <?php
-namespace Korobochkin\Currency\Widgets\CurrencyMinimalistic;
+namespace Korobochkin\CurrencyConverter\Widgets\CurrencyMinimalistic;
 
-use Korobochkin\Currency\Models\Currency;
-use Korobochkin\Currency\Plugin;
-use Korobochkin\Currency\Service\Text;
+use Korobochkin\CurrencyConverter\Models\Currency;
+use Korobochkin\CurrencyConverter\Plugin;
+use Korobochkin\CurrencyConverter\Service\Text;
 
 class Widget extends \WP_Widget {
 
@@ -128,13 +128,13 @@ class Widget extends \WP_Widget {
 
 		$currency = new Currency('USD', 'USD');
 		if( !$currency->is_available() ) {
-			?><p><?php printf( __( 'Select data provider in <a href="%1$s">plugin settings</a>.', Plugin::NAME ), esc_url( \Korobochkin\Currency\Admin\Settings\General\Pages\General\Page::get_url() ) ); ?></p><?php
+			?><p><?php printf( __( 'Select data provider in <a href="%1$s">plugin settings</a>.', Plugin::NAME ), esc_url( \Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Page::get_url() ) ); ?></p><?php
 			return;
 		}
 		unset( $currency );
 
 		$instance = $this->_merge_instance_with_default_instance($instance);
-		$rates = get_option( \Korobochkin\Currency\Plugin::NAME . '_rates' );
+		$rates = get_option( \Korobochkin\CurrencyConverter\Plugin::NAME . '_rates' );
 
 		?>
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', Plugin::NAME ); ?></label>
@@ -293,7 +293,7 @@ class Widget extends \WP_Widget {
 			}
 
 			<?php echo $selector; ?> .currency-converter_minimalistic-single-currency {
-				border-top-color: rgba(<?php echo \Korobochkin\Currency\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
+				border-top-color: rgba(<?php echo \Korobochkin\CurrencyConverter\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
 	}

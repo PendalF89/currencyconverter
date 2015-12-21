@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\Currency\API;
+namespace Korobochkin\CurrencyConverter\API;
 
-use Korobochkin\Currency\Plugin;
+use Korobochkin\CurrencyConverter\Plugin;
 
 class API {
 	/**

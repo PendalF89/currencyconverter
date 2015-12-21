@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\Currency\Widgets\CurrencyMinimalistic;
+namespace Korobochkin\CurrencyConverter\Widgets\CurrencyMinimalistic;
 
 class Defaults {
 
