@@ -76,6 +76,7 @@ class CurrencyTable {
 						}
 						else {
 							if( is_numeric( $output_data_single ) ) {
+								// TODO: Переписать, используя класс Text
 								$output_data[$key] = number_format_i18n( $output_data[$key], 2 );
 								if( $key === 2 ) {
 									/**

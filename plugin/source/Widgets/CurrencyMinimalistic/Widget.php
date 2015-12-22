@@ -62,7 +62,7 @@ class Widget extends \WP_Widget {
 									<span class="currency-converter_minimalistic-inline-list-item">
 										<?php echo $currency_ticker; ?>
 									</span><span class="currency-converter_minimalistic-inline-list-item">
-										<?php echo Text::format_plus_minus_signs( number_format_i18n( $currency_obj->get_change_percentage(), 2) ); ?>
+										<?php echo Text::number_format_i18n_plus_minus( $currency_obj->get_change_percentage(), 2 ); ?>
 									</span>
 								</span>
 							</div>
