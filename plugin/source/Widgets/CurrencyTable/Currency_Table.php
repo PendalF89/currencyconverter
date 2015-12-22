@@ -24,6 +24,7 @@ class Currency_Table extends \WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
+		$instance = $this->_merge_instance_with_default_instance($instance);
 		echo $args['before_widget'];
 
 		/**
@@ -62,12 +63,14 @@ class Currency_Table extends \WP_Widget {
 			}
 		}
 
-		$plugin_developer = new PluginDeveloper();
-		$plugin_developer->set_base_currency($instance['base_currency']);
-		if( $plugin_developer->is_valid() ) {
-			echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+		if( $instance['caption_status'] ) {
+			$plugin_developer = new PluginDeveloper();
+			$plugin_developer->set_base_currency($instance['base_currency']);
+			if( $plugin_developer->is_valid() ) {
+				echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+			}
 		}
-		
+
 		echo $args['after_widget'];
 	}
 
@@ -88,6 +91,14 @@ class Currency_Table extends \WP_Widget {
 		$instance_to_save['table_headers_currencies'] = sanitize_text_field( $instance['table_headers_currencies'] );
 		$instance_to_save['table_headers_price'] = sanitize_text_field( $instance['table_headers_price'] );
 		$instance_to_save['table_headers_change'] = sanitize_text_field( $instance['table_headers_change'] );
+
+		// Если галочна снята, то переменной нет вообще и она вставляеся из дефолтных значений
+		if( $instance['caption_status'] === true && !isset( $new_instance['caption_status'] ) ) {
+			$instance_to_save['caption_status'] = false;
+		}
+		else {
+			$instance_to_save['caption_status'] = true;
+		}
 
 		/**
 		 * Сохраняя лишь нужные переменные,
@@ -182,6 +193,8 @@ class Currency_Table extends \WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'table_headers_change' ); ?>"><?php _e( 'Change col:', Plugin::NAME ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_change' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_change' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_change'] ); ?>">
 		</p>
+
+		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show little caption with the time of the last update currency exchange rates.', Plugin::NAME); ?></label></p>
 		<?php
 		$first = false;
 	}
@@ -195,6 +208,7 @@ class Currency_Table extends \WP_Widget {
 			'table_headers_currencies' => __( 'Currencies', Plugin::NAME ),
 			'table_headers_price' => __( 'Rate', Plugin::NAME ),
 			'table_headers_change' => __( 'Change %', Plugin::NAME ),
+			'caption_status' => true
 		);
 		return wp_parse_args($instance, $def_settings);
 	}

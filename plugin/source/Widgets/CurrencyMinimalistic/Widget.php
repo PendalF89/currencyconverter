@@ -75,10 +75,12 @@ class Widget extends \WP_Widget {
 			}
 		}
 
-		$plugin_developer = new PluginDeveloper();
-		$plugin_developer->set_base_currency($instance['base_currency']);
-		if( $plugin_developer->is_valid() ) {
-			echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+		if( $instance['caption_status'] ) {
+			$plugin_developer = new PluginDeveloper();
+			$plugin_developer->set_base_currency($instance['base_currency']);
+			if( $plugin_developer->is_valid() ) {
+				echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+			}
 		}
 
 		$this->_print_gradiented_styles( '#' . $args['widget_id'], $instance );
@@ -104,6 +106,14 @@ class Widget extends \WP_Widget {
 		$instance['separator_opacity'] = (int)sanitize_text_field( $instance['separator_opacity'] );
 		if( $instance['separator_opacity'] > 0 && $instance['separator_opacity'] <= 100 ) {
 			$instance_to_save['separator_opacity'] = sanitize_text_field( $instance['separator_opacity'] );
+		}
+
+		// Если галочна снята, то переменной нет вообще и она вставляеся из дефолтных значений
+		if( $instance['caption_status'] === true && !isset( $new_instance['caption_status'] ) ) {
+			$instance_to_save['caption_status'] = false;
+		}
+		else {
+			$instance_to_save['caption_status'] = true;
 		}
 
 		/**
@@ -248,6 +258,8 @@ class Widget extends \WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'separator_opacity' ); ?>"><?php _e( 'Separator line opacity:', Plugin::NAME ); ?></label>
 			<input class="" id="<?php echo $this->get_field_id( 'separator_opacity' ); ?>" name="<?php echo $this->get_field_name( 'separator_opacity' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_opacity'] ); ?>" size="6">&nbsp;%
 		</p>
+
+		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show little caption with the time of the last update currency exchange rates.', Plugin::NAME); ?></label></p>
 		<?php
 		$first = false;
 	}
@@ -262,7 +274,8 @@ class Widget extends \WP_Widget {
 			'bg_color_2' => '#ff5a00',
 			'color' => '#ffffff',
 			'separator_color' => '#ffffff',
-			'separator_opacity' => 30
+			'separator_opacity' => 30,
+			'caption_status' => true
 		);
 		return wp_parse_args($instance, $def_settings);
 	}
