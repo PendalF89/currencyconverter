@@ -2,6 +2,7 @@
 namespace Korobochkin\CurrencyConverter\Widgets\CurrencyMinimalistic;
 
 use Korobochkin\CurrencyConverter\Models\Currency;
+use Korobochkin\CurrencyConverter\Models\PluginDeveloper;
 use Korobochkin\CurrencyConverter\Plugin;
 use Korobochkin\CurrencyConverter\Service\Text;
 
@@ -74,21 +75,10 @@ class Widget extends \WP_Widget {
 			}
 		}
 
-		$currencies_obj = new Currency( $instance['base_currency'], $instance['base_currency'] );
-		if( $currencies_obj->is_available() ) {
-			echo '<p class="currency-converter_support-info-container">' .
-			     sprintf(
-				     _x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> on %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
-				     esc_url(
-					     _x( 'http://exchangerate.guru/', 'Homepage URL of plugin developer.', Plugin::NAME )
-				     ),
-				     esc_html(
-					     $currencies_obj->get_rate_datetime()->format(
-						     _x( 'F j, Y', 'Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво.', Plugin::NAME )
-					     )
-				     )
-			     )
-			     . '</p>';
+		$plugin_developer = new PluginDeveloper();
+		$plugin_developer->set_base_currency($instance['base_currency']);
+		if( $plugin_developer->is_valid() ) {
+			echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
 		}
 
 		$this->_print_gradiented_styles( '#' . $args['widget_id'], $instance );
