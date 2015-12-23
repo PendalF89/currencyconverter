@@ -69,6 +69,12 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 
 == Frequently Asked Questions ==
 
+= Does my theme support this plugin? =
+
+Yes! This plugin enqueue additional styles for widgets only if some widgets active. Theme developers can use `add_theme_support ('plugin-currency-converter')` for creating styles manually inside `style.css` file.
+
+***
+
 = Поддерживает ли моя тема этот плагин? =
 
 Да! Плагин подключит необходимые стили для виджетов, если они используются. Если вы не используете ни один из виджетов, то плагин, не будет подключать какие-либо файлы. Разработчики могут использовать `add_theme_support ('plugin-currency-converter')`, чтобы самостоятельно создать необходимые стили для виджетов.
