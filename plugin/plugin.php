@@ -2,10 +2,10 @@
 namespace Korobochkin\CurrencyConverter;
 /*
 Plugin Name: CurrencyConverter
-Plugin URI: http://pokur.su/
+Plugin URI: http://exchangerate.guru/
 Description: Currency widgets for any needs.
 Author: Kolya Korobochkin
-Author URI: http://korobochkin.com/
+Author URI: http://exchangerate.guru
 Version: 0.0.0
 Text Domain: currencyconverter
 Domain Path: /languages/
