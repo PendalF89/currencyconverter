@@ -1,5 +1,5 @@
 {
-  "name": "currency",
+  "name": "currencyconverter",
   "description": "Currency widgets for any needs.",
   "main": "Gruntfile.js",
   "authors": [
