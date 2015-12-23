@@ -78,6 +78,23 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    
+    compress: {
+      plugin: {
+        options: {
+          archive: 'out/currencyconverter.zip'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'plugin/',
+            src: ['**'],
+            dest: 'currencyconverter/',
+            dot: false
+          }
+        ]
+      }
     }
   });
 
@@ -103,6 +120,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'copy:composer',
     'copy:libs',
-    'styles'
+    'styles',
+    'compress:plugin'
   ]);
 };
