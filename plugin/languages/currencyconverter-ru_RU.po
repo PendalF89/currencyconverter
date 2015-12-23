@@ -3,9 +3,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Currency 0.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/currency\n"
-"POT-Creation-Date: 2015-12-17 19:32+0300\n"
-"PO-Revision-Date: 2015-12-17 19:55+0300\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/"
+"currencyconverter\n"
+"POT-Creation-Date: 2015-12-24 01:02+0300\n"
+"PO-Revision-Date: 2015-12-24 01:02+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -17,100 +18,148 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c\n"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Basepath: .\n"
 
-#: source/API/API.php:70
+#: source/API/API.php:86
 msgid ""
 "It seems that you have not tried to get a response from remote server via "
 "get_* method first."
 msgstr ""
+"Похоже, вы не попытались сначала использовать get_* метод для получения "
+"ответ от удаленного сервера."
 
-#: source/API/API.php:94
+#: source/API/API.php:110
 msgid "Remote server return empty answer."
-msgstr ""
+msgstr "Удаленный сервер вернул пустой ответ."
 
-#: source/API/API.php:101
+#: source/API/API.php:117
 msgid "Remote server return not supported response code."
-msgstr ""
+msgstr "Удаленный сервер вернул неподдерживаемый код ответа."
 
-#: source/API/API.php:111
+#: source/API/API.php:127
 msgid "Remote server return invalid JSON object."
-msgstr ""
+msgstr "Удаленный сервер вернул поврежденный JSON-объект."
 
 #: source/Admin/Pages/Plugins.php:9
 msgid "Settings"
 msgstr "Настройки"
 
-#. Plugin Name of the plugin/theme
 #: source/Admin/Settings/General/Pages/General/Page.php:15
 #: source/Admin/Settings/General/Pages.php:15
 #: source/Admin/Settings/General/Pages.php:16
 msgid "Currency"
-msgstr "Валюты"
+msgstr "Валюта"
+
+#: source/Admin/Settings/General/Pages/General/Page.php:34
+msgid "Thanks"
+msgstr "Благодарности"
+
+#: source/Admin/Settings/General/Pages/General/Page.php:37
+msgid ""
+"Currency exchange rates: <a href=\"https://openexchangerates.org/\" target="
+"\"_blank\">Open Exchange Rates</a>, <a href=\"http://www.cbr.ru/\">Central "
+"Bank of Russia</a>.\n"
+"\n"
+"<a href=\"https://github.com/gosquared/flags\" target=\"_blank\">Countries "
+"flags</a> by GoSquared.\n"
+"\n"
+"Plugin created by <a href=\"http://exchangerate.guru/\" target=\"_blank"
+"\">exchangerate.guru</a>."
+msgstr ""
+"Курсы обмена валют: <a href=\"https://openexchangerates.org/\" target="
+"\"_blank\">Open Exchange Rates</a>, <a href=\"http://www.cbr.ru/"
+"\">Центральный банк Российской Федерации</a>.\n"
+"\n"
+"<a href=\"https://github.com/gosquared/flags\" target=\"_blank\">Флаги "
+"стран</a> от GoSquared.\n"
+"\n"
+"Плагин создан сайтом <a href=\"http://pokur.su/“ target=\"_blank\">pokur.su</"
+"a>."
 
 #: source/Admin/Settings/General/Pages/General/Sections/DataProvider.php:25
 msgid "Data provider"
 msgstr "Поставщик данных"
 
-#: source/Admin/Settings/General/Pages/General/Sections/DataProvider.php:51
+#: source/Admin/Settings/General/Pages/General/Sections/DataProvider.php:69
 msgid ""
 "Different data providers may provide different sets of currencies and their "
-"prices. We recommend you to select local provider data."
+"prices. We recommend you select local data provider."
 msgstr ""
+"Различные поставщики данных могут предоставлять разный набор доступных "
+"валют, а цены одинаковых валют могут незначительно различаться. Мы "
+"рекомендуем выбирать локального поставщика данных."
 
-#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:37
-msgid "The official site of the provider"
+#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:45
+msgctxt ""
+"Description of the data provider with status code OK that means that "
+"provider are available and ready to use. %1$s - status code title (basically "
+"is \"OK\"). %2$s - the number represents available currencies. After the "
+"colon at the end will be shown a list of available currencies."
+msgid ""
+"Status: <code>%1$s</code>. The number of currencies: %2$s. Available "
+"currencies:"
 msgstr ""
+"Состояние: <code>%1$s</code>. Количество валют: %2$s. Список доступных валют:"
 
-#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:53
-msgid "Status: failed. Error message:"
-msgstr ""
+#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:46
+msgctxt ""
+"Data provider status code. \"OK\" means that the provider are available and "
+"ready to use."
+msgid "OK"
+msgstr "ОК"
 
-#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:73
-msgid "Status: ok. Available currencies:"
-msgstr ""
+#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:56
+msgctxt ""
+"Description of the data provider with status code FAILED that means that "
+"provider are not available and something happens when WordPress tried to "
+"fetch currency rates from this provider. %1$s - status code title (basically "
+"is \"FAILED\"). After the colon at the end will be shown a list of errors."
+msgid "Status: <code>%1$s</code>. Error message(s):"
+msgstr "Состояние: <code>%1$s</code>. Сообщение об ошибке(-ах):"
+
+#: source/Admin/Settings/General/Pages/General/Sections/DataProvidersPreview.php:57
+msgctxt ""
+"Data provider status code. \"FAILED\" means that the provider are not "
+"available."
+msgid "FAILED"
+msgstr "Недоступно"
 
 #: source/Admin/Settings/General/Pages/General/Sections/Fields/Provider.php:11
 msgid "Provider"
-msgstr ""
+msgstr "Поставщик"
 
-#: source/Models/DataProviders.php:29
+#: source/Models/DataProviders.php:32
 msgid "Open Exchange Rates"
-msgstr ""
+msgstr "Open Exchange Rates"
 
-#: source/Models/DataProviders.php:36
+#: source/Models/DataProviders.php:39
 msgid "Central Bank of Russia"
-msgstr ""
+msgstr "Центральный банк Российской Федерации"
 
 #: source/Models/Flag.php:45
 msgid "Empty flag name"
-msgstr ""
+msgstr "Пустое имя флага"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:12
-msgid "Currency Table"
-msgstr ""
+#: source/Models/PluginDeveloper.php:40
+msgctxt "Homepage URL of plugin developer."
+msgid "http://exchangerate.guru/"
+msgstr "http://pokur.su/"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:15
-msgid "A table with currency rates."
-msgstr ""
-
-#: source/Widgets/CurrencyTable/Currency_Table.php:69
+#: source/Models/PluginDeveloper.php:50
 msgctxt ""
 "%1$s - url to data provider website. %2$s - date of update currency rate in "
 "regional format."
-msgid "<a href=\"%1$s\">Exchange rate</a> on %2$s"
-msgstr "<a href=\"%1$s\">По курсу</a> ЦБ РФ на %2$s"
-
-#: source/Widgets/CurrencyTable/Currency_Table.php:71
-msgctxt "Homepage URL of plugin developer."
-msgid "http://exchangerate.guru/"
+msgid ""
+"<a href=\"%1$s\" class=\"currency-converter-update-data-link\">Exchange "
+"rate</a> on %2$s"
 msgstr ""
+"<a href=\"%1$s\" class=\"currency-converter-update-data-link\">По курсу</a> "
+"на %2$s"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:75
+#: source/Models/PluginDeveloper.php:54
 msgctxt ""
 "Local date/month/year date format. Available variables - http://php.net/"
 "manual/en/function.date.php. Note that the name of the month may be "
@@ -120,82 +169,170 @@ msgctxt ""
 msgid "F j, Y"
 msgstr "j.n.Y"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:116
-msgid "Select data provider in plugin settings."
-msgstr ""
+#: source/Models/Settings/General.php:12
+msgctxt ""
+"Select default data provider. The list of available providers located in "
+"plugin/source/Models/DataProviders.php."
+msgid "oxr"
+msgstr "cbr"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:123
+#: source/Service/ScriptStyles.php:29
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: To add an additional character subset specific to your
+#. language, translate this to 'greek', 'cyrillic', 'devanagari' or
+#. 'vietnamese'. Do not translate into your own language.
+#: source/Service/ScriptStyles.php:37
+msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "cyrillic"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:14
+msgid "Currency Converter. Minimalistic"
+msgstr "Currency Converter. Минималистичный"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:17
+msgid "Light minimalistic widget with solid, clean colors and gradients."
+msgstr ""
+"Легкий минималистичный виджет с яркими и чистыми цветами и градиентами."
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:131
+#: source/Widgets/CurrencyTable/Currency_Table.php:115
+msgid "Select data provider in <a href=\"%1$s\">plugin settings</a>."
+msgstr "Выберите поставщика данных <a href=\"%1$s\">настройках плагина</a>."
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:140
+#: source/Widgets/CurrencyTable/Currency_Table.php:124
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:126
+#: source/Widgets/CurrencyMinimalistic/Widget.php:143
+#: source/Widgets/CurrencyTable/Currency_Table.php:127
 msgid "Base currency:"
 msgstr "Основная валюта:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:128
+#: source/Widgets/CurrencyMinimalistic/Widget.php:157
+#: source/Widgets/CurrencyTable/Currency_Table.php:141
 msgid "The currency in which will be settled other currencies."
-msgstr ""
+msgstr "Валюта, в которой будут рассчитаны цены всех валют."
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:130
+#: source/Widgets/CurrencyMinimalistic/Widget.php:159
+#: source/Widgets/CurrencyTable/Currency_Table.php:143
 msgid "Currencies list:"
-msgstr ""
+msgstr "Список валют:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:132
+#: source/Widgets/CurrencyMinimalistic/Widget.php:161
+#: source/Widgets/CurrencyTable/Currency_Table.php:145
 msgid "The currencies which will be displayed in table. Separate by commas."
-msgstr ""
+msgstr "Валюты, которые будут показываться в таблице. Разделяйте запятыми."
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:147
+#: source/Widgets/CurrencyMinimalistic/Widget.php:179
+msgid "Background color"
+msgstr "Фоновый цвет"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:181
+msgid "Predefined color schemes:"
+msgstr "Готовые цветовые схемы:"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:198
+msgid "First background color:"
+msgstr "Первый фоновый цвет:"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:213
+msgid "Second background color:"
+msgstr "Второй фоновый цвет:"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:228
+msgid "Font color:"
+msgstr "Цвет текста:"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:243
+msgid "Separator line color:"
+msgstr "Цвет полосы разделителя:"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:258
+msgid "Separator line opacity:"
+msgstr "Прозрачность полосы разделителя:"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:262
+#: source/Widgets/CurrencyTable/Currency_Table.php:197
+msgid ""
+"Show little caption with the time of the last update currency exchange rates."
+msgstr ""
+"Показывать небольшую подпись со временем последнего обновления курса валют."
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:269
+msgid "Currency exchange rate"
+msgstr "Курс обмена валют"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:270
+#: source/Widgets/CurrencyTable/Currency_Table.php:205
+msgid "USD"
+msgstr "RUB"
+
+#: source/Widgets/CurrencyMinimalistic/Widget.php:271
+#: source/Widgets/CurrencyTable/Currency_Table.php:206
+msgctxt "WARNING: always use commas as separator"
+msgid "CAD, AUD, GBP"
+msgstr "USD, EUR, GBP"
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:13
+msgid "Currency Converter. Table"
+msgstr "Currency Converter. Таблица"
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:16
+msgid "A table with currency rates."
+msgstr "Таблица с курсами валют."
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:163
 msgid "Flag icons:"
 msgstr "Иконки флагов:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:149
+#: source/Widgets/CurrencyTable/Currency_Table.php:165
 msgid "No flag icon"
-msgstr ""
+msgstr "Без иконки флага"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:164
+#: source/Widgets/CurrencyTable/Currency_Table.php:180
 msgid "Table headers"
-msgstr ""
+msgstr "Заголовки таблицы"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:167
+#: source/Widgets/CurrencyTable/Currency_Table.php:183
 msgid "Currencies names col:"
-msgstr ""
-
-#: source/Widgets/CurrencyTable/Currency_Table.php:172
-msgid "Price col:"
-msgstr ""
-
-#: source/Widgets/CurrencyTable/Currency_Table.php:177
-msgid "Change col:"
-msgstr ""
-
-#: source/Widgets/CurrencyTable/Currency_Table.php:186
-msgid "Exchange table"
-msgstr ""
-
-#: source/Widgets/CurrencyTable/Currency_Table.php:187
-msgid "USD"
-msgstr ""
+msgstr "Колонка названия валют:"
 
 #: source/Widgets/CurrencyTable/Currency_Table.php:188
-msgctxt "WARNING: always use commas as separator"
-msgid "CAD, AUD, GBP"
-msgstr ""
+msgid "Price col:"
+msgstr "Колонка цены валют:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:191
+#: source/Widgets/CurrencyTable/Currency_Table.php:193
+msgid "Change col:"
+msgstr "Колонка изменения цены валют:"
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:204
+msgid "Exchange table"
+msgstr "Таблица курса валют"
+
+#: source/Widgets/CurrencyTable/Currency_Table.php:208
 msgid "Currencies"
-msgstr ""
+msgstr "Валюты"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:192
+#: source/Widgets/CurrencyTable/Currency_Table.php:209
 msgid "Rate"
 msgstr "Ставка"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:193
+#: source/Widgets/CurrencyTable/Currency_Table.php:210
 msgid "Change %"
-msgstr ""
+msgstr "Изменение %"
+
+#. Plugin Name of the plugin/theme
+msgid "CurrencyConverter"
+msgstr "CurrencyConverter"
 
 #. Plugin URI of the plugin/theme
-msgid "http://pokur.su/"
-msgstr ""
+msgid "http://exchangerate.guru/"
+msgstr "http://pokur.su"
 
 #. Description of the plugin/theme
 msgid "Currency widgets for any needs."
@@ -206,8 +343,17 @@ msgid "Kolya Korobochkin"
 msgstr "Коля Коробочкин"
 
 #. Author URI of the plugin/theme
-msgid "http://korobochkin.com/"
-msgstr "http://korobochkin.com/"
+msgid "http://exchangerate.guru"
+msgstr "http://pokur.su"
+
+#~ msgid "http://korobochkin.com/"
+#~ msgstr "http://korobochkin.com/"
+
+#~ msgctxt ""
+#~ "%1$s - url to data provider website. %2$s - date of update currency rate "
+#~ "in regional format."
+#~ msgid "<a href=\"%1$s\">Exchange rate</a> on %2$s"
+#~ msgstr "<a href=\"%1$s\">По курсу</a> ЦБ РФ на %2$s"
 
 #~ msgid "Title"
 #~ msgstr "ЗАГОЛОВОК!"
