@@ -7,20 +7,40 @@ Stable tag: 0.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Актуальные курсы более 170+ валют в виджетах для любых сайтов. Данные о ценах (ставках) валют бесплатны и обновляются каждый час.
+More than 170+ currency exchange rates. The data about currency rates is free and updates each hour automatically.
 
 == Description ==
+
+More than 170+ currency exchange rates. The data with currency exchange rates is free and updates each hour automatically.
+
+Features:
+
+1. Few widgets for showing currency exchange rates. Each widget have multiple settings for customizing.
+2. You can choose data provider.
+3. No additional load to your site. Currency exchange rates updated in background and cached.
+4. Useful API for creating your custom widgets or showing exchange rates anywhere on your website.
+
+Data providers:
+
+1. Open Exchange Rates (170+ currencies).
+2. Central Bank of Russia (30+ currencies).
+
+You can [suggest additional functionality or widget](https://github.com/korobochkin/currency/issues) for this plugin by posting your idea on Github. We will try to add functionality in future versions.
+
+***
 
 Актуальные курсы более 170+ валют в виджетах для любых сайтов. Данные о ценах (ставках) валют бесплатны и обновляются каждый час.
 
 Возможности плагина:
 
 1. Несколько виджетов для показа курсов валют с большим количеством настроек.
-2. Удобное API для вывода курса валют в любом месте сайта.
+2. Можно выбрать поставщика данных.
+3. Нет дополнительной нагрузки на ваш сайт. Все данные обновляются в фоне и кэшируются (сохраняются).
+4. Удобное API для вывода курса валют в любом месте сайта.
 
 Поставщики данных:
 
-1. Open Exchange Rate (170+ валют).
+1. Open Exchange Rates (170+ валют).
 2. Центральный банк Российской Федерации (30+ валют).
 
 Вы можете [заказать создание дополнительного виджета или функционала](https://github.com/korobochkin/currency/issues) для плагина, написав об этом на Github. Мы постараемся добавить функционал в будущих версиях.
