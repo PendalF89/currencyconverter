@@ -66,7 +66,7 @@ class DataProvider {
 
 	public static function render() {
 		echo '<p>';
-		_e( 'Different data providers may provide different sets of currencies and their prices. We recommend you to select local provider data.',  Plugin::NAME );
+		_e( 'Different data providers may provide different sets of currencies and their prices. We recommend you select local data provider.',  Plugin::NAME );
 		echo '</p>';
 	}
 }

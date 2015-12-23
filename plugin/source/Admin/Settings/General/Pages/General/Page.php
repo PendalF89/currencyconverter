@@ -35,11 +35,11 @@ class Page {
 		<?php
 		echo wpautop(
 		__(
-'Выражаем благодарность бесплатным поставщикам данных о валютах: сайту <a href="https://openexchangerates.org/" target="_blank">Open Exchange Rates</a>, <a href="http://www.cbr.ru/">Центральному Банку Российской Федерации</a>.
+'Currency exchange rates: <a href="https://openexchangerates.org/" target="_blank">Open Exchange Rates</a>, <a href="http://www.cbr.ru/">Central Bank of Russia</a>.
 
-Благодарим компанию GoSquared из Лондона за <a href="https://github.com/gosquared/flags" target="_blank">репозиторий с иконками флагов государств мира</a>.
+<a href="https://github.com/gosquared/flags" target="_blank">Countries flags</a> by GoSquared.
 
-Плагин создан интузиастами с сайта <a href="http://pokur.su/" target="_blank">pokur.su</a>.', Plugin::NAME )
+Plugin created by <a href="http://exchangerate.guru/" target="_blank">exchangerate.guru</a>.', Plugin::NAME )
 		); ?>
 		<?php
 	}

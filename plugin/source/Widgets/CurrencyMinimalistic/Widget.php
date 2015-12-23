@@ -14,7 +14,7 @@ class Widget extends \WP_Widget {
 			__( 'Currency Converter. Minimalistic', Plugin::NAME ),
 			array(
 				'classname' => 'widget_currencyconverter_minimalistic',
-				'description' => __( 'Light minimalistic widget with solid and clean colors and gradients.', Plugin::NAME )
+				'description' => __( 'Light minimalistic widget with solid, clean colors and gradients.', Plugin::NAME )
 			)
 		);
 
