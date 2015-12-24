@@ -7,17 +7,17 @@ Stable tag: 0.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-More than 170+ currency exchange rates. The data about currency rates is free and updates each hour automatically.
+More than 170+ currency rates. The data about currency rates is free and updates each hour automatically.
 
 == Description ==
 
-More than 170+ currency exchange rates. The data with currency exchange rates is free and updates each hour automatically.
+More than 170+ currency rates. The data with currency rates is free and updates each hour automatically.
 
 Features:
 
-1. Few widgets for showing currency exchange rates. Each widget have multiple settings for customizing.
+1. Few widgets for showing currency rates. Each widget have multiple settings for customizing.
 2. You can choose data provider.
-3. No additional load to your site. Currency exchange rates updated in background and cached.
+3. No additional load to your site. Currency rates updated in background and cached.
 4. Useful API for creating your custom widgets or showing exchange rates anywhere on your website.
 
 = Data providers =
@@ -42,7 +42,7 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 
 = Поставщики данных =
 
-Мы собираем данные с нескольких поставщиков данных и храним их на нашем сайте [exchangerate.guru](http://exchangerate.guru). Данный запрашивает данные лишь с сайта exchangerate.guru для всех поставщиков данных (один запрос в час с помощью WordPress Cron). Наше API публично и не требует каких-либо ключей или паролей. Сейчас у нас есть данные от двух поставщиков:
+Мы собираем данные с нескольких поставщиков данных и храним их на нашем сайте [exchangerate.guru](http://exchangerate.guru). Плагин запрашивает данные лишь с сайта exchangerate.guru для всех поставщиков данных (один запрос в час с помощью WordPress Cron). Наше API публично и не требует каких-либо ключей или паролей. Сейчас у нас есть данные от двух поставщиков:
 
 1. Open Exchange Rates (170+ валют).
 2. Центральный банк Российской Федерации (30+ валют).
