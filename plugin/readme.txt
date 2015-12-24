@@ -20,7 +20,9 @@ Features:
 3. No additional load to your site. Currency exchange rates updated in background and cached.
 4. Useful API for creating your custom widgets or showing exchange rates anywhere on your website.
 
-Data providers:
+= Data providers =
+
+We are collect data from multiple data providers and store them on our server [exchangerate.guru](http://exchangerate.guru). This plugin retrieve data only from exchangerate.guru for all data providers (one request per hour by WordPress Cron). Our public API don't require any keys or passwords. Right now we have data from two data providers such as:
 
 1. Open Exchange Rates (170+ currencies).
 2. Central Bank of Russia (30+ currencies).
@@ -38,7 +40,9 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 3. Нет дополнительной нагрузки на ваш сайт. Все данные обновляются в фоне и кэшируются (сохраняются).
 4. Удобное API для вывода курса валют в любом месте сайта.
 
-Поставщики данных:
+= Поставщики данных =
+
+Мы собираем данные с нескольких поставщиков данных и храним их на нашем сайте [exchangerate.guru](http://exchangerate.guru). Данный запрашивает данные лишь с сайта exchangerate.guru для всех поставщиков данных (один запрос в час с помощью WordPress Cron). Наше API публично и не требует каких-либо ключей или паролей. Сейчас у нас есть данные от двух поставщиков:
 
 1. Open Exchange Rates (170+ валют).
 2. Центральный банк Российской Федерации (30+ валют).
@@ -60,6 +64,8 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 2. Upload the 'currencyconverter' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...).
 3. Activate CurrencyConverter from your Plugins page.
 4. Add widgets on yourdomain.com/wp-admin/widgets.php page.
+
+***
 
 = Из консоли WordPress =
 
@@ -87,11 +93,19 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 
 Yes! This plugin enqueue additional styles for widgets only if some widgets active. Theme developers can use `add_theme_support ('plugin-currency-converter')` for creating styles manually inside `style.css` file.
 
+= What requests to remote server sends this plugin? =
+
+The plugin makes only one request per hour and caches the result with currencies exchange rates. In requests we only send the data provider name as parameter and that's all.
+
 ***
 
 = Поддерживает ли моя тема этот плагин? =
 
 Да! Плагин подключит необходимые стили для виджетов, если они используются. Если вы не используете ни один из виджетов, то плагин, не будет подключать какие-либо файлы. Разработчики могут использовать `add_theme_support ('plugin-currency-converter')`, чтобы самостоятельно создать необходимые стили для виджетов.
+
+= Какие запросы делает плагин к внешним серверам? =
+
+Плагин делает один запрос в час и затем кэширует курсы валют. В запросе к внешнему серверу мы передаем лишь название поставщика данных в качестве параметра и все.
 
 == Changelog ==
 
