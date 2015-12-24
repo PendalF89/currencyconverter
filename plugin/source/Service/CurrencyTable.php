@@ -27,11 +27,17 @@ class CurrencyTable {
 
 			// Header
 			if(
-				!empty( $this->parameters['table_headers']['currencies'] )
-				|| !empty( $this->parameters['table_headers']['price'] )
-				|| !empty( $this->parameters['table_headers']['change'] )
+				!empty( $this->parameters['table_headers_currencies'] )
+				|| !empty( $this->parameters['table_headers_price'] )
+				|| !empty( $this->parameters['table_headers_change'] )
 			) {
-				$this->table->set_heading( array_values( $this->parameters['table_headers'] ) );
+				$this->table->set_heading(
+					array(
+						$this->parameters['table_headers_currencies'],
+						$this->parameters['table_headers_price'],
+						$this->parameters['table_headers_change']
+					)
+				);
 				$have_data = true;
 			}
 
