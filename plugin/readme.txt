@@ -29,7 +29,7 @@ We are collect data from multiple data providers and store them on our server [e
 
 You can [suggest additional functionality or widget](https://github.com/korobochkin/currency/issues) for this plugin by posting your idea on Github. We will try to add functionality in future versions.
 
-***
+= On Russian (по-русски) =
 
 Актуальные курсы более 170+ валют в виджетах для любых сайтов. Данные о ценах (ставках) валют бесплатны и обновляются каждый час.
 
@@ -65,7 +65,7 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 3. Activate CurrencyConverter from your Plugins page.
 4. Add widgets on yourdomain.com/wp-admin/widgets.php page.
 
-***
+= On Russian (по-русски) =
 
 = Из консоли WordPress =
 
@@ -97,7 +97,7 @@ Yes! This plugin enqueue additional styles for widgets only if some widgets acti
 
 The plugin makes only one request per hour and caches the result with currencies exchange rates. In requests we only send the data provider name as parameter and that's all.
 
-***
+= On Russian (по-русски) =
 
 = Поддерживает ли моя тема этот плагин? =
 
