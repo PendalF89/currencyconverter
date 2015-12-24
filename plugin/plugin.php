@@ -2,14 +2,14 @@
 namespace Korobochkin\CurrencyConverter;
 /*
 Plugin Name: CurrencyConverter
-Plugin URI: http://exchangerate.guru/
+Plugin URI: https://wordpress.org/plugins/currencyconverter/
 Description: Currency widgets for any needs.
-Author: Kolya Korobochkin
+Author: LB company
 Author URI: http://exchangerate.guru
 Version: 0.0.0
 Text Domain: currencyconverter
 Domain Path: /languages/
-Requires at least: 4.4.0
+Requires at least: 4.0.0
 Tested up to: 4.4.0
 License: GPLv2 or later
 */

@@ -1,6 +1,6 @@
 === CurrencyConverter ===
-Contributors: korobochkin
-Tags: currencies, currency, widgets, usd, dollar
+Contributors: lb-company, korobochkin
+Tags: currencies, currency, rates, exchange, converter, widgets, usd, dollar
 Requires at least: 4.0.0
 Tested up to: 4.4.0
 Stable tag: 0.0.0
