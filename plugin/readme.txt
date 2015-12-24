@@ -51,7 +51,7 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 
 1. Visit 'Plugins > Add New'
 2. Search for 'currencyconverter'
-3. Activate Currency Converter from your Plugins page.
+3. Activate CurrencyConverter from your Plugins page.
 4. Add widgets on yourdomain.com/wp-admin/widgets.php page.
 
 = From WordPress.org =
@@ -60,6 +60,20 @@ You can [suggest additional functionality or widget](https://github.com/koroboch
 2. Upload the 'currencyconverter' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...).
 3. Activate CurrencyConverter from your Plugins page.
 4. Add widgets on yourdomain.com/wp-admin/widgets.php page.
+
+= Из консоли WordPress =
+
+1. Откройте 'Плагины > Добавить новый'
+2. В поиске наберите 'currencyconverter'
+3. Активируйте CurrencyConverter со страницы Плагины.
+4. Добавляйте виджеты на странице moy-sait.ru/wp-admin/widgets.php.
+
+= Через сайт WordPress.org =
+
+1. Скачайте CurrencyConverter.
+2. Распакуйте архив и загрузите папку 'currencyconverter' на ваш сервер в папку '/wp-content/plugins/', используя любую удобную программу (ftp, sftp, scp, и др...).
+3. Активируйте CurrencyConverter со страницы Плагины.
+4. Добавляйте виджеты на странице moy-sait.ru/wp-admin/widgets.php.
 
 == Screenshots ==
 
