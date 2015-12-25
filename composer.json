@@ -1,0 +1,22 @@
+{
+    "name": "korobochkin/currency",
+    "description": "Currency widgets for any needs.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2 or later",
+    "authors": [
+        {
+            "name": "Kolya Korobochkin",
+            "email": "me@korobochkin.com",
+            "homepage": "http://korobochkin.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "tburial/html-table-generator": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Korobochkin\\CurrencyConverter\\": "source/"
+        }
+    }
+}
