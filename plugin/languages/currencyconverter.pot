@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: CurrencyConverter 0.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/"
 "currencyconverter\n"
-"POT-Creation-Date: 2015-12-23 22:02:25+00:00\n"
+"POT-Creation-Date: 2015-12-25 10:10:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -302,7 +302,7 @@ msgid "CurrencyConverter"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://exchangerate.guru/"
+msgid "https://wordpress.org/plugins/currencyconverter/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -310,7 +310,7 @@ msgid "Currency widgets for any needs."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Kolya Korobochkin"
+msgid "LB company"
 msgstr ""
 
 #. Author URI of the plugin/theme
