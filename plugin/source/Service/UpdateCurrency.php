@@ -26,6 +26,7 @@ class UpdateCurrency {
 					self::$newRates
 				);
 				$settings['rates_available'] = true;
+				$settings['cached_rates_by_data_provider_name'] = $settings['data_provider_name'];
 				return update_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name, $settings );
 			}
 		}
