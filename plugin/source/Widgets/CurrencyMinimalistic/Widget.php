@@ -283,7 +283,9 @@ class Widget extends \WP_Widget {
 	private function _print_gradiented_styles( $selector, $instance ) {
 		$selector = esc_html( $selector );
 		foreach( $instance as $key => $value ) {
-			$instance[$key] = esc_html( $value );
+			if( is_string( $value ) ) {
+				$instance[$key] = esc_html( $value );
+			}
 		}
 		?><style type="text/css">
 			<?php echo $selector; ?> .currency-converter_minimalistic-container {
