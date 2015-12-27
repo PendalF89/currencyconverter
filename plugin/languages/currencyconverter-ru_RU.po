@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Currency 0.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/"
 "currencyconverter\n"
-"POT-Creation-Date: 2015-12-25 13:11+0300\n"
-"PO-Revision-Date: 2015-12-25 13:11+0300\n"
+"POT-Creation-Date: 2015-12-27 16:11+0300\n"
+"PO-Revision-Date: 2015-12-27 16:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -143,12 +143,12 @@ msgstr "Центральный банк Российской Федерации"
 msgid "Empty flag name"
 msgstr "Пустое имя флага"
 
-#: source/Models/PluginDeveloper.php:40
+#: source/Models/PluginDeveloper.php:40 source/Models/PluginDeveloper.php:48
 msgctxt "Homepage URL of plugin developer."
 msgid "http://exchangerate.guru/"
 msgstr "http://pokur.su/"
 
-#: source/Models/PluginDeveloper.php:50
+#: source/Models/PluginDeveloper.php:54
 msgctxt ""
 "%1$s - url to data provider website. %2$s - date of update currency rate in "
 "regional format."
@@ -159,7 +159,7 @@ msgstr ""
 "<a href=\"%1$s\" class=\"currency-converter-update-data-link\">По курсу</a> "
 "на %2$s"
 
-#: source/Models/PluginDeveloper.php:54
+#: source/Models/PluginDeveloper.php:58
 msgctxt ""
 "Local date/month/year date format. Available variables - http://php.net/"
 "manual/en/function.date.php. Note that the name of the month may be "
@@ -198,82 +198,80 @@ msgid "Light minimalistic widget with solid, clean colors and gradients."
 msgstr ""
 "Легкий минималистичный виджет с яркими и чистыми цветами и градиентами."
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:131
-#: source/Widgets/CurrencyTable/Currency_Table.php:115
+#: source/Widgets/CurrencyMinimalistic/Widget.php:127
+#: source/Widgets/CurrencyTable/Currency_Table.php:112
 msgid "Select data provider in <a href=\"%1$s\">plugin settings</a>."
 msgstr "Выберите поставщика данных <a href=\"%1$s\">настройках плагина</a>."
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:140
-#: source/Widgets/CurrencyTable/Currency_Table.php:124
+#: source/Widgets/CurrencyMinimalistic/Widget.php:136
+#: source/Widgets/CurrencyTable/Currency_Table.php:121
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:143
-#: source/Widgets/CurrencyTable/Currency_Table.php:127
+#: source/Widgets/CurrencyMinimalistic/Widget.php:139
+#: source/Widgets/CurrencyTable/Currency_Table.php:124
 msgid "Base currency:"
 msgstr "Основная валюта:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:157
-#: source/Widgets/CurrencyTable/Currency_Table.php:141
+#: source/Widgets/CurrencyMinimalistic/Widget.php:153
+#: source/Widgets/CurrencyTable/Currency_Table.php:138
 msgid "The currency in which will be settled other currencies."
 msgstr "Валюта, в которой будут рассчитаны цены всех валют."
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:159
-#: source/Widgets/CurrencyTable/Currency_Table.php:143
+#: source/Widgets/CurrencyMinimalistic/Widget.php:155
+#: source/Widgets/CurrencyTable/Currency_Table.php:140
 msgid "Currencies list:"
 msgstr "Список валют:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:161
-#: source/Widgets/CurrencyTable/Currency_Table.php:145
+#: source/Widgets/CurrencyMinimalistic/Widget.php:157
+#: source/Widgets/CurrencyTable/Currency_Table.php:142
 msgid "The currencies which will be displayed in table. Separate by commas."
 msgstr "Валюты, которые будут показываться в таблице. Разделяйте запятыми."
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:179
+#: source/Widgets/CurrencyMinimalistic/Widget.php:175
 msgid "Background color"
 msgstr "Фоновый цвет"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:181
+#: source/Widgets/CurrencyMinimalistic/Widget.php:177
 msgid "Predefined color schemes:"
 msgstr "Готовые цветовые схемы:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:198
+#: source/Widgets/CurrencyMinimalistic/Widget.php:194
 msgid "First background color:"
 msgstr "Первый фоновый цвет:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:213
+#: source/Widgets/CurrencyMinimalistic/Widget.php:209
 msgid "Second background color:"
 msgstr "Второй фоновый цвет:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:228
+#: source/Widgets/CurrencyMinimalistic/Widget.php:224
 msgid "Font color:"
 msgstr "Цвет текста:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:243
+#: source/Widgets/CurrencyMinimalistic/Widget.php:239
 msgid "Separator line color:"
 msgstr "Цвет полосы разделителя:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:258
+#: source/Widgets/CurrencyMinimalistic/Widget.php:254
 msgid "Separator line opacity:"
 msgstr "Прозрачность полосы разделителя:"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:262
-#: source/Widgets/CurrencyTable/Currency_Table.php:197
-msgid ""
-"Show little caption with the time of the last update currency exchange rates."
-msgstr ""
-"Показывать небольшую подпись со временем последнего обновления курса валют."
+#: source/Widgets/CurrencyMinimalistic/Widget.php:258
+#: source/Widgets/CurrencyTable/Currency_Table.php:194
+msgid "Show last update date of currency exchange rate."
+msgstr "Показывать дату обновления курса валют."
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:269
+#: source/Widgets/CurrencyMinimalistic/Widget.php:265
 msgid "Currency exchange rate"
 msgstr "Курс обмена валют"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:270
-#: source/Widgets/CurrencyTable/Currency_Table.php:205
+#: source/Widgets/CurrencyMinimalistic/Widget.php:266
+#: source/Widgets/CurrencyTable/Currency_Table.php:202
 msgid "USD"
 msgstr "RUB"
 
-#: source/Widgets/CurrencyMinimalistic/Widget.php:271
-#: source/Widgets/CurrencyTable/Currency_Table.php:206
+#: source/Widgets/CurrencyMinimalistic/Widget.php:267
+#: source/Widgets/CurrencyTable/Currency_Table.php:203
 msgctxt "WARNING: always use commas as separator"
 msgid "CAD, AUD, GBP"
 msgstr "USD, EUR, GBP"
@@ -286,43 +284,43 @@ msgstr "Currency Converter. Таблица"
 msgid "A table with currency rates."
 msgstr "Таблица с курсами валют."
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:163
+#: source/Widgets/CurrencyTable/Currency_Table.php:160
 msgid "Flag icons:"
 msgstr "Иконки флагов:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:165
+#: source/Widgets/CurrencyTable/Currency_Table.php:162
 msgid "No flag icon"
 msgstr "Без иконки флага"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:180
+#: source/Widgets/CurrencyTable/Currency_Table.php:177
 msgid "Table headers"
 msgstr "Заголовки таблицы"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:183
+#: source/Widgets/CurrencyTable/Currency_Table.php:180
 msgid "Currencies names col:"
 msgstr "Колонка названия валют:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:188
+#: source/Widgets/CurrencyTable/Currency_Table.php:185
 msgid "Price col:"
 msgstr "Колонка цены валют:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:193
+#: source/Widgets/CurrencyTable/Currency_Table.php:190
 msgid "Change col:"
 msgstr "Колонка изменения цены валют:"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:204
+#: source/Widgets/CurrencyTable/Currency_Table.php:201
 msgid "Exchange table"
 msgstr "Таблица курса валют"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:208
+#: source/Widgets/CurrencyTable/Currency_Table.php:205
 msgid "Currencies"
 msgstr "Валюты"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:209
+#: source/Widgets/CurrencyTable/Currency_Table.php:206
 msgid "Rate"
 msgstr "Ставка"
 
-#: source/Widgets/CurrencyTable/Currency_Table.php:210
+#: source/Widgets/CurrencyTable/Currency_Table.php:207
 msgid "Change %"
 msgstr "Изменение %"
 
@@ -345,6 +343,13 @@ msgstr "Компания LB"
 #. Author URI of the plugin/theme
 msgid "http://exchangerate.guru"
 msgstr "http://pokur.su"
+
+#~ msgid ""
+#~ "Show little caption with the time of the last update currency exchange "
+#~ "rates."
+#~ msgstr ""
+#~ "Показывать небольшую подпись со временем последнего обновления курса "
+#~ "валют."
 
 #~ msgid "http://exchangerate.guru/"
 #~ msgstr "http://pokur.su"
