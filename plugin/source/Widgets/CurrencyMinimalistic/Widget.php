@@ -18,11 +18,7 @@ class Widget extends \WP_Widget {
 			)
 		);
 
-		// Enqueue styles if theme don't support our plugin and widget is active.
-		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
-			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
-			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-fonts' );
-		}
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_script_style' ) );
 	}
 
 	public function widget( $args, $instance ) {
@@ -259,7 +255,7 @@ class Widget extends \WP_Widget {
 			<input class="" id="<?php echo $this->get_field_id( 'separator_opacity' ); ?>" name="<?php echo $this->get_field_name( 'separator_opacity' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_opacity'] ); ?>" size="6">&nbsp;%
 		</p>
 
-		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show little caption with the time of the last update currency exchange rates.', Plugin::NAME); ?></label></p>
+		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
 		<?php
 		$first = false;
 	}
@@ -283,7 +279,9 @@ class Widget extends \WP_Widget {
 	private function _print_gradiented_styles( $selector, $instance ) {
 		$selector = esc_html( $selector );
 		foreach( $instance as $key => $value ) {
-			$instance[$key] = esc_html( $value );
+			if( is_string( $value ) ) {
+				$instance[$key] = esc_html( $value );
+			}
 		}
 		?><style type="text/css">
 			<?php echo $selector; ?> .currency-converter_minimalistic-container {
@@ -352,5 +350,13 @@ class Widget extends \WP_Widget {
 			}(jQuery));
 		</script>
 		<?php
+	}
+
+	public function wp_enqueue_script_style() {
+		// Enqueue styles if theme don't support our plugin and widget is active.
+		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
+			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
+			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-fonts' );
+		}
 	}
 }
