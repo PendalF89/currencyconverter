@@ -17,7 +17,7 @@ class Plugin {
 		/**
 		 * Register Script & Styles
 		 */
-		Service\ScriptStyles::register();
+		add_action( 'wp_enqueue_scripts', array( '\Korobochkin\CurrencyConverter\Service\ScriptStyles', 'register' ) );
 
 		/**
 		 * Update currency action.

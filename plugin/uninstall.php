@@ -5,7 +5,7 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 delete_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name );
-delete_option( 'currency_rates' );
+delete_option( \Korobochkin\CurrencyConverter\Plugin::NAME . '_rates' );
 
 delete_transient( \Korobochkin\CurrencyConverter\Plugin::NAME . '_providers' );
 

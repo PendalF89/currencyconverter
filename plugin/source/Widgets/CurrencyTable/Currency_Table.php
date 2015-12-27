@@ -17,10 +17,7 @@ class Currency_Table extends \WP_Widget {
 			)
 		);
 
-		// Enqueue styles if theme don't support our plugin and widget is active.
-		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
-			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
-		}
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_script_style' ) );
 	}
 
 	public function widget( $args, $instance ) {
@@ -194,7 +191,7 @@ class Currency_Table extends \WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'table_headers_change' ); ?>" name="<?php echo $this->get_field_name( 'table_headers_change' ); ?>" type="text" value="<?php echo esc_attr( $instance['table_headers_change'] ); ?>">
 		</p>
 
-		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show little caption with the time of the last update currency exchange rates.', Plugin::NAME); ?></label></p>
+		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
 		<?php
 		$first = false;
 	}
@@ -211,5 +208,12 @@ class Currency_Table extends \WP_Widget {
 			'caption_status' => true
 		);
 		return wp_parse_args($instance, $def_settings);
+	}
+
+	public function wp_enqueue_script_style() {
+		// Enqueue styles if theme don't support our plugin and widget is active.
+		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
+			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
+		}
 	}
 }

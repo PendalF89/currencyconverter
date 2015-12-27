@@ -7,7 +7,7 @@ class Admin {
 
 	public static function run() {
 		// Register all scripts & styles
-		Service\ScriptStyles::register();
+		add_action( 'admin_enqueue_scripts', array( '\Korobochkin\CurrencyConverter\Admin\Service\ScriptStyles', 'register' ) );
 
 		/**
 		 * Scripts for /wp-admin/widgets.php page
