@@ -17,10 +17,7 @@ class Currency_Table extends \WP_Widget {
 			)
 		);
 
-		// Enqueue styles if theme don't support our plugin and widget is active.
-		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
-			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
-		}
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_script_style' ) );
 	}
 
 	public function widget( $args, $instance ) {
@@ -211,5 +208,12 @@ class Currency_Table extends \WP_Widget {
 			'caption_status' => true
 		);
 		return wp_parse_args($instance, $def_settings);
+	}
+
+	public function wp_enqueue_script_style() {
+		// Enqueue styles if theme don't support our plugin and widget is active.
+		if( !current_theme_supports( 'plugin-' . Plugin::NAME ) && is_active_widget( false, false, $this->id_base ) ) {
+			wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets' );
+		}
 	}
 }
