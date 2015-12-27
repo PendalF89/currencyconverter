@@ -32,19 +32,20 @@ class DataProvider {
 		Fields\Provider::register();
 	}
 
+	/**
+	 * Санитайзинг срабатывает каждый раз, когда вызывается update_option(),
+	 * а не только когда сохранются настройки, поэтому надо чистить входные значения,
+	 * иначе при update_option() мы затираем настройки (при сохранении приходит лишь 1 значение,
+	 * а при update_option() могут прийти все значения.
+	 *
+	 * Способом, которым мы тут фильтруем, невозможно выкинуть старые настройки — они всегда остаются в опции,
+	 * если когда-либо в нее попали.
+	 *
+	 * @param mixed $values New options.
+	 *
+	 * @return array New options merged with old (current) options.
+	 */
 	public static function sanitize( $values ) {
-		$filtered_values = array();
-
-		if( isset( $values['data_provider_name'] ) ) {
-			$providers = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_providers();
-
-			if( array_key_exists( $values['data_provider_name'], $providers ) ) {
-				$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
-			}
-		}
-
-		// А если мы накладываем дефолтные настройки, то все равно некоторые значения могут «затереться»
-
 		/**
 		 * Идея фикс.
 		 * 1) Получаем опции из БД (какие есть).
@@ -58,10 +59,19 @@ class DataProvider {
 		$current_options = get_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name, array() );
 		$current_options = wp_parse_args( $current_options, \Korobochkin\CurrencyConverter\Models\Settings\General::get_defaults() );
 
-		// Соединяем дефолотные (и предыдущие) с теми, что были введены сейчас
-		$filtered_values = wp_parse_args( $filtered_values, $current_options );
+		if( isset( $values['data_provider_name'] ) ) {
+			$providers = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_providers();
 
-		return $filtered_values;
+			if( !array_key_exists( $values['data_provider_name'], $providers ) ) {
+				$values['data_provider_name'] = $current_options['data_provider_name'];
+				//$filtered_values['data_provider_name'] = sanitize_text_field( $values['data_provider_name'] );
+			}
+		}
+
+		// Соединяем дефолотные + текущие с теми, что были введены сейчас
+		$values = wp_parse_args( $values, $current_options );
+
+		return $values;
 	}
 
 	public static function render() {
