@@ -109,12 +109,22 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.1.0 =
+
+* Custom update rates link for Central Bank of Russia.
+* Enqueue script & styles the right way.
+* Code improvements.
+
 = 0.0.0 =
 
 * First release.
 
 == Upgrade Notice ==
 
+= 0.1.0 =
+
+Small fixes and better code inside.
+
 = 0.0.0 =
 
-* First release.
+First release.
