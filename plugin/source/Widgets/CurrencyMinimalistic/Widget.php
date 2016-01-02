@@ -79,7 +79,7 @@ class Widget extends \WP_Widget {
 			}
 		}
 
-		$this->print_gradiented_styles( $args['widget_id'], $instance );
+		$this->print_gradiented_styles( '#' . $args['widget_id'], $instance );
 		echo $args['after_widget'];
 	}
 
@@ -120,6 +120,7 @@ class Widget extends \WP_Widget {
 	}
 
 	public function form( $instance ) {
+		// TODO: Проверить что с $first
 		static $first = true;
 
 		$currency = new Currency('USD', 'USD');
@@ -182,11 +183,9 @@ class Widget extends \WP_Widget {
 			foreach( $default_presets as $default_key => $default_preset ) {
 				$id = $this->get_field_id( 'palettes-' . $default_key );
 
-				?><li id="<?php echo esc_attr($id);?>" class="color-grid color-grid-gradient" data-currency-converter-palettes-switcher="true">
+				?><li id="<?php echo esc_attr($id);?>" class="color-grid color-grid-gradient currency-converter-color-grid-<?php echo esc_attr( $default_key ); ?>" data-currency-converter-palettes-switcher="true">
 					<span class="currency-converter_minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset, $id); ?>>Abc</span>
 				</li><?php
-
-				$this->print_gradiented_styles( $id, $default_preset );
 				$this->_generate_switch_color_scheme_scripts( $id );
 			}
 			echo '</ul>';
@@ -232,6 +231,9 @@ class Widget extends \WP_Widget {
 
 		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
 		<?php
+		foreach( $default_presets as $default_key => $default_preset ) {
+			$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
+		}
 		$first = false;
 	}
 
@@ -251,15 +253,15 @@ class Widget extends \WP_Widget {
 		return wp_parse_args($instance, $def_settings);
 	}
 
-	private function print_gradiented_styles( $id, $instance ) {
-		$id = '#' . $id;
+	private function print_gradiented_styles( $selector, $instance ) {
+		//$id = '#' . $id;
 		foreach( $instance as $key => $value ) {
 			if( is_string( $value ) ) {
 				$instance[$key] = esc_html( $value );
 			}
 		}
 		?><style type="text/css">
-			<?php echo $id; ?> .currency-converter_minimalistic-container {
+			<?php echo $selector; ?> .currency-converter_minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
@@ -268,7 +270,7 @@ class Widget extends \WP_Widget {
 				color: <?php echo $instance['color']; ?>;
 			}
 
-			<?php echo $id; ?> .currency-converter_minimalistic-single-currency {
+			<?php echo $selector; ?> .currency-converter_minimalistic-single-currency {
 				border-top-color: rgba(<?php echo \Korobochkin\CurrencyConverter\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
