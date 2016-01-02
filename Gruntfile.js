@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           preserveComments: 'some'
         },
         files: {
-          'out/scripts/widgets/CurrencyMinimalistic/settings.min.js': [
+          'scripts/widgets/CurrencyMinimalistic/settings.min.js': [
               'scripts/widgets/CurrencyMinimalistic/settings.js'
           ]
         }
@@ -94,12 +94,6 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: [
-          {
-            expand: true,
-            cwd: 'out/scripts/',
-            src: '**',
-            dest: 'plugin/scripts/'
-          },
           {
             expand: true,
             cwd: 'scripts/',

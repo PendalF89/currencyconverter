@@ -5,3 +5,6 @@ bower_components
 plugin/styles
 plugin/scripts
 out
+
+# Ignore compiled files and compiled source maps.
+scripts/**/*min.js*
