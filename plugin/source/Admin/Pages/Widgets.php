@@ -10,7 +10,8 @@ class Widgets {
 			return;
 		}
 		wp_enqueue_script( 'plugin-' . Plugin::NAME . '-widgets-currency-table-admin' );
+		wp_enqueue_script( 'plugin-' . Plugin::NAME . '-widgets-currency-minimalistic-settings' );
+
 		wp_enqueue_style( 'plugin-' . Plugin::NAME . '-widgets-settings' );
-		wp_enqueue_script( 'iris' );
 	}
 }

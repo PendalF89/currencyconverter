@@ -51,6 +51,20 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      widgets: {
+        options: {
+          sourceMap: true,
+          preserveComments: 'some'
+        },
+        files: {
+          'out/scripts/widgets/CurrencyMinimalistic/settings.min.js': [
+              'scripts/widgets/CurrencyMinimalistic/settings.js'
+          ]
+        }
+      }
+    },
+
     // Copy
     copy: {
       composer: {
@@ -75,6 +89,22 @@ module.exports = function(grunt) {
             cwd: 'out/styles/',
             src: '**',
             dest: 'plugin/styles/'
+          }
+        ]
+      },
+      scripts: {
+        files: [
+          {
+            expand: true,
+            cwd: 'out/scripts/',
+            src: '**',
+            dest: 'plugin/scripts/'
+          },
+          {
+            expand: true,
+            cwd: 'scripts/',
+            src: '**',
+            dest: 'plugin/scripts/'
           }
         ]
       }
@@ -117,10 +147,15 @@ module.exports = function(grunt) {
     'copy:styles'
   ]);
 
+  grunt.registerTask('scripts', [
+      'uglify',
+      'copy:scripts'
+  ]);
+
   grunt.registerTask('default', [
     'copy:composer',
     'copy:libs',
     'styles',
-    'compress:plugin'
+    'scripts'
   ]);
 };

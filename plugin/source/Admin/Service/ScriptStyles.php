@@ -20,5 +20,13 @@ class ScriptStyles {
 			'0.0.0',
 			true
 		);
+
+		wp_register_script(
+			'plugin-' . Plugin::NAME . '-widgets-currency-minimalistic-settings',
+			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'scripts/widgets/CurrencyMinimalistic/settings.min.js',
+			array( 'jquery', 'iris' ),
+			'0.0.0',
+			true
+		);
 	}
 }
