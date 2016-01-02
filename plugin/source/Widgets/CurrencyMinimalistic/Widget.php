@@ -222,12 +222,22 @@ class Widget extends \WP_Widget {
 		</p>
 		<script>
 			jQuery(document).ready(function($){
-				// Init Iris only once
+				// Init Iris only once (in #widgets-right)
 				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
-					//width: 246,
-					//border: true,
-					//hide: false
+					width: 246,
 					// TODO: Добавить динамическое изменение ширины для Iris
+					/**
+					 * see http://wordpress.stackexchange.com/a/212676/46077
+					 */
+					change: _.throttle(
+						function () {
+							$(this).trigger('change');
+						},
+						1000,
+						{
+							leading: false
+						}
+					)
 				});
 			});
 		</script>
