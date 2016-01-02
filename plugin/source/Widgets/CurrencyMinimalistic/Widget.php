@@ -190,7 +190,6 @@ class Widget extends \WP_Widget {
 				$this->_generate_switch_color_scheme_scripts( $id );
 			}
 			echo '</ul>';
-		//var_dump($this->get_field_id( 'bg_color_1' ));
 		?>
 
 
@@ -233,7 +232,6 @@ class Widget extends \WP_Widget {
 
 		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
 		<?php
-		//$this->_generate_switch_color_scheme_scripts( $default_key );
 		$first = false;
 	}
 
