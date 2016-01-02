@@ -194,31 +194,39 @@ class Widget extends \WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'bg_color_1' ); ?>"><?php _e( 'First background color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_1' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_1' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_1'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_1' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_1' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_1'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
 
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'bg_color_2' ); ?>"><?php _e( 'Second background color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_2' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_2' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_2'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_2' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_2' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_2'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'color' ); ?>"><?php _e( 'Font color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>" type="text" value="<?php echo esc_attr( $instance['color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>" type="text" value="<?php echo esc_attr( $instance['color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'separator_color' ); ?>"><?php _e( 'Separator line color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'separator_color' ); ?>" name="<?php echo $this->get_field_name( 'separator_color' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'separator_color' ); ?>" name="<?php echo $this->get_field_name( 'separator_color' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
 		<script>
 			jQuery(document).ready(function($){
 				// Init Iris only once
-				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').iris({
-					width: 246,
-					border: true,
-					hide: false
+				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
+					//width: 246,
+					//border: true,
+					//hide: false
 					// TODO: Добавить динамическое изменение ширины для Iris
 				});
 			});
