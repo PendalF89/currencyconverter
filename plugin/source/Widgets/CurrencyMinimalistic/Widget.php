@@ -219,7 +219,27 @@ class Widget extends \WP_Widget {
 				<input class="widefat" id="<?php echo $this->get_field_id( 'separator_color' ); ?>" name="<?php echo $this->get_field_name( 'separator_color' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
 			</div>
 		</p>
-		<script>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'separator_opacity' ); ?>"><?php _e( 'Separator line opacity:', Plugin::NAME ); ?></label>
+			<input class="" id="<?php echo $this->get_field_id( 'separator_opacity' ); ?>" name="<?php echo $this->get_field_name( 'separator_opacity' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_opacity'] ); ?>" size="6">&nbsp;%
+		</p>
+
+		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
+		<?php
+		if( $first ) {
+			/**
+			 * Print color palettes styles only one time (they similar for all widgets).
+             */
+			foreach( $default_presets as $default_key => $default_preset ) {
+				$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
+			}
+
+			/**
+			 * JS Init
+			 */
+			 ?>
+			 <script>
 			jQuery(document).ready(function($){
 				// Init Iris only once (in #widgets-right)
 				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
@@ -243,21 +263,7 @@ class Widget extends \WP_Widget {
 				});
 			});
 		</script>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'separator_opacity' ); ?>"><?php _e( 'Separator line opacity:', Plugin::NAME ); ?></label>
-			<input class="" id="<?php echo $this->get_field_id( 'separator_opacity' ); ?>" name="<?php echo $this->get_field_name( 'separator_opacity' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_opacity'] ); ?>" size="6">&nbsp;%
-		</p>
-
-		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
-		<?php
-		if( $first ) {
-			/**
-			 * Print color palettes styles only one time (they similar for all widgets).
-             */
-			foreach( $default_presets as $default_key => $default_preset ) {
-				$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
-			}
+			 <?php
 			$first = false;
 		}
 	}
