@@ -229,17 +229,18 @@ class Widget extends \WP_Widget {
 					/**
 					 * see http://wordpress.stackexchange.com/a/212676/46077
 					 */
-					<?php if ( $this->is_customizer ) : ?>
-					change: _.throttle(
-						function () {
-							$(this).trigger('change');
-						},
-						1000,
-						{
-							leading: false
-						}
-					)
-					<?php endif; ?>
+					change: ((typeof _ !== 'undefined') ?
+							_.throttle(
+								function () {
+									$(this).trigger('change');
+								},
+								1000,
+								{
+									leading: false
+								}
+							)
+							:
+							function(){})
 				});
 			});
 		</script>
