@@ -14,7 +14,7 @@ class Widget extends \WP_Widget {
 			__( 'Currency Converter. Minimalistic', Plugin::NAME ),
 			array(
 				'classname' => 'widget_currencyconverter_minimalistic',
-				'description' => __( 'Light minimalistic widget with solid, clean colors and gradients.', Plugin::NAME )
+				'description' => __( 'Light minimalistic widget with solid, clean colors and gradients.', Plugin::NAME ),
 			)
 		);
 
@@ -226,6 +226,7 @@ class Widget extends \WP_Widget {
 		</p>
 
 		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
+
 		<?php
 		if( $first ) {
 			/**
@@ -238,8 +239,8 @@ class Widget extends \WP_Widget {
 			/**
 			 * JS Init
 			 */
-			 ?>
-			 <script>
+			?>
+			<script type="text/javascript">
 			jQuery(document).ready(function($){
 				// Init Iris only once (in #widgets-right)
 				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
@@ -262,8 +263,8 @@ class Widget extends \WP_Widget {
 							function(){})
 				});
 			});
-		</script>
-			 <?php
+			</script>
+			<?php
 			$first = false;
 		}
 	}
@@ -279,7 +280,7 @@ class Widget extends \WP_Widget {
 			'color' => '#ffffff',
 			'separator_color' => '#ffffff',
 			'separator_opacity' => 30,
-			'caption_status' => true
+			'caption_status' => true,
 		);
 		return wp_parse_args($instance, $def_settings);
 	}
