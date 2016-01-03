@@ -1,6 +1,6 @@
 === CurrencyConverter ===
 Contributors: lb-company, korobochkin
-Tags: currency converter, currencyconverter, currencies, currency, rates, exchange, converter, widgets, usd, dollar, eur, euro, foreign exchange conversion, fx rate converter, currency converter widget
+Tags: currency converter, currencyconverter, currencies, currency, rates, exchange, converter, widgets, usd, dollar, eur, euro, foreign exchange conversion, fx rate converter, currency converter widget, money
 Requires at least: 4.0.0
 Tested up to: 4.4.0
 Stable tag: 0.1.0
