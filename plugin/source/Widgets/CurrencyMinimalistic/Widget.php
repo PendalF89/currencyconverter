@@ -120,7 +120,6 @@ class Widget extends \WP_Widget {
 	}
 
 	public function form( $instance ) {
-		// TODO: Проверить что с $first
 		static $first = true;
 
 		$currency = new Currency('USD', 'USD');
@@ -252,10 +251,15 @@ class Widget extends \WP_Widget {
 
 		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
 		<?php
-		foreach( $default_presets as $default_key => $default_preset ) {
-			$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
+		if( $first ) {
+			/**
+			 * Print color palettes styles only one time (they similar for all widgets).
+             */
+			foreach( $default_presets as $default_key => $default_preset ) {
+				$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
+			}
+			$first = false;
 		}
-		$first = false;
 	}
 
 	private function _merge_instance_with_default_instance( $instance ) {
@@ -275,13 +279,13 @@ class Widget extends \WP_Widget {
 	}
 
 	private function print_gradiented_styles( $selector, $instance ) {
-		//$id = '#' . $id;
 		foreach( $instance as $key => $value ) {
 			if( is_string( $value ) ) {
 				$instance[$key] = esc_html( $value );
 			}
 		}
 		?><style type="text/css">
+			/* this first time */
 			<?php echo $selector; ?> .currency-converter_minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
