@@ -6,7 +6,7 @@ Plugin URI: https://wordpress.org/plugins/currencyconverter/
 Description: Currency widgets for any needs.
 Author: LB company
 Author URI: http://exchangerate.guru
-Version: 0.1.0
+Version: 0.2.0
 Text Domain: currencyconverter
 Domain Path: /languages/
 Requires at least: 4.0.0
@@ -27,5 +27,3 @@ $GLOBALS['CurrencyConverterPlugin']->run();
  * Activation process. Running only once.
  */
 register_activation_hook( __FILE__, array( '\Korobochkin\CurrencyConverter\Activation', 'run' ) );
-
-//\Korobochkin\Currency\Service\UpdateCurrency::update();

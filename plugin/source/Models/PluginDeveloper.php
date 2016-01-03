@@ -55,7 +55,7 @@ class PluginDeveloper {
 			$settings = get_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name );
 			if( isset( $settings['cached_rates_by_data_provider_name'] ) && $settings['cached_rates_by_data_provider_name'] === 'cbr' ) {
 				$link = sprintf(
-					_x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> of the CBRF at %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
+					_x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> of the Central Bank of Russia at %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
 					esc_url( $this->get_homepage_url() ),
 					esc_html(
 						$this->currency_obj->get_rate_datetime()->format(
