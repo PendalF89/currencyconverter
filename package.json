@@ -1,6 +1,6 @@
 {
   "name": "currencyconverter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Currency widgets for any needs.",
   "main": "Gruntfile.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "grunt-contrib-compress": "^0.14.0",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-less": "~1.0.1",
+    "grunt-contrib-uglify": "^0.11.0",
     "load-grunt-tasks": "~3.2.0"
   }
 }

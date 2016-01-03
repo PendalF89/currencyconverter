@@ -14,7 +14,7 @@ class Widget extends \WP_Widget {
 			__( 'Currency Converter. Minimalistic', Plugin::NAME ),
 			array(
 				'classname' => 'widget_currencyconverter_minimalistic',
-				'description' => __( 'Light minimalistic widget with solid, clean colors and gradients.', Plugin::NAME )
+				'description' => __( 'Light minimalistic widget with solid, clean colors and gradients.', Plugin::NAME ),
 			)
 		);
 
@@ -79,7 +79,7 @@ class Widget extends \WP_Widget {
 			}
 		}
 
-		$this->_print_gradiented_styles( '#' . $args['widget_id'], $instance );
+		$this->print_gradiented_styles( '#' . $args['widget_id'], $instance );
 		echo $args['after_widget'];
 	}
 
@@ -180,11 +180,12 @@ class Widget extends \WP_Widget {
 			$default_presets = Defaults::get_default_color_schemes();
 			echo '<ul class="currency-converter-minimalistic-widget-settings-palettes">';
 			foreach( $default_presets as $default_key => $default_preset ) {
-				$default_key = 'currency-conveter-minimalistic-widget-settings-color-grid-gradient-' . $default_key;
-				?><li id="<?php echo esc_attr($default_key);?>" class="color-grid color-grid-gradient"><span class="currency-converter_minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset); ?>>Abc</span></li><?php
-				$default_key = '#' . $default_key;
-				$this->_print_gradiented_styles($default_key, $default_preset);
-				$this->_generate_switch_color_scheme_scripts( $default_key );
+				$id = $this->get_field_id( 'palettes-' . $default_key );
+
+				?><li id="<?php echo esc_attr($id);?>" class="color-grid color-grid-gradient currency-converter-color-grid-<?php echo esc_attr( $default_key ); ?>" data-currency-converter-palettes-switcher="true">
+					<span class="currency-converter_minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset, $id); ?>>Abc</span>
+				</li><?php
+				$this->_generate_switch_color_scheme_scripts( $id );
 			}
 			echo '</ul>';
 		?>
@@ -192,63 +193,32 @@ class Widget extends \WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'bg_color_1' ); ?>"><?php _e( 'First background color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_1' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_1' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_1'] ); ?>" size="6">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_1' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_1' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_1'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
-		<script>
-			jQuery(document).ready(function($){
-				$('#<?php echo $this->get_field_id( 'bg_color_1' ); ?>').iris({
-					width: 246,
-					border: true,
-					hide: false
-				});
-				// TODO: Добавить динамическое изменение ширины для Iris
-			});
-		</script>
+
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'bg_color_2' ); ?>"><?php _e( 'Second background color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_2' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_2' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_2'] ); ?>" size="6">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'bg_color_2' ); ?>" name="<?php echo $this->get_field_name( 'bg_color_2' ); ?>" type="text" value="<?php echo esc_attr( $instance['bg_color_2'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
-		<script>
-			jQuery(document).ready(function($){
-				$('#<?php echo $this->get_field_id( 'bg_color_2' ); ?>').iris({
-					width: 246,
-					border: true,
-					hide: false
-				});
-				// TODO: Добавить динамическое изменение ширины для Iris
-			});
-		</script>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'color' ); ?>"><?php _e( 'Font color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>" type="text" value="<?php echo esc_attr( $instance['color'] ); ?>" size="6">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>" type="text" value="<?php echo esc_attr( $instance['color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
-		<script>
-			jQuery(document).ready(function($){
-				$('#<?php echo $this->get_field_id( 'color' ); ?>').iris({
-					width: 246,
-					border: true,
-					hide: false
-				});
-				// TODO: Добавить динамическое изменение ширины для Iris
-			});
-		</script>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'separator_color' ); ?>"><?php _e( 'Separator line color:', Plugin::NAME ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'separator_color' ); ?>" name="<?php echo $this->get_field_name( 'separator_color' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_color'] ); ?>" size="6">
+			<div>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'separator_color' ); ?>" name="<?php echo $this->get_field_name( 'separator_color' ); ?>" type="text" value="<?php echo esc_attr( $instance['separator_color'] ); ?>" size="6" data-currency-converter-minimalistic-palette-color="true">
+			</div>
 		</p>
-		<script>
-			jQuery(document).ready(function($){
-				$('#<?php echo $this->get_field_id( 'separator_color' ); ?>').iris({
-					width: 246,
-					border: true,
-					hide: false
-				});
-				// TODO: Добавить динамическое изменение ширины для Iris
-			});
-		</script>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'separator_opacity' ); ?>"><?php _e( 'Separator line opacity:', Plugin::NAME ); ?></label>
@@ -256,8 +226,47 @@ class Widget extends \WP_Widget {
 		</p>
 
 		<p><input id="<?php echo $this->get_field_id('caption_status'); ?>" name="<?php echo $this->get_field_name('caption_status'); ?>" type="checkbox" <?php checked($instance['caption_status'] ); ?>>&nbsp;<label for="<?php echo $this->get_field_id('caption_status'); ?>"><?php _e('Show last update date of currency exchange rate.', Plugin::NAME); ?></label></p>
+
 		<?php
-		$first = false;
+		if( $first ) {
+			/**
+			 * Print color palettes styles only one time (they similar for all widgets).
+             */
+			foreach( $default_presets as $default_key => $default_preset ) {
+				$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
+			}
+
+			/**
+			 * JS Init
+			 */
+			?>
+			<script type="text/javascript">
+			jQuery(document).ready(function($){
+				// Init Iris only once (in #widgets-right)
+				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
+					width: 246,
+					// TODO: Добавить динамическое изменение ширины для Iris
+					/**
+					 * see http://wordpress.stackexchange.com/a/212676/46077
+					 */
+					change: ((typeof _ !== 'undefined') ?
+							_.throttle(
+								function () {
+									$(this).trigger('change');
+								},
+								1000,
+								{
+									leading: false
+								}
+							)
+							:
+							function(){})
+				});
+			});
+			</script>
+			<?php
+			$first = false;
+		}
 	}
 
 	private function _merge_instance_with_default_instance( $instance ) {
@@ -271,19 +280,19 @@ class Widget extends \WP_Widget {
 			'color' => '#ffffff',
 			'separator_color' => '#ffffff',
 			'separator_opacity' => 30,
-			'caption_status' => true
+			'caption_status' => true,
 		);
 		return wp_parse_args($instance, $def_settings);
 	}
 
-	private function _print_gradiented_styles( $selector, $instance ) {
-		$selector = esc_html( $selector );
+	private function print_gradiented_styles( $selector, $instance ) {
 		foreach( $instance as $key => $value ) {
 			if( is_string( $value ) ) {
 				$instance[$key] = esc_html( $value );
 			}
 		}
 		?><style type="text/css">
+			/* this first time */
 			<?php echo $selector; ?> .currency-converter_minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
@@ -298,58 +307,60 @@ class Widget extends \WP_Widget {
 			}
 		</style><?php
 	}
-	private function _generate_html_attrs( $attributes, $prefix = 'data' ) {
+
+	private function _generate_html_attrs( $attributes, $id, $prefix = 'data' ) {
 		$attributes_string = '';
 		if( is_array( $attributes )) {
 			foreach( $attributes as $key => $value ) {
+				$attributes[$key . '-target-id'] = $this->get_field_id($key);
+			}
+			foreach( $attributes as $key => $value ) {
 				$attributes_string .= $prefix .'-' . esc_attr( $key ) . '="' . esc_attr( $value ) . '" ';
+
 			}
 		}
 		return $attributes_string;
 	}
 
 	private function _generate_switch_color_scheme_scripts( $default_key ) {
-		// TODO: По клику на цветовые схемы в кастомайзере не обновляется страница, хотя все инпуты обновляются.
-		?>
-		<script type="text/javascript">
+		?><script type="text/javascript">
 			jQuery(document).ready(function($){
 
-				jQuery('<?php echo esc_js($default_key); ?> .currency-converter_minimalistic-container').click(function(event){
+				$('#widgets-right [data-currency-converter-palettes-switcher="true"] .currency-converter_minimalistic-container').click(function(event){
 
 					if (typeof $(event.target).data('bg_color_1') !== 'undefined') {
-						$('#<?php echo esc_js( $this->get_field_id( 'bg_color_1' ) ); ?>')
+						$(   '#' + $(event.target).data('bg_color_1-target-id')   )
 							.val( $(event.target).data('bg_color_1') )
 							.iris('color', $(event.target).data('bg_color_1'));
 					}
 
 					if (typeof $(event.target).data('bg_color_2') !== 'undefined') {
-						$('#<?php echo esc_js( $this->get_field_id( 'bg_color_2' ) ); ?>')
+						$(   '#' + $(event.target).data('bg_color_2-target-id')   )
 							.val( $(event.target).data('bg_color_2') )
 							.iris('color', $(event.target).data('bg_color_2'));
 					}
 
 					if (typeof $(event.target).data('color') !== 'undefined') {
-						$('#<?php echo esc_js( $this->get_field_id( 'color' ) ); ?>')
+						$(   '#' + $(event.target).data('color-target-id')   )
 							.val( $(event.target).data('color') )
 							.iris('color', $(event.target).data('color'));
 					}
 
 					if (typeof $(event.target).data('separator_color') !== 'undefined') {
-						$('#<?php echo esc_js( $this->get_field_id( 'separator_color' ) ); ?>')
+						$(   '#' + $(event.target).data('separator_color-target-id')   )
 							.val( $(event.target).data('separator_color') )
 							.iris('color', $(event.target).data('separator_color'));
 					}
 
 					if (typeof $(event.target).data('separator_opacity') !== 'undefined') {
-						$('#<?php echo esc_js( $this->get_field_id( 'separator_opacity' ) ); ?>')
+						$(   '#' + $(event.target).data('separator_opacity-target-id')   )
 							.val( $(event.target).data('separator_opacity') );
 					}
 
 				});
 
 			}(jQuery));
-		</script>
-		<?php
+		</script><?php
 	}
 
 	public function wp_enqueue_script_style() {
