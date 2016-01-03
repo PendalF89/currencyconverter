@@ -1,4 +1,4 @@
-# Currency WordPress Plugin
+# CurrencyConverter WordPress Plugin
 
 [Stable version on WordPress.org](https://wordpress.org/plugins/currencyconverter/)
 
