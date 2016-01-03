@@ -312,8 +312,7 @@ class Widget extends \WP_Widget {
 
 	private function _generate_switch_color_scheme_scripts( $default_key ) {
 		// TODO: По клику на цветовые схемы в кастомайзере не обновляется страница, хотя все инпуты обновляются.
-		?>
-		<script type="text/javascript">
+		?><script type="text/javascript">
 			jQuery(document).ready(function($){
 
 				$('#widgets-right [data-currency-converter-palettes-switcher="true"] .currency-converter_minimalistic-container').click(function(event){
@@ -350,8 +349,7 @@ class Widget extends \WP_Widget {
 				});
 
 			}(jQuery));
-		</script>
-		<?php
+		</script><?php
 	}
 
 	public function wp_enqueue_script_style() {
