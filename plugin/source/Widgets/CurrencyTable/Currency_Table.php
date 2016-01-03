@@ -53,7 +53,7 @@ class Currency_Table extends \WP_Widget {
 						'flag_size' => (int)$instance['flag_size'],
 						'table_headers_currencies' => $instance['table_headers_currencies'],
 						'table_headers_price' => $instance['table_headers_price'],
-						'table_headers_change' => $instance['table_headers_price']
+						'table_headers_change' => $instance['table_headers_change']
 					);
 					echo $table->get_table();
 				}
