@@ -9,5 +9,4 @@ delete_option( \Korobochkin\CurrencyConverter\Plugin::NAME . '_rates' );
 
 delete_transient( \Korobochkin\CurrencyConverter\Plugin::NAME . '_providers' );
 
-//wp_unschedule_event();
-// TODO: Удалять крон
+wp_clear_scheduled_hook( \Korobochkin\CurrencyConverter\Plugin::NAME . \Korobochkin\CurrencyConverter\Cron\UpdateCurrency::$action_name );
