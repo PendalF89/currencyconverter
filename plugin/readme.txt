@@ -13,7 +13,7 @@ More than 170+ currency rates. The data about currency rates is free and updates
 
 More than 170+ currency rates. The data with currency rates is free and updates each hour automatically.
 
-Features:
+= Features =
 
 1. Few widgets for showing currency rates. Each widget have multiple settings for customizing.
 2. You can choose data provider.
