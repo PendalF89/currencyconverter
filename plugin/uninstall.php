@@ -5,6 +5,8 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 delete_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name );
+
+// TODO: Maybe delete this option by name from variable, not directly by name.
 delete_option( \Korobochkin\CurrencyConverter\Plugin::NAME . '_rates' );
 
 delete_transient( \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_transient_name() );
