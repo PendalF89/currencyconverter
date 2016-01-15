@@ -68,6 +68,7 @@ The plugin makes only one request per hour and caches the result with currencies
 = 0.3.0 =
 
 * Improved plugin uninstaller.
+* Improved context of translations.
 
 = 0.1.0 =
 
@@ -83,7 +84,7 @@ The plugin makes only one request per hour and caches the result with currencies
 
 = 0.3.0 =
 
-Improved uninstaller.
+Improved uninstaller and supporting of translations.
 
 = 0.1.0 =
 
