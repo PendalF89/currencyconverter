@@ -200,7 +200,9 @@ class Currency_Table extends \WP_Widget {
 		$def_settings = array(
 			'title' => __( 'Exchange table', Plugin::NAME ),
 			'base_currency' => __( 'USD', Plugin::NAME ),
-			'currency_list' => _x( 'CAD, AUD, GBP', 'WARNING: always use commas as separator', Plugin::NAME ),
+			'currency_list' =>
+				/* translators: Default currencies list in widget. Use most popular currencies in your region. WARNING: always use commas as separator */
+				__( 'CAD, AUD, GBP', Plugin::NAME ),
 			'flag_size' => 16,
 			'table_headers_currencies' => __( 'Currencies', Plugin::NAME ),
 			'table_headers_price' => __( 'Rate', Plugin::NAME ),

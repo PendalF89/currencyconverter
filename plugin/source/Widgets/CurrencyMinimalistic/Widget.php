@@ -273,7 +273,9 @@ class Widget extends \WP_Widget {
 		$def_settings = array(
 			'title' => __( 'Currency exchange rate', Plugin::NAME ),
 			'base_currency' => __( 'USD', Plugin::NAME ),
-			'currency_list' => _x( 'CAD, AUD, GBP', 'WARNING: always use commas as separator', Plugin::NAME ),
+			'currency_list' =>
+				/* translators: Default currencies list in widget. Use most popular currencies in your region. WARNING: always use commas as separator */
+				__( 'CAD, AUD, GBP', Plugin::NAME ),
 			'bg_color_scheme' => '',
 			'bg_color_1' => '#ffa200',
 			'bg_color_2' => '#ff5a00',

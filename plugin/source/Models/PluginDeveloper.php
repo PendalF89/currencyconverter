@@ -37,7 +37,8 @@ class PluginDeveloper {
 	 */
 	public function get_base_currency_subdomain_url() {
 		if( $this->is_valid() ) {
-			$url_template = _x( 'http://exchangerate.guru/', 'Homepage URL of plugin developer.', Plugin::NAME );
+			/* translators: Homepage URL of plugin developer. */
+			$url_template = __( 'http://exchangerate.guru/', Plugin::NAME );
 			$url = str_replace( '://', '://' . strtolower( $this->base_currency ) . '.', $url_template );
 			return $url;
 		}
@@ -45,7 +46,8 @@ class PluginDeveloper {
 	}
 
 	public function get_homepage_url() {
-		return _x( 'http://exchangerate.guru/', 'Homepage URL of plugin developer.', Plugin::NAME );
+		/* translators: Homepage URL of plugin developer. */
+		return __( 'http://exchangerate.guru/', Plugin::NAME );
 	}
 
 	public function get_caption_with_base_currency_link () {
@@ -55,22 +57,26 @@ class PluginDeveloper {
 			$settings = get_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name );
 			if( isset( $settings['cached_rates_by_data_provider_name'] ) && $settings['cached_rates_by_data_provider_name'] === 'cbr' ) {
 				$link = sprintf(
-					_x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> of the Central Bank of Russia at %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
+					/* translators: %1$s - url to data provider website. %2$s - date of update currency rate in regional format. */
+					__( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> of the Central Bank of Russia at %2$s', Plugin::NAME ),
 					esc_url( $this->get_homepage_url() ),
 					esc_html(
 						$this->currency_obj->get_rate_datetime()->format(
-							_x( 'F j, Y', 'Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво.', Plugin::NAME )
+							/* translators: Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво. */
+							__( 'F j, Y', Plugin::NAME )
 						)
 					)
 				);
 			}
 			else {
 				$link = sprintf(
-					_x( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> on %2$s', '%1$s - url to data provider website. %2$s - date of update currency rate in regional format.', Plugin::NAME ),
+					/* translators: %1$s - url to data provider website. %2$s - date of update currency rate in regional format. */
+					__( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> on %2$s', Plugin::NAME ),
 					esc_url( $this->get_homepage_url() ),
 					esc_html(
 						$this->currency_obj->get_rate_datetime()->format(
-							_x( 'F j, Y', 'Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво.', Plugin::NAME )
+							/* translators: Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво. */
+							__( 'F j, Y', Plugin::NAME )
 						)
 					)
 				);
