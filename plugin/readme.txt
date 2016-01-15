@@ -65,6 +65,10 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.3.0 =
+
+* Improved plugin uninstaller.
+
 = 0.1.0 =
 
 * Custom update rates link for Central Bank of Russia.
@@ -76,6 +80,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.3.0 =
+
+Improved uninstaller.
 
 = 0.1.0 =
 
