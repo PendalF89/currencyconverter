@@ -32,14 +32,15 @@ class PluginDeveloper {
 	}
 
 	/**
-	 * Мы не можем использовать http_build_url, потому что ее может не быть,
-	 * поэтому делаем добавление поддомена костылями.
+	 * We cannot use http_build_url() to construct URLs.
 	 */
-	public function get_base_currency_subdomain_url() {
+	public function get_base_currency_url() {
 		if( $this->is_valid() ) {
 			/* translators: Homepage URL of plugin developer. */
-			$url_template = __( 'http://exchangerate.guru/', Plugin::NAME );
-			$url = str_replace( '://', '://' . strtolower( $this->base_currency ) . '.', $url_template );
+			$url = __( 'http://exchangerate.guru/', Plugin::NAME );
+			if( !in_array( $this->base_currency, \Korobochkin\CurrencyConverter\Models\Currencies\Currencies::get_currencies_list_without_home_pages() ) ) {
+				$url = trailingslashit( $url ) . strtolower( $this->base_currency ) . '/';
+			}
 			return $url;
 		}
 		return false;
@@ -59,7 +60,7 @@ class PluginDeveloper {
 				$link = sprintf(
 					/* translators: %1$s - url to data provider website. %2$s - date of update currency rate in regional format. */
 					__( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> of the Central Bank of Russia at %2$s', Plugin::NAME ),
-					esc_url( $this->get_homepage_url() ),
+					esc_url( $this->get_base_currency_url() ),
 					esc_html(
 						$this->currency_obj->get_rate_datetime()->format(
 							/* translators: Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво. */
@@ -72,7 +73,7 @@ class PluginDeveloper {
 				$link = sprintf(
 					/* translators: %1$s - url to data provider website. %2$s - date of update currency rate in regional format. */
 					__( '<a href="%1$s" class="currency-converter-update-data-link">Exchange rate</a> on %2$s', Plugin::NAME ),
-					esc_url( $this->get_homepage_url() ),
+					esc_url( $this->get_base_currency_url() ),
 					esc_html(
 						$this->currency_obj->get_rate_datetime()->format(
 							/* translators: Local date/month/year date format. Available variables - http://php.net/manual/en/function.date.php. Note that the name of the month may be displayed on English language or wrong the ending of the word (падежное окончание). Например, для русского языка лучше использовать формат ДД-ММ-ГГГГ, потому что "21 декабрь 2015" выглядит не очень красиво. */

@@ -3,6 +3,15 @@ namespace Korobochkin\CurrencyConverter\Models\Currencies;
 
 class Currencies {
 
+	/**
+	 * This list of currencies doesn't have home pages on our site (http://exchangerate.guru).
+	 *
+	 * @return array List of currencies short names.
+	 */
+	public static function get_currencies_list_without_home_pages() {
+		return array( 'XPD', 'XPT', 'XAG', 'XAU' );
+	}
+
 	public static function get_currency( $currency ) {
 		$currencies = array(
 			'AED' =>
