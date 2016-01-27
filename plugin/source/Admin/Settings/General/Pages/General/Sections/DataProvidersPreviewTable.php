@@ -14,7 +14,7 @@ class DataProvidersPreviewTable {
 	public static function register_sections() {
 		add_settings_section(
 			'providers_preview_table',
-			__( 'Currency codes & countries table' ),
+			__( 'Currency codes', Plugin::NAME ),
 			array( __CLASS__, 'render' ),
 			Plugin::NAME . 'general'
 		);
@@ -59,7 +59,7 @@ class DataProvidersPreviewTable {
 			<?php echo $table->generate(); ?>
 		</div>
 		<p>
-		<button class="button button-primary currencyconverter-currency-codes-countries-table-toogler" data-value-toogle="<?php esc_attr_e( 'Hide full table', Plugin::NAME ); ?>" style="display: none;"><?php esc_html_e( 'Show full table', Plugin::NAME ); ?></button>
+		<input type="button" class="button button-primary currencyconverter-currency-codes-countries-table-toogler" value="<?php esc_attr_e( 'Show full table', Plugin::NAME ); ?>" data-value-toogle="<?php esc_attr_e( 'Hide full table', Plugin::NAME ); ?>" style="display: none;">
 		</p>
 		<script type="text/javascript">
 			jQuery(document).ready(function($){
