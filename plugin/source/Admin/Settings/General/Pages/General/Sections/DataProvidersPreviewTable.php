@@ -31,7 +31,7 @@ class DataProvidersPreviewTable {
 		<div class="currencyconverter-currency-codes-countries-table">
 			<?php $table->display(); ?>
 			<style type="text/css">
-				.tablenav {
+				.currencyconverter-currency-codes-countries-table .tablenav {
 					display: none;
 				}
 			</style>
@@ -49,7 +49,7 @@ class DataProvidersPreviewTable {
 					.css('display', 'block')
 					.click(function(e){
 						var height = $('.currencyconverter-currency-codes-countries-table').css('height');
-						if( height === '300px' ) {
+						if( height === '225px' ) {
 							$('.currencyconverter-currency-codes-countries-table').css('height', 'auto');
 						}
 						else {
