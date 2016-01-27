@@ -1,7 +1,6 @@
 <?php
 namespace Korobochkin\CurrencyConverter\Admin\Settings\General\Pages\General\Sections;
 
-use HtmlTableGenerator\Table;
 use Korobochkin\CurrencyConverter\Plugin;
 
 class DataProvidersPreviewTable {
@@ -21,16 +20,6 @@ class DataProvidersPreviewTable {
 
 	public static function render( $info ) {
 		// TODO: Вынести JS и CSS в отдельный файл
-		/*$table = new Table();
-
-		$table->set_heading( array(
-			__( 'Country flag', Plugin::NAME ),
-			__( 'Currency ISO code', Plugin::NAME ),
-			__( 'Currency', Plugin::NAME ),
-			__( 'Country', Plugin::NAME )
-		) );
-
-		echo $table->generate();*/
 
 		if( ! class_exists( 'WP_List_Table' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
