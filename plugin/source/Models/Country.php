@@ -48,31 +48,23 @@ class Country {
 				break;
 		}
 
-		$flag_url = $this->get_flag_url_by_fist_two_letter( $size, $style );
-		if ( $flag_url  ) {
-			return $flag_url;
-		}
-		return false;
+		return $this->get_flag_url_by_fist_two_letter( $size, $style );
 		//wp_calculate_image_sizes();
 	}
 
 	private function get_flag_url_by_fist_two_letter( $size = 16, $style = 'flat' ) {
+		$url = plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path );
 		if( $this->country_iso_code ) {
 			$path = dirname($GLOBALS['CurrencyConverterPlugin']->plugin_path);
 			$path .= '/libs/flags/flags-iso/' . $style . '/'. $size . '/' . $this->country_iso_code . '.png';
 			$flag_available = file_exists( $path );
 			if( $flag_available ) {
-				$url = plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path );
-				$url .= '/libs/flags/flags-iso/' . $style . '/'. $size . '/' . $this->country_iso_code . '.png';
-				return $url;
-			}
-			else {
-				$url = plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path );
-				$url .= '/libs/flags/flags-iso/' . $style . '/'. $size . '/_unknown.png';
+				$url .= 'libs/flags/flags-iso/' . $style . '/'. $size . '/' . $this->country_iso_code . '.png';
 				return $url;
 			}
 		}
-		return false;
+		$url .= '/libs/flags/flags-iso/' . $style . '/'. $size . '/_unknown.png';
+		return $url;
 	}
 
 	private function prepare_country_iso_code_from_currency_iso_code() {
