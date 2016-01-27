@@ -69,6 +69,7 @@ The plugin makes only one request per hour and caches the result with currencies
 
 * Improved plugin uninstaller.
 * Improved context of translations.
+* Currencies ISO codes table in plugin settings.
 
 = 0.1.0 =
 
@@ -84,7 +85,7 @@ The plugin makes only one request per hour and caches the result with currencies
 
 = 0.3.0 =
 
-Improved uninstaller and supporting of translations.
+Improved uninstaller, plugin settings screen and supporting of translations.
 
 = 0.1.0 =
 
