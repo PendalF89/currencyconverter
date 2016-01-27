@@ -39,24 +39,27 @@ class DataProvidersPreview {
 		$providers_previews = \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_providers_preview();
 
 		if( $providers_previews[$info['id']]['status'] === 'ok' ) {
-			//$status_title = _x( 'ok', 'Data provider status code.', Plugin::NAME );
 			echo '<p>'
-			     . sprintf(
-				     _x( 'Status: <code>%1$s</code>. The number of currencies: %2$s. Available currencies:', 'Description of the data provider with status code OK that means that provider are available and ready to use. %1$s - status code title (basically is "OK"). %2$s - the number represents available currencies. After the colon at the end will be shown a list of available currencies.', Plugin::NAME ),
-				     _x( 'OK', 'Data provider status code. "OK" means that the provider are available and ready to use.' ),
-				     count( $providers_previews[$info['id']]['currencies'] )
-			     )
-			     . '</p>';
+				. sprintf(
+					/* translators: Description of the data provider with status code OK that means that provider are available and ready to use. %1$s - status code title (basically is "OK"). %2$s - the number represents available currencies. After the colon at the end will be shown a list of available currencies. */
+					__( 'Status: <code>%1$s</code>. The number of currencies: %2$s. Available currencies:', Plugin::NAME ),
+					/* translators: Data provider status code. "OK" means that the provider are available and ready to use. */
+					__( 'OK', Plugin::NAME ),
+					count( $providers_previews[$info['id']]['currencies'] )
+				)
+				. '</p>';
 
 			echo '<p><code>' . implode( '</code>, <code>', $providers_previews[$info['id']]['currencies'] ) . '</code>.</p>';
 		}
 		else {
 			echo '<p>'
-			     . sprintf(
-				     _x( 'Status: <code>%1$s</code>. Error message(s):', 'Description of the data provider with status code FAILED that means that provider are not available and something happens when WordPress tried to fetch currency rates from this provider. %1$s - status code title (basically is "FAILED"). After the colon at the end will be shown a list of errors.', Plugin::NAME ),
-				     _x( 'FAILED', 'Data provider status code. "FAILED" means that the provider are not available.' )
-			     )
-			     . '</p>';
+				. sprintf(
+					/* translators: Description of the data provider with status code FAILED that means that provider are not available and something happens when WordPress tried to fetch currency rates from this provider. %1$s - status code title (basically is "FAILED"). After the colon at the end will be shown a list of errors. */
+					__( 'Status: <code>%1$s</code>. Error message(s):', Plugin::NAME ),
+					/* translators: Data provider status code. "FAILED" means that the provider are not available. */
+					__( 'FAILED', Plugin::NAME )
+				)
+				. '</p>';
 			echo '<ol><li>'
 				. implode( '</li><li>', $providers_previews[$info['id']]['errors'] )
 				. '</li></ol>';

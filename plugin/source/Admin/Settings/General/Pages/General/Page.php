@@ -8,6 +8,7 @@ class Page {
 	public static function init() {
 		Sections\DataProvider::init();
 		Sections\DataProvidersPreview::init();
+		Sections\DataProvidersPreviewTable::init();
 	}
 
 	public static function render() {
