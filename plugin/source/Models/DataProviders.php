@@ -7,6 +7,8 @@ use Korobochkin\CurrencyConverter\Plugin;
 class DataProviders {
 	private static $instance;
 
+	private $transient_name;
+
 	private $providers = null;
 
 	private $providers_data = null;
@@ -14,6 +16,7 @@ class DataProviders {
 	public static function getInstance() {
 		if (null === static::$instance) {
 			static::$instance = new static();
+			static::$instance->prepare_vars();
 			static::$instance->prepare_providers();
 		}
 		return static::$instance;
@@ -24,6 +27,10 @@ class DataProviders {
 	private function __clone() {}
 
 	private function __wakeup() {}
+
+	private function prepare_vars() {
+		$this->transient_name = Plugin::NAME . '_providers';
+	}
 
 	private function prepare_providers() {
 		$this->providers = array(
@@ -44,6 +51,10 @@ class DataProviders {
 		);
 	}
 
+	public function get_transient_name() {
+		return $this->transient_name;
+	}
+
 	public function get_providers() {
 		return $this->providers;
 	}
@@ -51,13 +62,13 @@ class DataProviders {
 	public function get_providers_preview() {
 
 		// Запрашиваем кеш
-		$this->providers_data = get_transient( Plugin::NAME . '_providers' );
+		$this->providers_data = get_transient( $this->transient_name );
 
 		// Проверяем чего нет и пытаемся получить данные
 		$this->get_missing_providers_data();
 
 		// Запихиваем в кеш
-		set_transient( Plugin::NAME . '_providers', $this->providers_data, 24 * HOUR_IN_SECONDS );
+		set_transient( $this->transient_name, $this->providers_data, 24 * HOUR_IN_SECONDS );
 
 		// Отдаем то, что засунули в кеш
 		return $this->providers_data;

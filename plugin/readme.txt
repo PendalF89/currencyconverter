@@ -2,8 +2,8 @@
 Contributors: lb-company, korobochkin
 Tags: currency converter, currencyconverter, currencies, currency, rates, exchange, converter, widgets, usd, dollar, eur, euro, foreign exchange conversion, fx rate converter, currency converter widget, money
 Requires at least: 4.0.0
-Tested up to: 4.4.0
-Stable tag: 0.2.0
+Tested up to: 4.4.1
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ More than 170+ currency rates. The data about currency rates is free and updates
 
 More than 170+ currency rates. The data with currency rates is free and updates each hour automatically.
 
-Features:
+= Features =
 
 1. Few widgets for showing currency rates. Each widget have multiple settings for customizing.
 2. You can choose data provider.
@@ -65,6 +65,12 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.3.0 =
+
+* Improved plugin uninstaller.
+* Improved context of translations.
+* Currencies ISO codes table in plugin settings.
+
 = 0.1.0 =
 
 * Custom update rates link for Central Bank of Russia.
@@ -76,6 +82,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.3.0 =
+
+Improved uninstaller, plugin settings screen and supporting of translations.
 
 = 0.1.0 =
 

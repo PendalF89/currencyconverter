@@ -5,9 +5,10 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 delete_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name );
+
+// TODO: Maybe delete this option by name from variable, not directly by name.
 delete_option( \Korobochkin\CurrencyConverter\Plugin::NAME . '_rates' );
 
-delete_transient( \Korobochkin\CurrencyConverter\Plugin::NAME . '_providers' );
+delete_transient( \Korobochkin\CurrencyConverter\Models\DataProviders::getInstance()->get_transient_name() );
 
-//wp_unschedule_event();
-// TODO: Удалять крон
+wp_clear_scheduled_hook( \Korobochkin\CurrencyConverter\Plugin::NAME . \Korobochkin\CurrencyConverter\Cron\UpdateCurrency::$action_name );
