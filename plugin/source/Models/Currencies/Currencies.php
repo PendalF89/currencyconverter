@@ -14,6 +14,16 @@ class Currencies {
 		return array( 'XPD', 'XPT', 'XAG', 'XAU' );
 	}
 
+	public static function get_currencies_as_numeric_array() {
+		$items = self::get_currencies();
+		$new_items = array();
+		foreach( $items as $key => $value ) {
+			$value['currency_iso'] = $key;
+			$new_items[] = $value;
+		}
+		return $new_items;
+	}
+
 	public static function get_currencies() {
 		return array(
 			'AED' => array(
