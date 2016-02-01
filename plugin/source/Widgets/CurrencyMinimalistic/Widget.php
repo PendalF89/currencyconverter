@@ -236,33 +236,36 @@ class Widget extends \WP_Widget {
 				$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
 			}
 
+			// TODO: Добавить динамическое изменение ширины для Iris
 			/**
-			 * JS Init
+			 * JS Init see http://wordpress.stackexchange.com/a/212676/46077
 			 */
 			?>
 			<script type="text/javascript">
-			jQuery(document).ready(function($){
-				// Init Iris only once (in #widgets-right)
-				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
-					width: 246,
-					// TODO: Добавить динамическое изменение ширины для Iris
-					/**
-					 * see http://wordpress.stackexchange.com/a/212676/46077
-					 */
-					change: ((typeof _ !== 'undefined') ?
-							_.throttle(
-								function () {
-									$(this).trigger('change');
-								},
-								1000,
-								{
-									leading: false
-								}
-							)
-							:
-							function(){})
-				});
-			});
+				(function($){
+
+					function init(widget) {
+						widget.find('*[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker( {
+							change:
+								(typeof _ !== 'undefined') ?
+									_.throttle(function() {
+										$(this).trigger('change');
+									}, 1000 )
+									: function(){},
+							width: 246
+						});
+					}
+
+					$(document).on('widget-added widget-updated', function(event, widget) {
+						init(widget);
+					});
+
+					$(document).ready(function() {
+						$('#widgets-right .widget').each(function() {
+							init($(this));
+						});
+					});
+				}(jQuery));
 			</script>
 			<?php
 			$first = false;
