@@ -306,7 +306,6 @@ class Widget extends \WP_Widget {
 			}
 		}
 		?><style type="text/css">
-			/* this first time */
 			<?php echo $selector; ?> .currencyconverter-minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
