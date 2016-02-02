@@ -45,28 +45,28 @@ class Widget extends \WP_Widget {
 			$instance['currency_list'] = explode( ',', $instance['currency_list'] );
 
 			if( !empty( $instance['currency_list'] ) ) {
-				echo '<div class="currencyconverter_minimalistic-container">';
+				echo '<div class="currencyconverter-minimalistic-container">';
 				foreach( $instance['currency_list'] as $currency_ticker ) {
 					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
 					if( $currency_obj->is_available() ) {
 						$currency_data_filtered = Text::currency_info_for_round( $currency_obj, 2 );
 						?>
-						<div class="currencyconverter_minimalistic-single-currency">
-							<div class="currencyconverter_minimalistic-row">
-								<span class="currencyconverter_minimalistic-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
+						<div class="currencyconverter-minimalistic-single-currency">
+							<div class="currencyconverter-minimalistic-row">
+								<span class="currencyconverter-minimalistic-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
 							</div>
-							<div class="currencyconverter_minimalistic-row">
-								<span class="currencyconverter_minimalistic-inline-list">
-									<span class="currencyconverter_minimalistic-inline-list-item">
+							<div class="currencyconverter-minimalistic-row">
+								<span class="currencyconverter-minimalistic-inline-list">
+									<span class="currencyconverter-minimalistic-inline-list-item">
 										<?php echo $currency_ticker; ?>
-									</span><span class="currencyconverter_minimalistic-inline-list-item">
+									</span><span class="currencyconverter-minimalistic-inline-list-item">
 										<?php printf(
 											/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
 											__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
 											); ?>
 									</span><?php
 										if( $currency_data_filtered['per'] > 1 ) {
-											$per_value = '<span class="currencyconverter_minimalistic-inline-list-item">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
+											$per_value = '<span class="currencyconverter-minimalistic-inline-list-item">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 											echo $per_value;
 										}
                                     ?>
@@ -84,7 +84,7 @@ class Widget extends \WP_Widget {
 			$plugin_developer = new PluginDeveloper();
 			$plugin_developer->set_base_currency($instance['base_currency']);
 			if( $plugin_developer->is_valid() ) {
-				echo '<p class="currencyconverter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+				echo '<p class="currencyconverter-support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
 			}
 		}
 
@@ -192,7 +192,7 @@ class Widget extends \WP_Widget {
 				$id = $this->get_field_id( 'palettes-' . $default_key );
 
 				?><li id="<?php echo esc_attr($id);?>" class="color-grid color-grid-gradient currencyconverter-color-grid-<?php echo esc_attr( $default_key ); ?>" data-currency-converter-palettes-switcher="true">
-					<span class="currencyconverter_minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset, $id); ?>>Abc</span>
+					<span class="currencyconverter-minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset, $id); ?>>Abc</span>
 				</li><?php
 				$this->_generate_switch_color_scheme_scripts( $id );
 			}
@@ -307,7 +307,7 @@ class Widget extends \WP_Widget {
 		}
 		?><style type="text/css">
 			/* this first time */
-			<?php echo $selector; ?> .currencyconverter_minimalistic-container {
+			<?php echo $selector; ?> .currencyconverter-minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
@@ -316,7 +316,7 @@ class Widget extends \WP_Widget {
 				color: <?php echo $instance['color']; ?>;
 			}
 
-			<?php echo $selector; ?> .currencyconverter_minimalistic-single-currency {
+			<?php echo $selector; ?> .currencyconverter-minimalistic-single-currency {
 				border-top-color: rgba(<?php echo \Korobochkin\CurrencyConverter\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
@@ -340,7 +340,7 @@ class Widget extends \WP_Widget {
 		?><script type="text/javascript">
 			jQuery(document).ready(function($){
 
-				$('#widgets-right [data-currency-converter-palettes-switcher="true"] .currencyconverter_minimalistic-container').click(function(event){
+				$('#widgets-right [data-currency-converter-palettes-switcher="true"] .currencyconverter-minimalistic-container').click(function(event){
 
 					if (typeof $(event.target).data('bg_color_1') !== 'undefined') {
 						$(   '#' + $(event.target).data('bg_color_1-target-id')   )

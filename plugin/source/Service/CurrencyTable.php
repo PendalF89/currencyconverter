@@ -59,7 +59,7 @@ class CurrencyTable {
 					$flag = $country_obj->get_flag_url( $this->parameters['flag_size'] );
 					if( $flag ) {
 						$flag = sprintf(
-							'<img src="%1$s" class="currency-flag-icon currency-flag-icon-%2$s">',
+							'<img src="%1$s" class="currencyconverter-flag-icon currencyconverter-flag-icon-%2$s">',
 							esc_url( $flag ),
 							esc_attr( $this->parameters['flag_size'] )
 						);
@@ -82,7 +82,7 @@ class CurrencyTable {
 					);
 
 					// Wrap into the colored spans.
-					$content_wrapper_template = '<span class="currency-color-%1$s">%2$s</span>';
+					$content_wrapper_template = '<span class="currencyconverter-color-%1$s">%2$s</span>';
 
 					$output_data[1] = sprintf( $content_wrapper_template, $currency_data_filtered['trend'], $output_data[1] );
 					if( $currency_data_filtered['per'] > 1 ) {
@@ -91,7 +91,7 @@ class CurrencyTable {
 
 					// Arrow up-bottom
 					$trend = sprintf(
-						'<span class="currency-trend currency-trend-%1$s"></span>',
+						'<span class="currencyconverter-trend currencyconverter-trend-%1$s"></span>',
 						$currency_data_filtered['trend']
 					);
 					$output_data[2] = $trend . sprintf( $content_wrapper_template, $currency_data_filtered['trend'], $output_data[2] );
