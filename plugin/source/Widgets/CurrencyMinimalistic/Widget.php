@@ -57,16 +57,16 @@ class Widget extends \WP_Widget {
 							</div>
 							<div class="currencyconverter-minimalistic-row">
 								<span class="currencyconverter-minimalistic-inline-list">
-									<span class="currencyconverter-minimalistic-inline-list-item">
+									<span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-ticker">
 										<?php echo $currency_ticker; ?>
-									</span><span class="currencyconverter-minimalistic-inline-list-item">
+									</span><span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-change-percentage">
 										<?php printf(
 											/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
 											__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
 											); ?>
 									</span><?php
 										if( $currency_data_filtered['per'] > 1 ) {
-											$per_value = '<span class="currencyconverter-minimalistic-inline-list-item">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
+											$per_value = '<span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 											echo $per_value;
 										}
                                     ?>
