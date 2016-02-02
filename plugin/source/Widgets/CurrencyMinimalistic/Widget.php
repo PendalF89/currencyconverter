@@ -60,7 +60,10 @@ class Widget extends \WP_Widget {
 									<span class="currencyconverter_minimalistic-inline-list-item">
 										<?php echo $currency_ticker; ?>
 									</span><span class="currencyconverter_minimalistic-inline-list-item">
-										<?php echo Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 ); ?>
+										<?php printf(
+											/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
+											__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
+											); ?>
 									</span><?php
 										if( $currency_data_filtered['per'] > 1 ) {
 											$per_value = '<span class="currencyconverter_minimalistic-inline-list-item">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
