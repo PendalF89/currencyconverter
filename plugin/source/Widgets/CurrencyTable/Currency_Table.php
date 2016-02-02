@@ -64,7 +64,7 @@ class Currency_Table extends \WP_Widget {
 			$plugin_developer = new PluginDeveloper();
 			$plugin_developer->set_base_currency($instance['base_currency']);
 			if( $plugin_developer->is_valid() ) {
-				echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+				echo '<p class="currencyconverter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
 			}
 		}
 
