@@ -59,6 +59,11 @@ class Text {
 			$out['per'] = 1000000;
 			$out['change'] = $out['change'] * 1000000;
 		}
+		elseif( $out['rate'] >= 0.00000001 ) {
+			$out['rate'] = $out['rate'] * 100000000;
+			$out['per'] = 100000000;
+			$out['change'] = $out['change'] * 100000000;
+		}
 
 		// Alter
 		/*if( $out['rate'] <= 0.000001 ) {
