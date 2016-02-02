@@ -49,18 +49,24 @@ class Widget extends \WP_Widget {
 				foreach( $instance['currency_list'] as $currency_ticker ) {
 					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
 					if( $currency_obj->is_available() ) {
+						$currency_data_filtered = Text::currency_info_for_round( $currency_obj, 2 );
 						?>
 						<div class="currency-converter_minimalistic-single-currency">
 							<div class="currency-converter_minimalistic-row">
-								<span class="currency-converter_minimalistic-currency-price"><?php echo number_format_i18n( $currency_obj->get_rate(), 2); ?></span>
+								<span class="currency-converter_minimalistic-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
 							</div>
 							<div class="currency-converter_minimalistic-row">
 								<span class="currency-converter_minimalistic-inline-list">
 									<span class="currency-converter_minimalistic-inline-list-item">
 										<?php echo $currency_ticker; ?>
 									</span><span class="currency-converter_minimalistic-inline-list-item">
-										<?php echo Text::number_format_i18n_plus_minus( $currency_obj->get_change_percentage(), 2 ); ?>
-									</span>
+										<?php echo Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 ); ?>
+									</span><?php
+										if( $currency_data_filtered['per'] > 1 ) {
+											$per_value = '<span class="currency-converter_minimalistic-inline-list-item">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
+											echo $per_value;
+										}
+                                    ?>
 								</span>
 							</div>
 						</div>
