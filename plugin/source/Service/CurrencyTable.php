@@ -72,7 +72,7 @@ class CurrencyTable {
 					$output_data[0] = $flag . ' ' . $currency;
 
 					// Rate (price)
-					$output_data[1] = Text::number_format_i18n_plus_minus( $currency_data_filtered['rate'], 2 );
+					$output_data[1] = number_format_i18n( $currency_data_filtered['rate'], 2 );
 
 					// Change %
 					$output_data[2] = sprintf(
