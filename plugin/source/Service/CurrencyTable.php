@@ -46,6 +46,8 @@ class CurrencyTable {
 				$currency_obj = new Currency( $this->parameters['base_currency'], $currency );
 				// Проверяем доступность валюты
 				if( $currency_obj->is_available() ) {
+					$currency_data_filtered = Text::currency_info_for_round( $currency_obj, 2 );
+					$currency_data_filtered['trend'] = esc_attr( $currency_data_filtered['trend'] );
 					$have_data = true;
 
 					// Страна
@@ -65,47 +67,34 @@ class CurrencyTable {
 					else {
 						$flag = '';
 					}
-					$output_data[0] = $flag . ' ' . $currency;
-					$output_data[1] = $currency_obj->get_rate();
-					$output_data[2] = $currency_obj->get_change_percentage();
 
-					// Стрелочка
-					$trend = sprintf(
-						'<span class="currency-trend currency-trend-%1$s"></span>',
-						esc_attr( $currency_obj->get_trend() )
+					// Flag
+					$output_data[0] = $flag . ' ' . $currency;
+
+					// Rate (price)
+					$output_data[1] = Text::number_format_i18n_plus_minus( $currency_data_filtered['rate'], 2 );
+
+					// Change %
+					$output_data[2] = sprintf(
+						/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
+						__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ),
+						Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
 					);
 
-					foreach( $output_data as $key => $output_data_single ) {
-						if( !$output_data_single ) {
-							$output_data[$key] = '';
-							continue;
-						}
-						else {
-							if( is_numeric( $output_data_single ) ) {
-								// TODO: Переписать, используя класс Text
-								$output_data[$key] = number_format_i18n( $output_data[$key], 2 );
-								if( $key === 2 ) {
-									/**
-									 * В ячейке с процентом ставим плюс, если число положительное.
-									 * Заменяем минус на &ndash;, если число отрицательное.
-									 */
-									if( $output_data_single > 0 ) {
-										$output_data[$key] = '+' . $output_data[$key];
-									}
-									elseif( $output_data_single < 0 ) {
-										$output_data[$key] = str_replace('-', '&ndash;', $output_data[$key] );
-									}
+					// Wrap into the colored spans.
+					$content_wrapper_template = '<span class="currency-color-%1$s">%2$s</span>';
 
-								}
-
-								// Цветастые обертки
-								if( $key === 1 || $key === 2 ) {
-									$output_data[$key] = '<span class="currency-color-' . esc_attr( $currency_obj->get_trend() ) . '">' . $output_data[$key] . '</span>';
-								}
-							}
-						}
+					$output_data[1] = sprintf( $content_wrapper_template, $currency_data_filtered['trend'], $output_data[1] );
+					if( $currency_data_filtered['per'] > 1 ) {
+						$output_data[1] .= '<span class="currencyconverter-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 					}
-					$output_data[2] = $trend . $output_data[2];
+
+					// Arrow up-bottom
+					$trend = sprintf(
+						'<span class="currency-trend currency-trend-%1$s"></span>',
+						$currency_data_filtered['trend']
+					);
+					$output_data[2] = $trend . sprintf( $content_wrapper_template, $currency_data_filtered['trend'], $output_data[2] );
 
 					// Добавляем ряд (строчку) в таблицу
 					$this->table->add_row( $output_data );
