@@ -66,6 +66,7 @@ class Widget extends \WP_Widget {
 											); ?>
 									</span><?php
 										if( $currency_data_filtered['per'] > 1 ) {
+											/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
 											$per_value = '<span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 											echo $per_value;
 										}

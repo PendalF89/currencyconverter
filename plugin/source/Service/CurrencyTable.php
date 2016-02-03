@@ -86,7 +86,8 @@ class CurrencyTable {
 
 					$output_data[1] = sprintf( $content_wrapper_template, $currency_data_filtered['trend'], $output_data[1] );
 					if( $currency_data_filtered['per'] > 1 ) {
-						$output_data[1] .= '<span class="currencyconverter-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
+						/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
+						$output_data[1] .= ' <span class="currencyconverter-per">' . esc_html( sprintf( __( 'per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 					}
 
 					// Arrow up-bottom
