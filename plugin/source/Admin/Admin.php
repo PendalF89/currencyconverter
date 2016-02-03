@@ -14,6 +14,9 @@ class Admin {
 		 */
 		add_action( 'admin_enqueue_scripts', array( '\Korobochkin\CurrencyConverter\Admin\Pages\Widgets', 'admin_enqueue_scripts' ) );
 
+		add_action( 'customize_controls_enqueue_scripts', array( '\Korobochkin\CurrencyConverter\Admin\Pages\Customizer', 'enqueue_scripts' ) );
+
+
 		/**
 		 * Инлайн JS наше все. Если пихать JS внешним файлом, то он почему-то не работает!!!!1111
 		 */

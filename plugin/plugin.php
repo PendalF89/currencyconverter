@@ -6,11 +6,11 @@ Plugin URI: https://wordpress.org/plugins/currencyconverter/
 Description: Currency widgets for any needs.
 Author: LB company
 Author URI: http://exchangerate.guru
-Version: 0.3.0
+Version: 0.4.0
 Text Domain: currencyconverter
 Domain Path: /languages/
 Requires at least: 4.0.0
-Tested up to: 4.4.1
+Tested up to: 4.4.2
 License: GPLv2 or later
 */
 
