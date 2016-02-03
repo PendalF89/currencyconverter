@@ -46,7 +46,7 @@ class Text {
 
 		$out['change_percentage'] = (float)round( $out['change_percentage'], $preciese );
 
-		if( $out['rate'] >= 1 ) {
+		if( $out['rate'] >= 0.01 ) {
 
 		}
 		elseif( $out['rate'] >= 0.001 ) {
