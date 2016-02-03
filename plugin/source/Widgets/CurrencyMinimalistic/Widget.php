@@ -45,22 +45,32 @@ class Widget extends \WP_Widget {
 			$instance['currency_list'] = explode( ',', $instance['currency_list'] );
 
 			if( !empty( $instance['currency_list'] ) ) {
-				echo '<div class="currency-converter_minimalistic-container">';
+				echo '<div class="currencyconverter-minimalistic-container">';
 				foreach( $instance['currency_list'] as $currency_ticker ) {
 					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
 					if( $currency_obj->is_available() ) {
+						$currency_data_filtered = Text::currency_info_for_round( $currency_obj, 2 );
 						?>
-						<div class="currency-converter_minimalistic-single-currency">
-							<div class="currency-converter_minimalistic-row">
-								<span class="currency-converter_minimalistic-currency-price"><?php echo number_format_i18n( $currency_obj->get_rate(), 2); ?></span>
+						<div class="currencyconverter-minimalistic-single-currency">
+							<div class="currencyconverter-minimalistic-row">
+								<span class="currencyconverter-minimalistic-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
 							</div>
-							<div class="currency-converter_minimalistic-row">
-								<span class="currency-converter_minimalistic-inline-list">
-									<span class="currency-converter_minimalistic-inline-list-item">
+							<div class="currencyconverter-minimalistic-row">
+								<span class="currencyconverter-minimalistic-inline-list">
+									<span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-ticker">
 										<?php echo $currency_ticker; ?>
-									</span><span class="currency-converter_minimalistic-inline-list-item">
-										<?php echo Text::number_format_i18n_plus_minus( $currency_obj->get_change_percentage(), 2 ); ?>
-									</span>
+									</span><span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-change-percentage">
+										<?php printf(
+											/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
+											__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
+											); ?>
+									</span><?php
+										if( $currency_data_filtered['per'] > 1 ) {
+											/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
+											$per_value = '<span class="currencyconverter-minimalistic-inline-list-item currencyconverter-minimalistic-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
+											echo $per_value;
+										}
+                                    ?>
 								</span>
 							</div>
 						</div>
@@ -75,7 +85,7 @@ class Widget extends \WP_Widget {
 			$plugin_developer = new PluginDeveloper();
 			$plugin_developer->set_base_currency($instance['base_currency']);
 			if( $plugin_developer->is_valid() ) {
-				echo '<p class="currency-converter_support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
+				echo '<p class="currencyconverter-support-info-container">' . $plugin_developer->get_caption_with_base_currency_link() .  '</p>';
 			}
 		}
 
@@ -178,12 +188,12 @@ class Widget extends \WP_Widget {
 
 		<?php
 			$default_presets = Defaults::get_default_color_schemes();
-			echo '<ul class="currency-converter-minimalistic-widget-settings-palettes">';
+			echo '<ul class="currencyconverter-minimalistic-widget-settings-palettes">';
 			foreach( $default_presets as $default_key => $default_preset ) {
 				$id = $this->get_field_id( 'palettes-' . $default_key );
 
-				?><li id="<?php echo esc_attr($id);?>" class="color-grid color-grid-gradient currency-converter-color-grid-<?php echo esc_attr( $default_key ); ?>" data-currency-converter-palettes-switcher="true">
-					<span class="currency-converter_minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset, $id); ?>>Abc</span>
+				?><li id="<?php echo esc_attr($id);?>" class="color-grid color-grid-gradient currencyconverter-color-grid-<?php echo esc_attr( $default_key ); ?>" data-currency-converter-palettes-switcher="true">
+					<span class="currencyconverter-minimalistic-container" <?php echo $this->_generate_html_attrs($default_preset, $id); ?>>Abc</span>
 				</li><?php
 				$this->_generate_switch_color_scheme_scripts( $id );
 			}
@@ -233,36 +243,39 @@ class Widget extends \WP_Widget {
 			 * Print color palettes styles only one time (they similar for all widgets).
              */
 			foreach( $default_presets as $default_key => $default_preset ) {
-				$this->print_gradiented_styles( '.currency-converter-color-grid-' . $default_key, $default_preset );
+				$this->print_gradiented_styles( '.currencyconverter-color-grid-' . $default_key, $default_preset );
 			}
 
+			// TODO: Добавить динамическое изменение ширины для Iris
 			/**
-			 * JS Init
+			 * JS Init see http://wordpress.stackexchange.com/a/212676/46077
 			 */
 			?>
 			<script type="text/javascript">
-			jQuery(document).ready(function($){
-				// Init Iris only once (in #widgets-right)
-				$('#widgets-right *[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker({
-					width: 246,
-					// TODO: Добавить динамическое изменение ширины для Iris
-					/**
-					 * see http://wordpress.stackexchange.com/a/212676/46077
-					 */
-					change: ((typeof _ !== 'undefined') ?
-							_.throttle(
-								function () {
-									$(this).trigger('change');
-								},
-								1000,
-								{
-									leading: false
-								}
-							)
-							:
-							function(){})
-				});
-			});
+				(function($){
+
+					function init(widget) {
+						widget.find('*[data-currency-converter-minimalistic-palette-color="true"]').wpColorPicker( {
+							change:
+								(typeof _ !== 'undefined') ?
+									_.throttle(function() {
+										$(this).trigger('change');
+									}, 1000 )
+									: function(){},
+							width: 246
+						});
+					}
+
+					$(document).on('widget-added widget-updated', function(event, widget) {
+						init(widget);
+					});
+
+					$(document).ready(function() {
+						$('#widgets-right .widget').each(function() {
+							init($(this));
+						});
+					});
+				}(jQuery));
 			</script>
 			<?php
 			$first = false;
@@ -294,8 +307,7 @@ class Widget extends \WP_Widget {
 			}
 		}
 		?><style type="text/css">
-			/* this first time */
-			<?php echo $selector; ?> .currency-converter_minimalistic-container {
+			<?php echo $selector; ?> .currencyconverter-minimalistic-container {
 				border: 0;
 				background-image: -webkit-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
 				background-image: -o-linear-gradient(top, <?php echo $instance['bg_color_1']; ?> 0%, <?php echo $instance['bg_color_2']; ?> 100%);
@@ -304,7 +316,7 @@ class Widget extends \WP_Widget {
 				color: <?php echo $instance['color']; ?>;
 			}
 
-			<?php echo $selector; ?> .currency-converter_minimalistic-single-currency {
+			<?php echo $selector; ?> .currencyconverter-minimalistic-single-currency {
 				border-top-color: rgba(<?php echo \Korobochkin\CurrencyConverter\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
@@ -328,7 +340,7 @@ class Widget extends \WP_Widget {
 		?><script type="text/javascript">
 			jQuery(document).ready(function($){
 
-				$('#widgets-right [data-currency-converter-palettes-switcher="true"] .currency-converter_minimalistic-container').click(function(event){
+				$('#widgets-right [data-currency-converter-palettes-switcher="true"] .currencyconverter-minimalistic-container').click(function(event){
 
 					if (typeof $(event.target).data('bg_color_1') !== 'undefined') {
 						$(   '#' + $(event.target).data('bg_color_1-target-id')   )
