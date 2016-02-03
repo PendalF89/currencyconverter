@@ -29,7 +29,7 @@ class Text {
 	/**
 	 * Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC).
 	 * Sometimes we round this to 0.00. To avoid this small currencies (units) recalculated by multiplying "small"
-	 * number by 1000 or 1000000. And after this: 100 USD = 0.26528435830000001 BTC
+	 * number by 1000 or 1000000. And after this: 1000 USD = 0.26528435830000001 BTC
 	 *
 	 * @param Currency $currency_obj
 	 *
