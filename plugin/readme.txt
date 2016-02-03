@@ -65,6 +65,12 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.4.0 =
+
+* Support small currency units in widgets.
+* Now widgets correctly work in Theme Customizer.
+* Unified prefix in CSS classes.
+
 = 0.3.0 =
 
 * Improved plugin uninstaller.
@@ -82,6 +88,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.4.0 =
+
+Support WordPress 4.4.2 and Theme Customizer, support small currency units in widgets.
 
 = 0.3.0 =
 
