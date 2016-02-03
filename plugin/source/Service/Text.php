@@ -65,23 +65,6 @@ class Text {
 			$out['change'] = $out['change'] * 100000000;
 		}
 
-		// Alter
-		/*if( $out['rate'] <= 0.000001 ) {
-			$out['rate'] = $out['rate'] * 1000000;
-			$out['per'] = 1000000;
-			$out['change'] = $out['change'] * 1000000;
-		}
-		elseif( $out['rate'] <= 0.001 ) {
-			$out['rate'] = $out['rate'] * 1000;
-			$out['per'] = 1000;
-			$out['change'] = $out['change'] * 1000;
-		}*/
-
-
-
-
-
-
 		if( $out['change_percentage'] === 0.0 ) {
 			$out['trend'] = 'flat';
 			$out['change'] = 0.0;
