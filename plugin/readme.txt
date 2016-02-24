@@ -3,7 +3,7 @@ Contributors: lb-company, korobochkin
 Tags: currency converter, currencyconverter, currencies, currency, rates, exchange, converter, widgets, usd, dollar, eur, euro, foreign exchange conversion, fx rate converter, currency converter widget, money
 Requires at least: 4.0.0
 Tested up to: 4.4.2
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.4.1 =
+
+* Fix plugin uninstaller which triggers an error during uninstall process.
+
 = 0.4.0 =
 
 * Support small currency units in widgets.
@@ -88,6 +92,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.4.1 =
+
+Fixed plugin uninstaller.
 
 = 0.4.0 =
 
