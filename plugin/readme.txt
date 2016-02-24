@@ -65,6 +65,10 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.4.1 =
+
+* Fix plugin uninstaller which triggers an error during uninstall process.
+
 = 0.4.0 =
 
 * Support small currency units in widgets.
@@ -88,6 +92,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.4.1 =
+
+Fixed plugin uninstaller.
 
 = 0.4.0 =
 
