@@ -1,8 +1,17 @@
 <?php
+namespace Korobochkin\CurrencyConverter;
+
 // If uninstall is not called from WordPress, exit
 if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit();
 }
+
+/**
+ * Autoloader for all classes.
+ *
+ * @since 0.0.0
+ */
+require_once 'vendor/autoload.php';
 
 delete_option( \Korobochkin\CurrencyConverter\Models\Settings\General::$option_name );
 
