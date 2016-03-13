@@ -8,27 +8,27 @@ module.exports = function(grunt) {
 
     // CSS
     less: {
-      frontendWidgets: {
+      frontend: {
         options: {
           strictMath: true,
           sourceMap: true,
           outputSourceFiles: true,
-          sourceMapURL: 'widgets.css.map',
-          sourceMapFilename: 'out/styles/widgets/widgets.css.map'
+          sourceMapURL: 'frontend.css.map',
+          sourceMapFilename: 'out/styles/frontend/frontend.css.map'
         },
-        src: 'styles/widgets/main.less',
-        dest: 'out/styles/widgets/main.css'
+        src: 'styles/frontend/main.less',
+        dest: 'out/styles/frontend/frontend.css'
       },
-      backendWidgets: {
+      backend: {
         options: {
           strictMath: true,
           sourceMap: true,
           outputSourceFiles: true,
-          sourceMapURL: 'widgets.css.map',
-          sourceMapFilename: 'out/styles/widgets-backend/widgets.css.map'
+          sourceMapURL: 'backend.css.map',
+          sourceMapFilename: 'out/styles/backend/backend.css.map'
         },
-        src: 'styles/widgets-backend/main.less',
-        dest: 'out/styles/widgets-backend/main.css'
+        src: 'styles/backend/main.less',
+        dest: 'out/styles/backend/backend.css'
       }
     },
 
@@ -37,17 +37,17 @@ module.exports = function(grunt) {
       options: {
         browsers: configBridge.config.autoprefixerBrowsers
       },
-      frontendWidgets: {
+      frontend: {
         options: {
           map: true
         },
-        src: 'out/styles/widgets/main.css'
+        src: 'out/styles/frontend/frontend.css'
       },
-      backendWidgets: {
+      backend: {
         options: {
           map: true
         },
-        src: 'out/styles/widgets-backend/main.css'
+        src: 'out/styles/backend/backend.css'
       }
     },
 
@@ -125,19 +125,19 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-copy');
   require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
-  grunt.registerTask('stylesFrontendWidgets', [
-    'less:frontendWidgets',
-    'autoprefixer:frontendWidgets'
+  grunt.registerTask('stylesFrontend', [
+    'less:frontend',
+    'autoprefixer:frontend'
   ]);
 
-  grunt.registerTask('stylesBackendWidgets', [
-     'less:backendWidgets',
-      'autoprefixer:backendWidgets'
+  grunt.registerTask('stylesBackend', [
+     'less:backend',
+      'autoprefixer:backend'
   ]);
 
   grunt.registerTask('styles', [
-    'stylesFrontendWidgets',
-    'stylesBackendWidgets',
+    'stylesFrontend',
+    'stylesBackend',
     'copy:styles'
   ]);
 
