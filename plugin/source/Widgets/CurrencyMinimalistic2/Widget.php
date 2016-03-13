@@ -98,7 +98,7 @@ class Widget extends \WP_Widget {
 											<div class="currencyconverter-minimalistic-ver2-row">
 												<span class="currencyconverter-minimalistic-ver2-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
 											</div>
-											<div class="currencyconverter-minimalistic-ver2-row">
+											<div class="currencyconverter-minimalistic-ver2-row currencyconverter-minimalistic-ver2-row-captions">
 												<span class="currencyconverter-minimalistic-ver2-inline-list">
 													<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-ticker">
 														<?php echo $currency_ticker; ?>
