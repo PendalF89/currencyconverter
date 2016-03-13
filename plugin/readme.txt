@@ -3,7 +3,7 @@ Contributors: lb-company, korobochkin
 Tags: currency converter, currencyconverter, currencies, currency, rates, exchange, converter, widgets, usd, dollar, eur, euro, foreign exchange conversion, fx rate converter, currency converter widget, money
 Requires at least: 4.0.0
 Tested up to: 4.4.2
-Stable tag: 0.4.1
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

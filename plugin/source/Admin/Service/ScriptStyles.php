@@ -10,14 +10,14 @@ class ScriptStyles {
 			'plugin-' . Plugin::NAME . '-widgets-settings',
 			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'styles/backend/backend.css',
 			array(),
-			'0.4.0'
+			'0.5.0'
 		);
 
 		wp_register_script(
 			'plugin-' . Plugin::NAME . '-widgets-currency-table-admin',
 			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'source/Widgets/CurrencyTable/admin-page-autocomplete.js',
 			array( 'jquery-ui-autocomplete' ),
-			'0.4.0',
+			'0.5.0',
 			true
 		);
 
@@ -25,7 +25,7 @@ class ScriptStyles {
 			'plugin-' . Plugin::NAME . '-widgets-currency-minimalistic-settings',
 			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'scripts/widgets/CurrencyMinimalistic/settings.min.js',
 			array( 'jquery', 'iris' ),
-			'0.4.0',
+			'0.5.0',
 			true
 		);
 	}
