@@ -60,7 +60,7 @@ class Widget extends \WP_Widget {
 						<div class="currencyconverter-minimalistic-ver2-header">
 							<div class="currencyconverter-minimalistic-ver2-header-base-currency"><?php
 								// Base currency count (for example 1 USD or 1 EUR).
-								echo Text::add_right_or_left( '1', $instance['base_currency'], true );
+								echo Text::add_right_or_left( '1', $instance['base_currency'], $instance['currency_position'] );
 							?></div>
 							<div class="currencyconverter-minimalistic-ver2-header-currency-caption">
 								<span class="currencyconverter-minimalistic-ver2-header-currency-caption-currency-name"><?php echo $base_currency_name; ?>.</span> <span class="currencyconverter-minimalistic-ver2-header-currency-caption-country-name"><?php echo $base_currency_country_name; ?></span>
@@ -148,6 +148,10 @@ class Widget extends \WP_Widget {
 
 		$instance_to_save['base_currency'] = strtoupper( sanitize_text_field( $instance['base_currency'] ) );
 
+		if( in_array( $instance['currency_position'], array( 'left', 'right' ), true ) ) {
+			$instance_to_save['currency_position'] = $instance['currency_position'];
+		}
+
 		// Вероятно, это надо сохранять в виде массива
 		$instance_to_save['currency_list'] = strtoupper( sanitize_text_field( $instance['currency_list'] ) );
 
@@ -208,6 +212,25 @@ class Widget extends \WP_Widget {
 			</select>
 		</p>
 		<p class="description"><?php _e( 'The currency in which will be settled other currencies.', Plugin::NAME ); ?></p>
+
+		<p><label for="<?php echo $this->get_field_id( 'currency_position' ); ?>"><?php _e( 'Currency position:', Plugin::NAME ); ?></label>
+			<select class="widefat" id="<?php echo $this->get_field_id( 'currency_position' ); ?>" name="<?php echo $this->get_field_name( 'currency_position' ); ?>">
+				<?php
+					printf(
+						'<option value="%s"%s>%s</option>',
+						esc_attr( 'left' ),
+						selected( 'left' , $instance['currency_position'], false ),
+						esc_html( __( 'Left — $1.99' ,Plugin::NAME ) )
+					);
+					printf(
+						'<option value="%s"%s>%s</option>',
+						esc_attr( 'right' ),
+						selected( 'right' , $instance['currency_position'], false ),
+						esc_html( __( 'Right — 1.99$' ,Plugin::NAME ) )
+					);
+				?>
+			</select>
+		</p>
 
 		<p><label for="<?php echo $this->get_field_id( 'currency_list' ); ?>"><?php _e( 'Currencies list:', Plugin::NAME ); ?></label>
 			<input class="widefat plugin__currency__autocomplete" id="<?php echo $this->get_field_id( 'currency_list' ); ?>" name="<?php echo $this->get_field_name( 'currency_list' ); ?>" type="text" value="<?php echo esc_attr( $instance['currency_list'] ); ?>"></p>
@@ -343,6 +366,7 @@ class Widget extends \WP_Widget {
 			'separator_color' => '#ffffff',
 			'separator_opacity' => 30,
 			'caption_status' => true,
+			'currency_position' => _x( 'left', 'currency position: right - 1$, left - $1', Plugin::NAME )
 		);
 		return wp_parse_args($instance, $def_settings);
 	}
