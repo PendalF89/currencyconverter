@@ -36,70 +36,97 @@ class Widget extends \WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
-		if(
-			!empty( $instance['currency_list'] )
-			&&
-			!empty( $instance['base_currency'] )
-		) {
-			$instance['currency_list'] = str_replace( ' ', '', $instance['currency_list'] );
-			$instance['currency_list'] = explode( ',', $instance['currency_list'] );
+		/**
+		 * The list of currencies and base currency are required.
+         */
+		if( !empty( $instance['currency_list'] ) && !empty( $instance['base_currency'] ) ) {
+			$currency_pair = new Currency( $instance['base_currency'], $instance['base_currency'] );
 
-			if( !empty( $instance['currency_list'] ) ) {
-				echo '<div class="currencyconverter-minimalistic-ver2-container">';
-				?>
-				<div class="currencyconverter-minimalistic-ver2-header">
-					<span class="currencyconverter-minimalistic-ver2-header-base-currency">1EUR</span>
-					<span class="currencyconverter-minimalistic-ver2-header-currency-caption">
-						<span class="currencyconverter-minimalistic-ver2-header-currency-caption-currency-name">Euro</span>. <span class="currencyconverter-minimalistic-ver2-header-currency-caption-country-name">European Union</span>
-					</span>
-				</div>
-				<span class="currencyconverter-minimalistic-ver2-header-equal currencyconverter-f-row currencyconverter-f-row-hor-justify currencyconverter-f-row-ver-center">
-					<span class="currencyconverter-f-col currencyconverter-f-col-dash-1">
-						<span class="currencyconverter-minimalistic-ver2-separator-dash"></span>
-					</span>
-					<span class="currencyconverter-f-col currencyconverter-f-col-equal">=</span>
-					<span class="currencyconverter-f-col currencyconverter-f-col-dash-2">
-						<span class="currencyconverter-minimalistic-ver2-separator-dash"></span>
-					</span>
-				</span>
-				<?php
-				$first_currency = true;
-				foreach( $instance['currency_list'] as $currency_ticker ) {
-					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
-					if( $currency_obj->is_available() ) {
-						$currency_data_filtered = Text::currency_info_for_round( $currency_obj, 2 );
-						?>
-						<div class="currencyconverter-minimalistic-ver2-single-currency <?php echo $first_currency == true ? '' : 'currencyconverter-minimalistic-ver2-separator-dash' ?>">
-							<div class="currencyconverter-minimalistic-ver2-row">
-								<span class="currencyconverter-minimalistic-ver2-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
-							</div>
-							<div class="currencyconverter-minimalistic-ver2-row">
-								<span class="currencyconverter-minimalistic-ver2-inline-list">
-									<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-ticker">
-										<?php echo $currency_ticker; ?>
-									</span><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-change-percentage">
-										<?php printf(
-											/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
-											__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
-											); ?>
-									</span><?php
-										if( $currency_data_filtered['per'] > 1 ) {
-											/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
-											$per_value = '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
-											echo $per_value;
-										}
-                                    ?>
-								</span>
+			// Base currency available or not?
+			if( $currency_pair->is_available() ) {
+
+				// Prepare currency list (string with commas comes to an array with tickers)
+				$instance['currency_list'] = str_replace( ' ', '', $instance['currency_list'] );
+				$instance['currency_list'] = explode( ',', $instance['currency_list'] );
+
+				// Get base currency name and their country name
+				$base_currency_name = (string)$currency_pair->get_base_currency_name();
+				$base_currency_country_name = (string)$currency_pair->get_base_currency_country_name();
+
+				// We need currencies and base currencies credits
+				if( !empty( $instance['currency_list'] ) && !empty( $base_currency_name ) && !empty( $base_currency_country_name ) ) : ?>
+					<div class="currencyconverter-minimalistic-ver2-container">
+
+						<div class="currencyconverter-minimalistic-ver2-header">
+							<div class="currencyconverter-minimalistic-ver2-header-base-currency"><?php
+								// Base currency count (for example 1 USD or 1 EUR).
+								echo Text::add_right_or_left( '1', $instance['base_currency'], true );
+							?></div>
+							<div class="currencyconverter-minimalistic-ver2-header-currency-caption">
+								<span class="currencyconverter-minimalistic-ver2-header-currency-caption-currency-name"><?php echo $base_currency_name; ?>.</span> <span class="currencyconverter-minimalistic-ver2-header-currency-caption-country-name"><?php echo $base_currency_country_name; ?></span>
 							</div>
 						</div>
+
+						<div class="currencyconverter-minimalistic-ver2-header-equal currencyconverter-f-row currencyconverter-f-row-hor-justify currencyconverter-f-row-ver-center">
+							<span class="currencyconverter-f-col currencyconverter-f-col-dash-1">
+								<span class="currencyconverter-minimalistic-ver2-separator-dash"></span>
+							</span>
+							<span class="currencyconverter-f-col currencyconverter-f-col-equal">=</span>
+							<span class="currencyconverter-f-col currencyconverter-f-col-dash-2">
+								<span class="currencyconverter-minimalistic-ver2-separator-dash"></span>
+							</span>
+						</div>
+
 						<?php
-						$first_currency = false;
-					}
-				}
-				echo '</div>';
+							// Delete base currency meta information (name and country name). We output it above.
+							unset($base_currency_name);
+							unset($base_currency_country_name);
+
+							$first_currency = true;
+							// Foreach currency in the list
+							foreach( $instance['currency_list'] as $currency_ticker ) {
+								// Setup our base currency and currency
+								$currency_pair->set_currencies( $instance['base_currency'], $currency_ticker );
+
+								// This pair available?
+								if( $currency_pair->is_available() ) {
+									// Prepare extra small numbers like 0.000001 $
+									$currency_data_filtered = Text::currency_info_for_round( $currency_pair, 2 );
+
+									?>
+										<div class="currencyconverter-minimalistic-ver2-single-currency <?php echo $first_currency == true ? '' : 'currencyconverter-minimalistic-ver2-separator-dash' ?>">
+											<div class="currencyconverter-minimalistic-ver2-row">
+												<span class="currencyconverter-minimalistic-ver2-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
+											</div>
+											<div class="currencyconverter-minimalistic-ver2-row">
+												<span class="currencyconverter-minimalistic-ver2-inline-list">
+													<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-ticker">
+														<?php echo $currency_ticker; ?>
+													</span><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-change-percentage"><?php
+														printf(
+															/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
+															__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
+														);
+													?></span><?php
+													if( $currency_data_filtered['per'] > 1 ) {
+														/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
+														echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
+													}
+                                                    ?>
+												</span>
+											</div>
+										</div>
+									<?php
+									$first_currency = false;
+								}
+							}
+						?>
+					</div>
+				<?php endif;
 			}
 		}
 
+		// Caption with update rates date
 		if( $instance['caption_status'] ) {
 			$plugin_developer = new PluginDeveloper();
 			$plugin_developer->set_base_currency($instance['base_currency']);
@@ -108,6 +135,7 @@ class Widget extends \WP_Widget {
 			}
 		}
 
+		// Styles for this widget
 		$this->print_gradiented_styles( '#' . $args['widget_id'], $instance );
 		echo $args['after_widget'];
 	}
