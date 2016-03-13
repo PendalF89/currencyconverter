@@ -46,6 +46,15 @@ class Widget extends \WP_Widget {
 
 			if( !empty( $instance['currency_list'] ) ) {
 				echo '<div class="currencyconverter-minimalistic-ver2-container">';
+				?>
+				<div class="currencyconverter-minimalistic-ver2-header">
+					<span class="currencyconverter-minimalistic-ver2-header-base-currency">1EUR</span>
+					<span class="currencyconverter-minimalistic-ver2-header-currency-caption">
+						<span class="currencyconverter-minimalistic-ver2-header-currency-caption-currency-name">Euro</span>. <span class="currencyconverter-minimalistic-ver2-header-currency-caption-country-name">European Union</span>
+					</span>
+					<span class="currencyconverter-minimalistic-ver2-header-equal"><span></span><span>=</span><span></span></span>
+				</div>
+				<?php
 				foreach( $instance['currency_list'] as $currency_ticker ) {
 					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
 					if( $currency_obj->is_available() ) {
