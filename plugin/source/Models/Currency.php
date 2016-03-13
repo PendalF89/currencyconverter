@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\CurrencyConverter\Models;
 
+use Korobochkin\CurrencyConverter\Models\Currencies\Currencies;
 use Korobochkin\CurrencyConverter\Plugin;
 
 class Currency {
@@ -146,4 +147,29 @@ class Currency {
 		return false;
 	}
 
+	public function get_base_currency_name() {
+		if( $this->is_available() ) {
+			$currencies_list = Currencies::get_currencies();
+			if( isset( $currencies_list[$this->base_currency]['currency_name'] ) ) {
+				return $currencies_list[$this->base_currency]['currency_name'];
+			}
+			else {
+				return '';
+			}
+		}
+		return false;
+	}
+
+	public function get_base_currency_country_name() {
+		if( $this->is_available() ) {
+			$currencies_list = Currencies::get_currencies();
+			if( isset( $currencies_list[$this->base_currency]['country_name'] ) ) {
+				return $currencies_list[$this->base_currency]['country_name'];
+			}
+			else {
+				return '';
+			}
+		}
+		return false;
+	}
 }
