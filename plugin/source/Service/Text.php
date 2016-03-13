@@ -72,4 +72,19 @@ class Text {
 
 		return $out;
 	}
+
+	public static function add_right_or_left( $string, $add, $right = true ) {
+		if( is_string( $string ) || is_numeric( $string ) ) {
+			if( ( is_string( $add ) || is_numeric( $add ) ) && is_bool( $right ) ) {
+				if( $right ) {
+					$string .= $add;
+				}
+				else {
+					$string = $add . $string;
+				}
+			}
+			return $string;
+		}
+		return false;
+	}
 }
