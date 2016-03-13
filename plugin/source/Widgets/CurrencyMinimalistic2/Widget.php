@@ -52,15 +52,24 @@ class Widget extends \WP_Widget {
 					<span class="currencyconverter-minimalistic-ver2-header-currency-caption">
 						<span class="currencyconverter-minimalistic-ver2-header-currency-caption-currency-name">Euro</span>. <span class="currencyconverter-minimalistic-ver2-header-currency-caption-country-name">European Union</span>
 					</span>
-					<span class="currencyconverter-minimalistic-ver2-header-equal"><span></span><span>=</span><span></span></span>
 				</div>
+				<span class="currencyconverter-minimalistic-ver2-header-equal currencyconverter-f-row currencyconverter-f-row-hor-justify currencyconverter-f-row-ver-center">
+					<span class="currencyconverter-f-col currencyconverter-f-col-dash-1">
+						<span class="currencyconverter-minimalistic-ver2-separator-dash"></span>
+					</span>
+					<span class="currencyconverter-f-col currencyconverter-f-col-equal">=</span>
+					<span class="currencyconverter-f-col currencyconverter-f-col-dash-2">
+						<span class="currencyconverter-minimalistic-ver2-separator-dash"></span>
+					</span>
+				</span>
 				<?php
+				$first_currency = true;
 				foreach( $instance['currency_list'] as $currency_ticker ) {
 					$currency_obj = new Currency( $instance['base_currency'], $currency_ticker );
 					if( $currency_obj->is_available() ) {
 						$currency_data_filtered = Text::currency_info_for_round( $currency_obj, 2 );
 						?>
-						<div class="currencyconverter-minimalistic-ver2-single-currency">
+						<div class="currencyconverter-minimalistic-ver2-single-currency <?php echo $first_currency == true ? '' : 'currencyconverter-minimalistic-ver2-separator-dash' ?>">
 							<div class="currencyconverter-minimalistic-ver2-row">
 								<span class="currencyconverter-minimalistic-ver2-currency-price"><?php echo number_format_i18n( $currency_data_filtered['rate'], 2); ?></span>
 							</div>
@@ -84,6 +93,7 @@ class Widget extends \WP_Widget {
 							</div>
 						</div>
 						<?php
+						$first_currency = false;
 					}
 				}
 				echo '</div>';
@@ -325,7 +335,7 @@ class Widget extends \WP_Widget {
 				color: <?php echo $instance['color']; ?>;
 			}
 
-			<?php echo $selector; ?> .currencyconverter-minimalistic-ver2-single-currency {
+			<?php echo $selector; ?> .currencyconverter-minimalistic-ver2-separator-dash {
 				border-top-color: rgba(<?php echo \Korobochkin\CurrencyConverter\Service\Colors::hex2rgba($instance['separator_color'], $instance['separator_opacity']); ?>);
 			}
 		</style><?php
