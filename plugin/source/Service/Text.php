@@ -73,10 +73,10 @@ class Text {
 		return $out;
 	}
 
-	public static function add_right_or_left( $string, $add, $right = true ) {
+	public static function add_right_or_left( $string, $add, $side = true ) {
 		if( is_string( $string ) || is_numeric( $string ) ) {
-			if( ( is_string( $add ) || is_numeric( $add ) ) && is_bool( $right ) ) {
-				if( $right ) {
+			if( ( is_string( $add ) || is_numeric( $add ) ) ) {
+				if( ( is_bool( $side ) && $side == true ) || ( is_string( $side ) && $side == 'right' ) ) {
 					$string .= $add;
 				}
 				else {
