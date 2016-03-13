@@ -8,7 +8,7 @@ class ScriptStyles {
 	public static function register() {
 		wp_register_style(
 			'plugin-' . Plugin::NAME . '-widgets',
-			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'styles/widgets/main.css',
+			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'styles/frontend/frontend.css',
 			array(),
 			'0.4.0'
 		);

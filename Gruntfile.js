@@ -17,18 +17,18 @@ module.exports = function(grunt) {
           sourceMapFilename: 'out/styles/frontend/frontend.css.map'
         },
         src: 'styles/frontend/main.less',
-        dest: 'out/styles/frontend/main.css'
+        dest: 'out/styles/frontend/frontend.css'
       },
-      backendWidgets: {
+      backend: {
         options: {
           strictMath: true,
           sourceMap: true,
           outputSourceFiles: true,
-          sourceMapURL: 'widgets.css.map',
-          sourceMapFilename: 'out/styles/widgets-backend/widgets.css.map'
+          sourceMapURL: 'backend.css.map',
+          sourceMapFilename: 'out/styles/backend/backend.css.map'
         },
-        src: 'styles/widgets-backend/main.less',
-        dest: 'out/styles/widgets-backend/main.css'
+        src: 'styles/backend/main.less',
+        dest: 'out/styles/backend/backend.css'
       }
     },
 
@@ -41,13 +41,13 @@ module.exports = function(grunt) {
         options: {
           map: true
         },
-        src: 'out/styles/frontend/main.css'
+        src: 'out/styles/frontend/frontend.css'
       },
-      backendWidgets: {
+      backend: {
         options: {
           map: true
         },
-        src: 'out/styles/widgets-backend/main.css'
+        src: 'out/styles/backend/backend.css'
       }
     },
 
@@ -130,14 +130,14 @@ module.exports = function(grunt) {
     'autoprefixer:frontend'
   ]);
 
-  grunt.registerTask('stylesBackendWidgets', [
-     'less:backendWidgets',
-      'autoprefixer:backendWidgets'
+  grunt.registerTask('stylesBackend', [
+     'less:backend',
+      'autoprefixer:backend'
   ]);
 
   grunt.registerTask('styles', [
     'stylesFrontend',
-    'stylesBackendWidgets',
+    'stylesBackend',
     'copy:styles'
   ]);
 
