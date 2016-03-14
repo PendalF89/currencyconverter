@@ -86,7 +86,7 @@ class Widget extends \WP_Widget {
 							// Foreach currency in the list
 							foreach( $instance['currency_list'] as $currency_ticker ) {
 								// Setup our base currency and currency
-								$currency_pair->set_currencies( $instance['base_currency'], $currency_ticker );
+								$currency_pair->set_currencies( $currency_ticker, $instance['base_currency'] );
 
 								// This pair available?
 								if( $currency_pair->is_available() ) {
