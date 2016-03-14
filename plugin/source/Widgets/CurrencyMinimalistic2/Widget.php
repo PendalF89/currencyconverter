@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\CurrencyConverter\Widgets\CurrencyMinimalistic2;
 
+use Korobochkin\CurrencyConverter\Models\Country;
 use Korobochkin\CurrencyConverter\Models\Currency;
 use Korobochkin\CurrencyConverter\Models\PluginDeveloper;
 use Korobochkin\CurrencyConverter\Plugin;
@@ -112,7 +113,20 @@ class Widget extends \WP_Widget {
 														/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
 														echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 													}
-                                                    ?>
+                                                    ?><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-inline-list-item-flag"><?php
+
+                                                        // Try to get country flag
+                                                        $country_obj = new Country();
+														$country_obj->set_country_by_currency( $currency_ticker );
+														$flag = $country_obj->get_flag_url( /*$instance['flag_size']*/ 16 );
+                                                        if( $flag ) {
+															printf(
+																'<img src="%1$s" class="currencyconverter-flag-icon currencyconverter-flag-icon-%2$s">',
+																esc_url( $flag ),
+																esc_attr( /*$this->parameters['flag_size']*/ 16 )
+															);
+														}
+                                                    ?></span>
 												</span>
 											</div>
 										</div>
