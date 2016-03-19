@@ -113,20 +113,21 @@ class Widget extends \WP_Widget {
 														/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
 														echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 													}
-                                                    ?><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-inline-list-item-flag"><?php
 
-                                                        // Try to get country flag
-                                                        $country_obj = new Country();
-														$country_obj->set_country_by_currency( $currency_ticker );
-														$flag = $country_obj->get_flag_url( /*$instance['flag_size']*/ 16 );
-                                                        if( $flag ) {
-															printf(
-																'<img src="%1$s" class="currencyconverter-flag-icon currencyconverter-flag-icon-%2$s">',
-																esc_url( $flag ),
-																esc_attr( /*$this->parameters['flag_size']*/ 16 )
-															);
-														}
-                                                    ?></span>
+                                                    // Try to get country flag
+                                                    $country_obj = new Country();
+													$country_obj->set_country_by_currency( $currency_ticker );
+													$flag = $country_obj->get_flag_url( $instance['flag_size'] );
+                                                    if( $flag ) {
+                                                        echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-inline-list-item-flag">';
+														printf(
+															'<img src="%1$s" class="currencyconverter-flag-icon currencyconverter-flag-icon-%2$s">',
+															esc_url( $flag ),
+															esc_attr( $instance['flag_size'] )
+														);
+														echo '</span>';
+													}
+                                                    ?>
 												</span>
 											</div>
 										</div>
@@ -168,6 +169,8 @@ class Widget extends \WP_Widget {
 
 		// Вероятно, это надо сохранять в виде массива
 		$instance_to_save['currency_list'] = strtoupper( sanitize_text_field( $instance['currency_list'] ) );
+
+		$instance_to_save['flag_size'] = (int)sanitize_text_field( $instance['flag_size'] );
 
 		$instance_to_save['bg_color_1'] = sanitize_text_field( $instance['bg_color_1'] );
 		$instance_to_save['bg_color_2'] = sanitize_text_field( $instance['bg_color_2'] );
@@ -265,6 +268,23 @@ class Widget extends \WP_Widget {
 			}
 			?>
 		</script>
+
+		<p><label for="<?php echo $this->get_field_id( 'flag_icons' ); ?>"><?php _e( 'Flag icons:', Plugin::NAME ); ?></label>
+		<select class="widefat" id="<?php echo $this->get_field_id( 'flag_size' ); ?>" name="<?php echo $this->get_field_name( 'flag_size' ); ?>">
+			<option value="0" <?php selected( 0, $instance['flag_size'], false ); ?>><?php _e( 'No flag icon', Plugin::NAME ); ?></option>
+			<?php
+			$flags_sizes = new \Korobochkin\CurrencyConverter\Models\Flags();
+			foreach( $flags_sizes->sizes as $size ) {
+				printf(
+					'<option value="%s"%s>%s</option>',
+					esc_attr( $size ),
+					selected( $size, $instance['flag_size'], false ),
+					esc_html( $size . ' px' )
+				);
+			}
+			?>
+		</select>
+		</p>
 
 		<h3><?php _e( 'Background color', Plugin::NAME ); ?></h3>
 
@@ -373,6 +393,7 @@ class Widget extends \WP_Widget {
 			'currency_list' =>
 				/* translators: Default currencies list in widget. Use most popular currencies in your region. WARNING: always use commas as separator */
 				__( 'CAD, AUD, GBP', Plugin::NAME ),
+			'flag_size' => 0,
 			'bg_color_scheme' => '',
 			'bg_color_1' => '#ffa200',
 			'bg_color_2' => '#ff5a00',
