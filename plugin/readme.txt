@@ -65,6 +65,10 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.5.1 =
+
+* Bug fixes for widget Minimalistic 2.
+
 = 0.5.0 =
 
 * Added new widget called Minimalistic 2.
@@ -96,6 +100,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.5.1 =
+
+Bug fixes and improvements for Minimalistic 2 widget.
 
 = 0.5.0 =
 
