@@ -10,14 +10,14 @@ class ScriptStyles {
 			'plugin-' . Plugin::NAME . '-widgets',
 			plugin_dir_url( $GLOBALS['CurrencyConverterPlugin']->plugin_path ) . 'styles/frontend/frontend.css',
 			array(),
-			'0.5.0'
+			'0.5.1'
 		);
 
 		wp_register_style(
 			'plugin-' . Plugin::NAME . '-fonts',
 			self::fonts_url(),
 			array(),
-			'0.5.0'
+			'0.5.1'
 		);
 	}
 
