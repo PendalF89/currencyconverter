@@ -103,18 +103,8 @@ class Widget extends \WP_Widget {
 												<span class="currencyconverter-minimalistic-ver2-inline-list">
 													<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-ticker">
 														<?php echo $currency_ticker; ?>
-													</span><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-change-percentage"><?php
-														printf(
-															/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
-															__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
-														);
-													?></span><?php
-													if( $currency_data_filtered['per'] > 1 ) {
-														/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
-														echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
-													}
-
-                                                    // Try to get country flag
+													</span><?php
+													// Try to get country flag
                                                     $country_obj = new Country();
 													$country_obj->set_country_by_currency( $currency_ticker );
 													$flag = $country_obj->get_flag_url( $instance['flag_size'] );
@@ -126,6 +116,16 @@ class Widget extends \WP_Widget {
 															esc_attr( $instance['flag_size'] )
 														);
 														echo '</span>';
+													}
+													?><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-change-percentage"><?php
+														printf(
+															/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
+															__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
+														);
+													?></span><?php
+													if( $currency_data_filtered['per'] > 1 ) {
+														/* translators: Some of currencies (units) are very small. For example 1 US dollar (USD) = 0.0026528435830000001 bitcoins (BTC). Sometimes we round this to 0.00 by round() func. To avoid this small currencies (units) recalculated by multiplying "small" number by 1000 or 1000000. And after this: 1000 USD = 0.26 BTC (0.26 BTC per 1000 USD). */
+														echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-per">' . esc_html( sprintf( __( 'Per %s', Plugin::NAME ), number_format_i18n( $currency_data_filtered['per'] ) ) ) . '</span>';
 													}
                                                     ?>
 												</span>
