@@ -3,7 +3,7 @@ Contributors: lb-company, korobochkin
 Tags: currency converter, currencyconverter, currencies, currency, rates, exchange, converter, widgets, usd, dollar, eur, euro, foreign exchange conversion, fx rate converter, currency converter widget, money
 Requires at least: 4.0.0
 Tested up to: 4.4.2
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ The plugin makes only one request per hour and caches the result with currencies
 
 == Changelog ==
 
+= 0.5.1 =
+
+* Bug fixes for widget Minimalistic 2.
+
 = 0.5.0 =
 
 * Added new widget called Minimalistic 2.
@@ -96,6 +100,10 @@ The plugin makes only one request per hour and caches the result with currencies
 * First release.
 
 == Upgrade Notice ==
+
+= 0.5.1 =
+
+Bug fixes and improvements for Minimalistic 2 widget.
 
 = 0.5.0 =
 

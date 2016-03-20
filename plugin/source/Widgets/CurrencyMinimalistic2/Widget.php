@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\CurrencyConverter\Widgets\CurrencyMinimalistic2;
 
+use Korobochkin\CurrencyConverter\Models\Country;
 use Korobochkin\CurrencyConverter\Models\Currency;
 use Korobochkin\CurrencyConverter\Models\PluginDeveloper;
 use Korobochkin\CurrencyConverter\Plugin;
@@ -86,7 +87,7 @@ class Widget extends \WP_Widget {
 							// Foreach currency in the list
 							foreach( $instance['currency_list'] as $currency_ticker ) {
 								// Setup our base currency and currency
-								$currency_pair->set_currencies( $instance['base_currency'], $currency_ticker );
+								$currency_pair->set_currencies( $currency_ticker, $instance['base_currency'] );
 
 								// This pair available?
 								if( $currency_pair->is_available() ) {
@@ -102,7 +103,21 @@ class Widget extends \WP_Widget {
 												<span class="currencyconverter-minimalistic-ver2-inline-list">
 													<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-ticker">
 														<?php echo $currency_ticker; ?>
-													</span><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-change-percentage"><?php
+													</span><?php
+													// Try to get country flag
+                                                    $country_obj = new Country();
+													$country_obj->set_country_by_currency( $currency_ticker );
+													$flag = $country_obj->get_flag_url( $instance['flag_size'] );
+                                                    if( $flag ) {
+                                                        echo '<span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-inline-list-item-flag">';
+														printf(
+															'<img src="%1$s" class="currencyconverter-flag-icon currencyconverter-flag-icon-%2$s">',
+															esc_url( $flag ),
+															esc_attr( $instance['flag_size'] )
+														);
+														echo '</span>';
+													}
+													?><span class="currencyconverter-minimalistic-ver2-inline-list-item currencyconverter-minimalistic-ver2-change-percentage"><?php
 														printf(
 															/* translators: %s - currency change number (digit) in percentage. %% - one percentage symbol (typed twice for escape in printf() func.) */
 															__( '%s<span class="currencyconverter-percentage-symbol">%%</span>', Plugin::NAME ), Text::number_format_i18n_plus_minus( $currency_data_filtered['change_percentage'], 2 )
@@ -154,6 +169,8 @@ class Widget extends \WP_Widget {
 
 		// Вероятно, это надо сохранять в виде массива
 		$instance_to_save['currency_list'] = strtoupper( sanitize_text_field( $instance['currency_list'] ) );
+
+		$instance_to_save['flag_size'] = (int)sanitize_text_field( $instance['flag_size'] );
 
 		$instance_to_save['bg_color_1'] = sanitize_text_field( $instance['bg_color_1'] );
 		$instance_to_save['bg_color_2'] = sanitize_text_field( $instance['bg_color_2'] );
@@ -251,6 +268,23 @@ class Widget extends \WP_Widget {
 			}
 			?>
 		</script>
+
+		<p><label for="<?php echo $this->get_field_id( 'flag_icons' ); ?>"><?php _e( 'Flag icons:', Plugin::NAME ); ?></label>
+		<select class="widefat" id="<?php echo $this->get_field_id( 'flag_size' ); ?>" name="<?php echo $this->get_field_name( 'flag_size' ); ?>">
+			<option value="0" <?php selected( 0, $instance['flag_size'], false ); ?>><?php _e( 'No flag icon', Plugin::NAME ); ?></option>
+			<?php
+			$flags_sizes = new \Korobochkin\CurrencyConverter\Models\Flags();
+			foreach( $flags_sizes->sizes as $size ) {
+				printf(
+					'<option value="%s"%s>%s</option>',
+					esc_attr( $size ),
+					selected( $size, $instance['flag_size'], false ),
+					esc_html( $size . ' px' )
+				);
+			}
+			?>
+		</select>
+		</p>
 
 		<h3><?php _e( 'Background color', Plugin::NAME ); ?></h3>
 
@@ -359,6 +393,7 @@ class Widget extends \WP_Widget {
 			'currency_list' =>
 				/* translators: Default currencies list in widget. Use most popular currencies in your region. WARNING: always use commas as separator */
 				__( 'CAD, AUD, GBP', Plugin::NAME ),
+			'flag_size' => 0,
 			'bg_color_scheme' => '',
 			'bg_color_1' => '#ffa200',
 			'bg_color_2' => '#ff5a00',
