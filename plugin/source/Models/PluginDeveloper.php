@@ -55,7 +55,7 @@ class PluginDeveloper {
 
 			$link = sprintf(
 				/* translators: %1$s - url to homepage with base currency. %2$s - base currency ticker (ISO code). %3$s - date of update currency rate in regional format (only month, date and year available right now). Available date variables - http://php.net/manual/en/function.date.php. */
-				__( 'Currencies exchange rates in <a href="%1$s" class="currencyconverter-base-currency-link">%2$s</a> on %3$s', Plugin::NAME ),
+				__( 'Currency exchange rates in <a href="%1$s" class="currencyconverter-base-currency-link">%2$s</a> on %3$s', 'currencyconverter' ),
 				esc_url( $this->get_base_currency_url() ),
 				esc_html( strtoupper( $this->base_currency ) ),
 				esc_html(
