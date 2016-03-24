@@ -2,7 +2,8 @@
 namespace Korobochkin\CurrencyConverter;
 
 class Activation {
-	function run() {
+
+	public static function run() {
 		/**
 		 * Cron task for update currency rates each hour.
 		 */
