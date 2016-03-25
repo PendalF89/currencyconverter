@@ -4,7 +4,7 @@ namespace Korobochkin\CurrencyConverter\Admin\Pages;
 use Korobochkin\CurrencyConverter\Plugin;
 
 class Plugins {
-	
+
 	public static function add_action_links( $links ) {
 		$add = array(
 			sprintf(
