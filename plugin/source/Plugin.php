@@ -12,7 +12,7 @@ class Plugin {
 	}
 
 	public function run() {
-		add_action( 'plugins_loaded', array( 'Korobochkin\CurrencyConverter\Translations', 'load_translations' ) );
+		add_action( 'plugins_loaded', array( '\Korobochkin\CurrencyConverter\Translations', 'load_translations' ) );
 
 		/**
 		 * Register Script & Styles
